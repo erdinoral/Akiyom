@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { motion, useScroll, useTransform, AnimatePresence, LayoutGroup } from 'framer-motion';
 import './AkiyomLanding.css';
 
@@ -38,7 +39,7 @@ const AkiyomLanding = () => {
       description: 'Dünyanın en büyük gizemlerini keşfedin. İnteraktif haritalar, derinlemesine analizler ve topluluk destekli araştırmalar.',
       image: '/enigmaatlas.png',
       features: ['İnteraktif Haritalar', 'Derinlemesine Analiz', 'Topluluk Araştırmaları', 'Multimedya İçerik'],
-      link: 'https://enigma.akiyom.com'
+      link: 'https://enigma.akiyom.com/'
     },
     {
       id: 4,
@@ -99,16 +100,18 @@ const AkiyomLanding = () => {
       >
         <div className="nav-container">
           <div className="nav-brand">
-            <motion.div 
-              className="nav-logo"
-              style={{
-                scale: useTransform(scrollY, [0, 500], [0.15, 0.15]),
-                y: useTransform(scrollY, [0, 500], [-400, 0])
-              }}
-            >
-              <span className="nav-logo-a">A</span>
-            </motion.div>
-            <span className="nav-brand-text">Akiyom</span>
+            <Link to="/" className="nav-logo-link">
+              <motion.div 
+                className="nav-logo"
+                style={{
+                  scale: useTransform(scrollY, [0, 500], [0.15, 0.15]),
+                  y: useTransform(scrollY, [0, 500], [-400, 0])
+                }}
+              >
+                <span className="nav-logo-a">A</span>
+              </motion.div>
+              <span className="nav-brand-text">Akiyom</span>
+            </Link>
           </div>
           <div className="nav-links">
             <a href="#vizyon">Vizyon</a>
@@ -340,7 +343,7 @@ const AkiyomLanding = () => {
 
           <div className="studio-action">
             <a 
-              href="mailto:iletisim@akiyom.com?subject=Proje Önerisi"
+              href="mailto:akiyom.iletisim@gmail.com?subject=Proje Önerisi"
               className="studio-button"
             >
               Projenizi Anlatın
@@ -392,16 +395,12 @@ const AkiyomLanding = () => {
             © 2026 Akiyom. Tüm hakları saklıdır.
           </div>
           <div className="footer-links">
-            <a 
-              href="#gizlilik" 
+            <Link 
+              to="/gizlilik" 
               className="footer-link"
-              onClick={(e) => {
-                e.preventDefault();
-                setSelectedPage('privacy');
-              }}
             >
               Gizlilik Politikası
-            </a>
+            </Link>
             <a 
               href="#kullanim" 
               className="footer-link"
@@ -509,11 +508,11 @@ const AkiyomLanding = () => {
                     <ul className="page-modal-list">
                       <li>
                         <strong>Genel Sorular ve Destek:</strong>{' '}
-                        <a href="mailto:iletisim@akiyom.com" className="page-modal-link">iletisim@akiyom.com</a>
+                        <a href="mailto:akiyom.iletisim@gmail.com" className="page-modal-link">akiyom.iletisim@gmail.com</a>
                       </li>
                       <li>
                         <strong>İşbirlikleri ve Basın:</strong>{' '}
-                        <a href="mailto:iletisim@akiyom.com" className="page-modal-link">iletisim@akiyom.com</a>
+                        <a href="mailto:akiyom.iletisim@gmail.com" className="page-modal-link">akiyom.iletisim@gmail.com</a>
                       </li>
                     </ul>
                     <p>
