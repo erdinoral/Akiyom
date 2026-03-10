@@ -1,17 +1,20 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, useScroll, useTransform, AnimatePresence, LayoutGroup } from 'framer-motion';
+import ProjectForm from './ProjectForm';
 import './AkiyomLanding.css';
 
 const AkiyomLanding = () => {
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [selectedPage, setSelectedPage] = useState(null);
+  const [isProjectFormOpen, setIsProjectFormOpen] = useState(false);
   const { scrollY } = useScroll();
   
   // Hero scroll animasyonları
   const heroScale = useTransform(scrollY, [0, 500], [1, 0.3]);
   const heroOpacity = useTransform(scrollY, [0, 500], [1, 0]);
-  const navbarOpacity = useTransform(scrollY, [0, 300], [0, 1]);
+  // Navbar opacity: Sayfa başında da görünür olmalı (0.3), scroll yapıldıkça daha belirgin (1)
+  const navbarOpacity = useTransform(scrollY, [0, 300], [0.3, 1]);
 
   const products = [
     {
@@ -103,14 +106,10 @@ const AkiyomLanding = () => {
             <Link to="/" className="nav-logo-link">
               <motion.div 
                 className="nav-logo"
-                style={{
-                  scale: useTransform(scrollY, [0, 500], [0.15, 0.15]),
-                  y: useTransform(scrollY, [0, 500], [-400, 0])
-                }}
               >
                 <span className="nav-logo-a">A</span>
               </motion.div>
-              <span className="nav-brand-text">Akiyom</span>
+              <span className="nav-brand-text">AK<span className="star-i-nav">İ</span>YOM</span>
             </Link>
           </div>
           <div className="nav-links">
@@ -141,7 +140,7 @@ const AkiyomLanding = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.2, ease: [0.25, 0.1, 0.25, 1] }}
           >
-            AKIYOM
+            AK<span className="star-i">İ</span>YOM
           </motion.h1>
           <motion.p
             className="hero-slogan"
@@ -342,15 +341,15 @@ const AkiyomLanding = () => {
           </div>
 
           <div className="studio-action">
-            <a 
-              href="mailto:akiyom.iletisim@gmail.com?subject=Proje Önerisi"
+            <button 
+              onClick={() => setIsProjectFormOpen(true)}
               className="studio-button"
             >
               Projenizi Anlatın
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <path d="M7 17L17 7M7 7h10v10"></path>
               </svg>
-            </a>
+            </button>
           </div>
         </motion.div>
       </section>
@@ -525,6 +524,12 @@ const AkiyomLanding = () => {
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* Project Form Modal */}
+      <ProjectForm 
+        isOpen={isProjectFormOpen} 
+        onClose={() => setIsProjectFormOpen(false)} 
+      />
       </div>
       {/* End Content Layer */}
     </div>

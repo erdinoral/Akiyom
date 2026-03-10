@@ -29,7 +29,7 @@ const PrivacyPage = () => {
                 <motion.div className="nav-logo">
                   <span className="nav-logo-a">A</span>
                 </motion.div>
-                <span className="nav-brand-text">Akiyom</span>
+                <span className="nav-brand-text">AK<span className="star-i-nav">İ</span>YOM</span>
               </Link>
             </div>
             <div className="nav-links">
