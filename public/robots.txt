@@ -1,0 +1,11 @@
+# robots.txt - Akiyom Website
+# Tüm arama motorlarına izin ver
+
+User-agent: *
+Allow: /
+
+# Sitemap konumu
+Sitemap: https://akiyom.com/sitemap.xml
+
+# Crawl-delay (isteğe bağlı - çok agresif botlar için)
+# Crawl-delay: 1
