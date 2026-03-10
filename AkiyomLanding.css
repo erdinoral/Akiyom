@@ -131,7 +131,128 @@ body {
   min-height: 100vh;
 }
 
-/* Navbar */
+/* Announcement Banner */
+.announcement-banner {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1100;
+  pointer-events: none;
+}
+
+.announcement-banner-content {
+  background: rgba(13, 13, 13, 0.95);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 0.75rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  max-width: 100%;
+  pointer-events: auto;
+  position: relative;
+}
+
+.announcement-banner-text {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex: 1;
+}
+
+.announcement-icon {
+  font-size: 1.1rem;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.announcement-message {
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: var(--text-primary);
+  font-weight: 400;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.announcement-link {
+  color: #60a5fa;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  border-bottom: 1px solid transparent;
+  white-space: nowrap;
+}
+
+.announcement-link:hover {
+  color: #93c5fd;
+  border-bottom-color: #60a5fa;
+  text-shadow: 0 0 8px rgba(96, 165, 250, 0.5);
+}
+
+.announcement-close {
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+  padding: 0;
+}
+
+.announcement-close:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.2);
+  color: var(--text-primary);
+  transform: rotate(90deg);
+}
+
+.announcement-close:active {
+  transform: rotate(90deg) scale(0.95);
+}
+
+.announcement-glow-line {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(96, 165, 250, 0.6) 20%,
+    rgba(96, 165, 250, 0.8) 50%,
+    rgba(96, 165, 250, 0.6) 80%,
+    transparent 100%
+  );
+  box-shadow: 0 0 10px rgba(96, 165, 250, 0.5), 0 0 20px rgba(96, 165, 250, 0.3);
+  animation: glow-pulse 3s ease-in-out infinite;
+}
+
+@keyframes glow-pulse {
+  0%, 100% {
+    opacity: 0.6;
+    box-shadow: 0 0 10px rgba(96, 165, 250, 0.5), 0 0 20px rgba(96, 165, 250, 0.3);
+  }
+  50% {
+    opacity: 1;
+    box-shadow: 0 0 15px rgba(96, 165, 250, 0.8), 0 0 30px rgba(96, 165, 250, 0.5);
+  }
+}
+
+/* Navbar - Announcement banner varsa altında konumlan */
 .navbar {
   position: fixed;
   top: 0;
@@ -144,7 +265,12 @@ body {
   border-bottom: 1px solid var(--border-color);
   padding: 1rem 0;
   pointer-events: auto;
-  transition: opacity 0.3s ease;
+  transition: opacity 0.3s ease, top 0.3s ease;
+}
+
+/* Announcement banner görünürken navbar'ı aşağı kaydır */
+body.has-announcement-banner .navbar {
+  top: 50px;
 }
 
 .nav-container {
@@ -857,6 +983,41 @@ body {
 
   .nav-links a {
     font-size: 17px;
+  }
+
+  /* Announcement Banner Responsive */
+  .announcement-banner-content {
+    padding: 0.625rem 1.5rem;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .announcement-banner-text {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .announcement-message {
+    font-size: 0.8rem;
+    line-height: 1.4;
+  }
+
+  .announcement-icon {
+    font-size: 0.95rem;
+  }
+
+  .announcement-link {
+    font-size: 0.8rem;
+    white-space: nowrap;
+  }
+
+  .announcement-close {
+    width: 26px;
+    height: 26px;
+  }
+
+  body.has-announcement-banner .navbar {
+    top: 45px;
   }
 
   .vision-section,
@@ -1766,6 +1927,138 @@ html {
 
   .privacy-app-card {
     padding: 1.25rem 1.5rem;
+  }
+}
+
+/* Cookie Banner */
+.cookie-banner {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 2500;
+  padding: 1.5rem 2rem;
+  pointer-events: none;
+}
+
+.cookie-banner-content {
+  max-width: 1800px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  background: rgba(13, 13, 13, 0.95);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px 16px 0 0;
+  padding: 1.25rem 2rem;
+  box-shadow: 0 -4px 30px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.05);
+  pointer-events: auto;
+}
+
+.cookie-banner-text {
+  flex: 1;
+}
+
+.cookie-banner-message {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  font-weight: 300;
+  margin: 0;
+}
+
+.cookie-banner-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.cookie-banner-button {
+  padding: 0.75rem 1.5rem;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  color: var(--text-primary);
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: inherit;
+  white-space: nowrap;
+}
+
+.cookie-banner-button:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.3);
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+  transform: translateY(-2px);
+}
+
+.cookie-banner-button:active {
+  transform: translateY(0);
+}
+
+.cookie-banner-close {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+}
+
+.cookie-banner-close:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.2);
+  color: var(--text-primary);
+  transform: rotate(90deg);
+}
+
+.cookie-banner-close:active {
+  transform: rotate(90deg) scale(0.95);
+}
+
+/* Cookie Banner Responsive */
+@media (max-width: 768px) {
+  .cookie-banner {
+    padding: 1rem 1.5rem;
+  }
+
+  .cookie-banner-content {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1.25rem 1.5rem;
+    border-radius: 12px 12px 0 0;
+  }
+
+  .cookie-banner-message {
+    font-size: 0.85rem;
+  }
+
+  .cookie-banner-button {
+    width: 100%;
+    padding: 0.875rem 1.5rem;
+    font-size: 0.9rem;
+  }
+
+  .cookie-banner-actions {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .cookie-banner-close {
+    width: 40px;
+    height: 40px;
   }
 }
 

@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, useScroll, useTransform, AnimatePresence, LayoutGroup } from 'framer-motion';
 import ProjectForm from './ProjectForm';
+import CookieBanner from './CookieBanner';
+import AnnouncementBanner from './AnnouncementBanner';
 import './AkiyomLanding.css';
 
 const AkiyomLanding = () => {
@@ -180,6 +182,9 @@ const AkiyomLanding = () => {
       
       {/* Content Layer */}
       <div className="content-layer">
+      {/* Announcement Banner */}
+      <AnnouncementBanner />
+      
       {/* Sticky Navbar */}
       <motion.nav 
         className="navbar"
@@ -667,6 +672,9 @@ const AkiyomLanding = () => {
       />
       </div>
       {/* End Content Layer */}
+
+      {/* Cookie Banner */}
+      <CookieBanner />
     </div>
   );
 };
