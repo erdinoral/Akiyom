@@ -273,92 +273,6 @@ body {
   text-align: center;
   max-width: 1200px;
   position: relative;
-  z-index: 1;
-}
-
-/* Floating Project Names Background */
-.hero-floating-names {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 0;
-  overflow: hidden;
-}
-
-.floating-name {
-  position: absolute;
-  font-size: clamp(2rem, 4vw, 4rem);
-  font-weight: 300;
-  color: rgba(255, 255, 255, 0.05);
-  letter-spacing: 0.1em;
-  white-space: nowrap;
-  user-select: none;
-  animation: float-name 15s infinite ease-in-out;
-}
-
-.floating-name-1 {
-  top: 15%;
-  left: 10%;
-  animation-delay: 0s;
-  animation-duration: 18s;
-}
-
-.floating-name-2 {
-  top: 25%;
-  right: 15%;
-  animation-delay: 3s;
-  animation-duration: 20s;
-}
-
-.floating-name-3 {
-  bottom: 30%;
-  left: 20%;
-  animation-delay: 6s;
-  animation-duration: 16s;
-}
-
-.floating-name-4 {
-  top: 40%;
-  right: 25%;
-  animation-delay: 9s;
-  animation-duration: 22s;
-}
-
-.floating-name-5 {
-  bottom: 20%;
-  right: 10%;
-  animation-delay: 12s;
-  animation-duration: 19s;
-}
-
-.floating-name-6 {
-  top: 60%;
-  left: 15%;
-  animation-delay: 15s;
-  animation-duration: 17s;
-}
-
-@keyframes float-name {
-  0% {
-    opacity: 0;
-    transform: translateY(20px) scale(0.95);
-  }
-  10% {
-    opacity: 0.07;
-    transform: translateY(0) scale(1);
-  }
-  90% {
-    opacity: 0.05;
-    transform: translateY(-30px) scale(1.05);
-  }
-  100% {
-    opacity: 0;
-    transform: translateY(-50px) scale(0.95);
-  }
 }
 
 .hero-title {
@@ -370,41 +284,6 @@ body {
   color: var(--text-primary);
   position: relative;
   overflow: visible;
-}
-
-/* Yıldızlı İ harfi animasyonu */
-.star-i {
-  position: relative;
-  display: inline-block;
-}
-
-.star-i::after {
-  content: '✦';
-  position: absolute;
-  top: -0.5em;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 0.6em;
-  color: #fff;
-  text-shadow: 0 0 5px #fff, 0 0 15px #60a5fa, 0 0 25px #3b82f6;
-  animation: star-shine 2s infinite ease-in-out;
-  pointer-events: none;
-  z-index: 10;
-}
-
-@keyframes star-shine {
-  0%, 100% { 
-    opacity: 0.5; 
-    transform: translateX(-50%) scale(0.8); 
-    filter: blur(1px);
-    text-shadow: 0 0 5px #fff, 0 0 15px #60a5fa, 0 0 25px #3b82f6;
-  }
-  50% { 
-    opacity: 1; 
-    transform: translateX(-50%) scale(1.2); 
-    filter: blur(0px);
-    text-shadow: 0 0 10px #fff, 0 0 20px #60a5fa, 0 0 30px #3b82f6, 0 0 40px #2563eb;
-  }
 }
 
 .hero-title::after {
@@ -1034,15 +913,6 @@ body {
 @media (max-width: 480px) {
   .hero-title {
     font-size: 3.5rem;
-  }
-
-  .star-i::after {
-    font-size: 0.5em;
-    top: -0.45em;
-  }
-
-  .floating-name {
-    font-size: clamp(1.5rem, 3vw, 3rem);
   }
 
   .hero-slogan {

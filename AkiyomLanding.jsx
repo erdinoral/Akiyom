@@ -229,23 +229,13 @@ const AkiyomLanding = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.2, ease: [0.25, 0.1, 0.25, 1] }}
         >
-          {/* Floating Project Names Background */}
-          <div className="hero-floating-names">
-            <span className="floating-name floating-name-1">Akibeat</span>
-            <span className="floating-name floating-name-2">Aki Finans</span>
-            <span className="floating-name floating-name-3">Enigma Atlas</span>
-            <span className="floating-name floating-name-4">Akibeat</span>
-            <span className="floating-name floating-name-5">Aki Finans</span>
-            <span className="floating-name floating-name-6">Enigma Atlas</span>
-          </div>
-          
           <motion.h1 
             className="hero-title"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.2, ease: [0.25, 0.1, 0.25, 1] }}
           >
-            AK<span className="star-i">İ</span>YOM
+            AKİYOM
           </motion.h1>
           <motion.p
             className="hero-slogan"
