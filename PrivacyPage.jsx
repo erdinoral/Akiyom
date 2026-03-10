@@ -1,9 +1,19 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import './AkiyomLanding.css';
 
 const PrivacyPage = () => {
+  const location = useLocation();
+
+  const handleLogoClick = (e) => {
+    // Eğer zaten ana sayfadaysa, sayfayı en üste kaydır
+    if (location.pathname === '/') {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  };
+
   return (
     <div className="akiyom-landing">
       {/* Base Layer - Deep Space Grey Background */}
@@ -25,7 +35,12 @@ const PrivacyPage = () => {
         <motion.nav className="navbar" style={{ opacity: 1 }}>
           <div className="nav-container">
             <div className="nav-brand">
-              <Link to="/" className="nav-logo-link">
+              <Link 
+                to="/" 
+                className="nav-logo-link"
+                onClick={handleLogoClick}
+                aria-label="Ana sayfaya dön"
+              >
                 <motion.div className="nav-logo">
                   <span className="nav-logo-a">A</span>
                 </motion.div>

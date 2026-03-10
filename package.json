@@ -19,6 +19,8 @@
     "preview": "vite preview",
     "audit": "npm audit",
     "audit:fix": "npm audit fix",
-    "security:check": "node scripts/security-check.js"
+    "security:check": "node scripts/security-check.js",
+    "generate:sitemap": "node scripts/generate-sitemap.js",
+    "prebuild": "npm run generate:sitemap"
   }
 }
