@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import './AkiyomLanding.css';
 
@@ -45,18 +46,34 @@ const CookieBanner = () => {
           transition={{ duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
         >
           <div className="cookie-banner-content">
+            <div className="cookie-banner-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+              </svg>
+            </div>
             <div className="cookie-banner-text">
               <p className="cookie-banner-message">
-                Sitemizde deneyiminizi iyileştirmek için teknik çerezler kullanıyoruz.
+                Gizliliğinize ve dijital deneyiminize önem veriyoruz. Akiyom, platform performansını optimize etmek ve size özel çözümler sunmak için yalnızca gerekli teknik çerezleri kullanır.
               </p>
             </div>
             <div className="cookie-banner-actions">
+              <Link 
+                to="/gizlilik" 
+                className="cookie-banner-privacy-link"
+                onClick={(e) => {
+                  // Link'e tıklandığında banner'ı kapatma
+                  e.stopPropagation();
+                }}
+              >
+                Gizlilik Politikası
+              </Link>
               <button
                 className="cookie-banner-button"
                 onClick={handleAccept}
                 aria-label="Çerez kullanımını kabul et"
               >
-                Anladım
+                Kabul Et
               </button>
               <button
                 className="cookie-banner-close"
