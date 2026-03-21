@@ -50,7 +50,20 @@ const AkiyomLanding = () => {
       features: ['İnteraktif Haritalar', 'Derinlemesine Analiz', 'Topluluk Araştırmaları', 'Multimedya İçerik'],
       link: 'https://enigma.akiyom.com/',
       status: 'published',
-      statusText: 'Yayında'
+      statusText: 'Yayında',
+      linkLabel: 'Siteye Git'
+    },
+    {
+      id: 4,
+      name: 'Crimson Desert Topluluğu',
+      tagline: 'Crimson Desert oyuncu topluluğu ve wiki',
+      description: 'Oyun içi keşiflerden beslenen wiki, popüler paylaşımlar ve topluluk alanı. Bilgilerinizi paylaşarak topluluğu birlikte büyütün.',
+      image: '/crimsondesert.png',
+      features: ['Topluluk & Paylaşım', 'Wiki İçerikleri', 'Popüler ve Son Paylaşımlar', 'Oyuncu Odaklı Keşif'],
+      link: 'https://cdpywel.akiyom.com/',
+      status: 'published',
+      statusText: 'Yayınlandı',
+      linkLabel: 'Siteye Git'
     }
   ];
 
@@ -436,7 +449,7 @@ const AkiyomLanding = () => {
                         target="_blank"
                         rel="noopener noreferrer"
                       >
-                        Uygulamaya Git
+                        {selectedProduct.linkLabel ?? 'Uygulamaya Git'}
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                           <path d="M7 17L17 7M7 7h10v10"></path>
                         </svg>
@@ -462,7 +475,7 @@ const AkiyomLanding = () => {
           <h2 className="studio-title">Akiyom Studio</h2>
           <p className="studio-slogan">Sizin Vizyonunuz, Bizim Teknolojimiz.</p>
           <p className="studio-description">
-            Akibeat, Aki Finans ve Enigma Atlas gibi projelerimizde kullandığımız mühendislik ve tasarım tecrübesini şimdi sizin fikirleriniz için sunuyoruz. Modern web platformları veya yapay zeka destekli özel yazılımlar... İhtiyacınız olan dijital çözümü, alıştığınız Akiyom kalitesiyle hayata geçirelim.
+            Akibeat, Aki Finans, Enigma Atlas ve Crimson Desert Topluluğu gibi projelerimizde kullandığımız mühendislik ve tasarım tecrübesini şimdi sizin fikirleriniz için sunuyoruz. Modern web platformları veya yapay zeka destekli özel yazılımlar... İhtiyacınız olan dijital çözümü, alıştığınız Akiyom kalitesiyle hayata geçirelim.
           </p>
           
           <div className="studio-services">
