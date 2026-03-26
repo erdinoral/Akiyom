@@ -98,7 +98,7 @@ const AkiyomMain = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.6 }}
           >
-            Müzik, Oyun ve Üretkenlik
+            Müzik, Üretkenlik ve Geliştirme
           </motion.h1>
         </motion.div>
       </motion.section>
@@ -150,7 +150,7 @@ const AkiyomMain = () => {
         >
           <h2 className="section-title">Hakkımızda</h2>
           <p className="about-text">
-            Akiyom, müzik, oyun ve üretkenlik alanlarında yenilikçi çözümler sunan bir platformdur.
+            Akiyom, müzik, üretkenlik ve geliştirme alanlarında yenilikçi çözümler sunan bir platformdur.
             Kullanıcılarımıza en iyi deneyimi sunmak için sürekli gelişiyoruz.
           </p>
         </motion.div>

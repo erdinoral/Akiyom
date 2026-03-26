@@ -3,21 +3,21 @@
   <!-- Ana Sayfa -->
   <url>
     <loc>https://akiyom.com/</loc>
-    <lastmod>2026-03-10</lastmod>
+    <lastmod>2026-03-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <!-- Gizlilik Politikası -->
   <url>
     <loc>https://akiyom.com/gizlilik</loc>
-    <lastmod>2026-03-10</lastmod>
+    <lastmod>2026-03-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <!-- Aki Finans Gizlilik Politikası -->
   <url>
     <loc>https://akiyom.com/gizlilik/aki-finans</loc>
-    <lastmod>2026-03-10</lastmod>
+    <lastmod>2026-03-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>

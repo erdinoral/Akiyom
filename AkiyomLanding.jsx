@@ -7,6 +7,7 @@ import './AkiyomLanding.css';
 
 const AkiyomLanding = () => {
   const [selectedProduct, setSelectedProduct] = useState(null);
+  const [selectedStudioPackage, setSelectedStudioPackage] = useState(null);
   const [selectedPage, setSelectedPage] = useState(null);
   const [isProjectFormOpen, setIsProjectFormOpen] = useState(false);
   const { scrollY } = useScroll();
@@ -90,13 +91,79 @@ const AkiyomLanding = () => {
     }
   ];
 
+  const studioPackages = [
+    {
+      category: 'Kişisel',
+      title: 'Kişisel Site Paketi',
+      description: 'Portfolyo, blog, kişisel marka veya içerik üretimi odaklı hızlı ve modern web siteleri.',
+      items: ['Tek sayfa veya çok sayfa yapı', 'Responsive tasarım', 'Temel SEO altyapısı'],
+      duration: '1-3 hafta',
+      pricing: 'Başlangıç: 15.000 TL',
+      details: ['Kurulum ve yayına alma', 'Temel içerik yerleşimi', 'Bakım için teslim sonrası destek']
+    },
+    {
+      category: 'Kişisel',
+      title: 'Kişisel Uygulama Paketi',
+      description: 'Bireysel üretkenlik, takip ve otomasyon ihtiyaçlarına uygun web veya mobil uygulama çözümleri.',
+      items: ['Kullanıcı hesap sistemi', 'Veri saklama ve raporlama', 'Özel özellik geliştirme'],
+      duration: '3-6 hafta',
+      pricing: 'Başlangıç: 30.000 TL',
+      details: ['MVP odaklı hızlı geliştirme', 'Kişisel kullanım senaryoları', 'İsteğe göre ek modül geliştirme']
+    },
+    {
+      category: 'Ticari',
+      title: 'Ticari Site Paketi',
+      description: 'Marka, şirket ve e-ticaret süreçlerine uygun, dönüşüm odaklı kurumsal web çözümleri.',
+      items: ['Kurumsal sayfa yapısı', 'Gelişmiş form ve entegrasyonlar', 'Performans ve güvenlik optimizasyonu'],
+      duration: '3-8 hafta',
+      pricing: 'Başlangıç: 45.000 TL',
+      details: ['Kurumsal kimliğe uygun tasarım dili', 'SEO ve performans optimizasyonu', 'CRM veya harici servis entegrasyonu']
+    },
+    {
+      category: 'Ticari',
+      title: 'Ticari Uygulama Paketi',
+      description: 'Şirketlere yönelik operasyon, müşteri yönetimi ve süreç otomasyonu için ölçeklenebilir uygulamalar.',
+      items: ['Yetkilendirme ve rol yönetimi', 'Panel ve raporlama ekranları', 'API ve üçüncü taraf entegrasyonları'],
+      duration: '6-12 hafta',
+      pricing: 'Başlangıç: 75.000 TL',
+      details: ['İş akışına özel modüler mimari', 'Şirket ekiplerine göre rol bazlı ekranlar', 'Canlıya alma ve ölçeklenebilir altyapı']
+    }
+  ];
+
+  const solutionAreas = [
+    {
+      title: 'Ticari Web Siteleri',
+      description: 'Marka tanıtımı, e-ticaret akışları ve dönüşüm odaklı kurumsal web deneyimleri.',
+      tags: ['Kurumsal', 'E-Ticaret', 'Lead Toplama'],
+      icon: '🏢'
+    },
+    {
+      title: 'Topluluk ve Forum Platformları',
+      description: 'Üyelik, paylaşım, moderasyon ve etkileşim odaklı topluluk altyapıları.',
+      tags: ['Topluluk', 'Forum', 'Moderasyon'],
+      icon: '🌐'
+    },
+    {
+      title: 'Vlog ve İçerik Siteleri',
+      description: 'Video, blog ve medya odaklı yayın platformlarıyla içerik üreticilerine güçlü altyapı.',
+      tags: ['Vlog', 'Blog', 'Medya'],
+      icon: '🎬'
+    },
+    {
+      title: 'Şirketlere Özel Uygulamalar',
+      description: 'Operasyon, müşteri yönetimi ve süreç otomasyonu için ölçeklenebilir çözümler.',
+      tags: ['CRM', 'Otomasyon', 'Panel'],
+      icon: '⚙️'
+    }
+  ];
+
   // JSON-LD Schema for Akiyom Studio Services
   useEffect(() => {
     const schema = {
       "@context": "https://schema.org",
       "@type": "Service",
       "name": "Akiyom Studio",
-      "description": "Hayalleri teknolojiyle buluşturan dijital inovasyon merkezi. Özel yazılım geliştirme, UI/UX tasarım ve yapay zeka entegrasyonları ile potansiyelinizi ortaya çıkarın.",
+      "description": "Hayalleri teknolojiyle buluşturan dijital inovasyon merkezi. Kişisel ve ticari site/uygulama geliştirme, UI/UX tasarım ve yapay zeka entegrasyonları ile potansiyelinizi ortaya çıkarın.",
       "provider": {
         "@type": "Organization",
         "name": "Akiyom Yazılım ve Geliştirme",
@@ -109,7 +176,9 @@ const AkiyomLanding = () => {
         }
       },
       "serviceType": [
-        "Özel Yazılım Geliştirme",
+        "Kişisel ve Ticari Web Site Geliştirme",
+        "Kişisel ve Ticari Uygulama Geliştirme",
+        "Şirketlere Yönelik Yazılım Çözümleri",
         "UI/UX Tasarım",
         "Yapay Zeka Entegrasyonları"
       ],
@@ -120,7 +189,7 @@ const AkiyomLanding = () => {
       "url": "https://akiyom.com",
       "offers": {
         "@type": "Offer",
-        "description": "Modern web platformları ve yapay zeka destekli özel yazılımlar. Kullanıcı odaklı, premium arayüz deneyimleri."
+        "description": "Kişisel ve ticari web siteleri, uygulamalar ve şirketlere özel yazılım çözümleri. Kullanıcı odaklı premium arayüz deneyimleri."
       },
       "hasOfferCatalog": {
         "@type": "OfferCatalog",
@@ -130,24 +199,24 @@ const AkiyomLanding = () => {
             "@type": "Offer",
             "itemOffered": {
               "@type": "Service",
-              "name": "Özel Yazılım Geliştirme",
-              "description": "Ölçeklenebilir web uygulamaları ve AI entegrasyonları"
+              "name": "Web Site Geliştirme",
+              "description": "Kişisel ve ticari ihtiyaçlara uygun modern web sitesi çözümleri"
             }
           },
           {
             "@type": "Offer",
             "itemOffered": {
               "@type": "Service",
-              "name": "UI/UX Tasarım",
-              "description": "Kullanıcı odaklı, premium arayüz deneyimleri"
+              "name": "Uygulama Geliştirme",
+              "description": "Web ve mobil platformlarda kişisel veya kurumsal uygulama geliştirme"
             }
           },
           {
             "@type": "Offer",
             "itemOffered": {
               "@type": "Service",
-              "name": "Yapay Zeka Entegrasyonları",
-              "description": "AI destekli çözümler ve otomasyon sistemleri"
+              "name": "Şirketlere Özel Yazılım Çözümleri",
+              "description": "Operasyon, müşteri yönetimi ve süreç otomasyonu odaklı kurumsal çözümler"
             }
           }
         ]
@@ -257,7 +326,7 @@ const AkiyomLanding = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
           >
-            Müzik, Oyun ve Üretkenlik Adına Her Şey.
+            Müzik, Üretkenlik ve Geliştirme Adına Her Şey.
           </motion.p>
         </motion.div>
       </motion.section>
@@ -273,7 +342,7 @@ const AkiyomLanding = () => {
         >
           <h2 className="section-title">Vizyonumuz</h2>
           <p className="vision-text">
-            Hayalleri teknolojiyle buluşturma misyonuyla yola çıktık. Akiyom, müzik, oyun ve üretkenlik 
+            Hayalleri teknolojiyle buluşturma misyonuyla yola çıktık. Akiyom, müzik, üretkenlik ve geliştirme
             alanlarında yenilikçi çözümler sunarak kullanıcılarımızın potansiyelini ortaya çıkarmayı hedefliyor.
           </p>
           <p className="vision-text">
@@ -350,9 +419,9 @@ const AkiyomLanding = () => {
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.8, delay: 0.2, ease: [0.25, 0.1, 0.25, 1] }}
         >
-          Akiyom ekosistemi, farklı ihtiyaçlara yönelik özel olarak tasarlanmış dijital çözümlerden oluşuyor. 
+          Akiyom ekosistemi, farklı ihtiyaçlara yönelik özel olarak tasarlanmış dijital çözümlerden oluşuyor.
           Her ürün, kendi alanında derinlemesine uzmanlaşmış, ancak aynı zamanda birbirini destekleyen bir 
-          yapıya sahip. Müzik üretiminden finansal analize, gizem araştırmalarına kadar geniş bir yelpazede 
+          yapıya sahip. Müzik üretiminden finansal analize, topluluk odaklı içerik platformlarına kadar geniş bir yelpazede
           hizmet veriyoruz. Aşağıdaki ürünlerimiz, kullanıcılarımızın günlük hayatlarını kolaylaştırmak ve 
           yaratıcı potansiyellerini ortaya çıkarmak için geliştirildi.
         </motion.p>
@@ -463,6 +532,48 @@ const AkiyomLanding = () => {
         </LayoutGroup>
       </section>
 
+      {/* Solutions Showcase Section */}
+      <section className="solutions-showcase-section">
+        <motion.div
+          className="solutions-showcase-container"
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-100px' }}
+          transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
+        >
+          <h2 className="section-title">Neler Geliştiriyoruz?</h2>
+          <p className="solutions-showcase-intro">
+            Ticari web sitelerinden topluluk ve forum platformlarına, vlog odaklı içerik sitelerinden şirket içi
+            uygulamalara kadar farklı ihtiyaçlara uygun dijital ürünler tasarlıyor ve geliştiriyoruz.
+          </p>
+
+          <div className="solutions-showcase-grid">
+            {solutionAreas.map((area, index) => (
+              <motion.article
+                key={area.title}
+                className={`solutions-showcase-card solutions-showcase-card-${index + 1}`}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-60px' }}
+                transition={{ duration: 0.5, delay: index * 0.08 }}
+                whileHover={{ y: -6 }}
+              >
+                <div className="solutions-showcase-visual" aria-hidden="true">
+                  <span>{area.icon}</span>
+                </div>
+                <h3 className="solutions-showcase-title">{area.title}</h3>
+                <p className="solutions-showcase-description">{area.description}</p>
+                <div className="solutions-showcase-tags">
+                  {area.tags.map((tag) => (
+                    <span key={tag} className="solutions-showcase-tag">{tag}</span>
+                  ))}
+                </div>
+              </motion.article>
+            ))}
+          </div>
+        </motion.div>
+      </section>
+
       {/* Akiyom Studio Section */}
       <section className="studio-section">
         <motion.div
@@ -475,18 +586,40 @@ const AkiyomLanding = () => {
           <h2 className="studio-title">Akiyom Studio</h2>
           <p className="studio-slogan">Sizin Vizyonunuz, Bizim Teknolojimiz.</p>
           <p className="studio-description">
-            Akibeat, Aki Finans, Enigma Atlas ve Crimson Desert Topluluğu gibi projelerimizde kullandığımız mühendislik ve tasarım tecrübesini şimdi sizin fikirleriniz için sunuyoruz. Modern web platformları veya yapay zeka destekli özel yazılımlar... İhtiyacınız olan dijital çözümü, alıştığınız Akiyom kalitesiyle hayata geçirelim.
+            Akibeat, Aki Finans, Enigma Atlas ve Crimson Desert Topluluğu gibi projelerde edindiğimiz mühendislik
+            tecrübesini, artık sizin iş hedeflerinize taşıyoruz. Kişisel ya da ticari fark etmeksizin web sitesi ve
+            uygulama kurulumlarında; planlama, tasarım ve geliştirme adımlarını tek bir çatı altında yönetiyoruz.
           </p>
           
           <div className="studio-services">
             <div className="studio-service-item">
-              <h3 className="studio-service-title">Özel Yazılım</h3>
-              <p className="studio-service-description">Ölçeklenebilir web uygulamaları ve AI entegrasyonları.</p>
+              <h3 className="studio-service-title">Site ve Uygulama Geliştirme</h3>
+              <p className="studio-service-description">Kişisel ve ticari hedeflere uygun web/mobil çözümler.</p>
             </div>
             <div className="studio-service-item">
-              <h3 className="studio-service-title">UI/UX Tasarım</h3>
-              <p className="studio-service-description">Kullanıcı odaklı, premium arayüz deneyimleri.</p>
+              <h3 className="studio-service-title">Kurumsal Yazılım Çözümleri</h3>
+              <p className="studio-service-description">Şirketlere yönelik panel, otomasyon ve entegrasyon sistemleri.</p>
             </div>
+          </div>
+
+          <div className="studio-packages">
+            {studioPackages.map((pkg) => (
+              <div
+                key={pkg.title}
+                className="studio-package-card"
+                onClick={() => setSelectedStudioPackage(pkg)}
+              >
+                <span className="studio-package-category">{pkg.category}</span>
+                <h3 className="studio-package-title">{pkg.title}</h3>
+                <p className="studio-package-description">{pkg.description}</p>
+                <ul className="studio-package-list">
+                  {pkg.items.map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ul>
+                <p className="studio-package-note">Detayları görmek için tıklayın.</p>
+              </div>
+            ))}
           </div>
 
           <div className="studio-action">
@@ -503,38 +636,107 @@ const AkiyomLanding = () => {
         </motion.div>
       </section>
 
-      {/* Support Section */}
-      <section className="support-banner-section">
-        <motion.div
-          className="support-banner"
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
-        >
-          <div className="support-banner-content">
-            <div className="support-banner-text">
-              <h2 className="support-banner-title">Bize Destek Olun</h2>
-              <p className="support-banner-description">
-                Akiyom olarak hayallerinizi teknolojiyle buluşturuyoruz. Artan sunucu ve AI maliyetlerimizi karşılamamıza destek olarak projelerimizin bağımsız kalmasına katkıda bulunabilirsiniz.
-              </p>
-            </div>
-            <div className="support-banner-action">
-              <a 
-                href="https://kreosus.com/akiyom" 
-                target="_blank"
-                rel="noopener noreferrer"
-                className="support-button"
+      {/* Studio Package Detail Modal */}
+      <AnimatePresence>
+        {selectedStudioPackage && (
+          <motion.div
+            className="studio-package-modal-overlay"
+            initial={{ opacity: 0, backdropFilter: 'blur(0px)' }}
+            animate={{ opacity: 1, backdropFilter: 'blur(8px)' }}
+            exit={{ opacity: 0, backdropFilter: 'blur(0px)' }}
+            transition={{ duration: 0.25, ease: [0.25, 0.1, 0.25, 1] }}
+            onClick={() => setSelectedStudioPackage(null)}
+          >
+            <motion.div
+              className="studio-package-modal"
+              initial={{ opacity: 0, scale: 0.92, y: 32, rotateX: -8 }}
+              animate={{ opacity: 1, scale: 1, y: 0, rotateX: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 16, rotateX: -4 }}
+              transition={{ type: 'spring', stiffness: 260, damping: 24, mass: 0.9 }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <button
+                className="modal-close"
+                onClick={() => setSelectedStudioPackage(null)}
+                aria-label="Kapat"
               >
-                Destek Ol
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M7 17L17 7M7 7h10v10"></path>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <line x1="18" y1="6" x2="6" y2="18"></line>
+                  <line x1="6" y1="6" x2="18" y2="18"></line>
                 </svg>
-              </a>
-            </div>
-          </div>
-        </motion.div>
-      </section>
+              </button>
+
+              <motion.div
+                className="studio-package-modal-content"
+                initial="hidden"
+                animate="show"
+                exit="hidden"
+                variants={{
+                  hidden: { opacity: 0 },
+                  show: { opacity: 1, transition: { staggerChildren: 0.06, delayChildren: 0.05 } }
+                }}
+              >
+                <motion.span
+                  className="studio-package-category"
+                  variants={{ hidden: { opacity: 0, y: 10 }, show: { opacity: 1, y: 0 } }}
+                >
+                  {selectedStudioPackage.category}
+                </motion.span>
+                <motion.h3
+                  className="studio-package-modal-title"
+                  variants={{ hidden: { opacity: 0, y: 12 }, show: { opacity: 1, y: 0 } }}
+                >
+                  {selectedStudioPackage.title}
+                </motion.h3>
+                <motion.p
+                  className="studio-package-modal-description"
+                  variants={{ hidden: { opacity: 0, y: 12 }, show: { opacity: 1, y: 0 } }}
+                >
+                  {selectedStudioPackage.description}
+                </motion.p>
+
+                <motion.div
+                  className="studio-package-meta-grid"
+                  variants={{ hidden: { opacity: 0, y: 12 }, show: { opacity: 1, y: 0 } }}
+                >
+                  <div className="studio-package-meta-item">
+                    <span className="studio-package-meta-label">Tahmini Süre</span>
+                    <span className="studio-package-meta-value">{selectedStudioPackage.duration}</span>
+                  </div>
+                  <div className="studio-package-meta-item">
+                    <span className="studio-package-meta-label">Tahmini Ücret</span>
+                    <span className="studio-package-meta-value">{selectedStudioPackage.pricing}</span>
+                  </div>
+                </motion.div>
+
+                <motion.div
+                  className="studio-package-modal-list"
+                  variants={{ hidden: { opacity: 0, y: 12 }, show: { opacity: 1, y: 0 } }}
+                >
+                  <h4>Paket İçeriği</h4>
+                  <ul>
+                    {selectedStudioPackage.items.map((item) => (
+                      <li key={item}>{item}</li>
+                    ))}
+                  </ul>
+                </motion.div>
+
+                <motion.div
+                  className="studio-package-modal-list"
+                  variants={{ hidden: { opacity: 0, y: 12 }, show: { opacity: 1, y: 0 } }}
+                >
+                  <h4>Detaylar</h4>
+                  <ul>
+                    {selectedStudioPackage.details.map((item) => (
+                      <li key={item}>{item}</li>
+                    ))}
+                  </ul>
+                </motion.div>
+              </motion.div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Footer */}
       <footer className="footer">
