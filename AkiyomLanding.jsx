@@ -38,7 +38,7 @@ const AkiyomLanding = () => {
       description: 'Kişisel finanslarınızı yönetin, analiz edin ve optimize edin. Akıllı bütçeleme ve harcama takibi ile finansal hedeflerinize ulaşın.',
       image: '/akis.png',
       features: ['Bütçe Yönetimi', 'Harcama Analizi', 'Hedef Takibi', 'Güvenli Cüzdan'],
-      link: 'https://akis.akiyom.com',
+      link: 'https://apps.microsoft.com/detail/9PKRN1TB6RN5?hl=tr-tr&gl=TR&ocid=pdpshare',
       status: 'published',
       statusText: 'Microsoft Store\'da Yayında'
     },
