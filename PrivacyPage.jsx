@@ -103,6 +103,15 @@ const PrivacyPage = () => {
                     </svg>
                   </div>
                 </Link>
+                <Link to="/gizlilik/akizen" className="privacy-app-link">
+                  <div className="privacy-app-card">
+                    <h3 className="privacy-app-name">Akizen PC</h3>
+                    <p className="privacy-app-description">Gizlilik Politikası</p>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <path d="M7 17L17 7M7 7h10v10"></path>
+                    </svg>
+                  </div>
+                </Link>
               </div>
             </div>
           </div>

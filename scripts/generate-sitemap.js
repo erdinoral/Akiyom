@@ -29,6 +29,12 @@ const routes = [
     changefreq: 'monthly',
     priority: '0.7',
     lastmod: CURRENT_DATE
+  },
+  {
+    path: '/gizlilik/akizen',
+    changefreq: 'monthly',
+    priority: '0.7',
+    lastmod: CURRENT_DATE
   }
 ];
 
@@ -43,9 +49,15 @@ function generateSitemap() {
 `;
 
   routes.forEach((route, index) => {
-    const comment = index === 0 ? '  <!-- Ana Sayfa -->' : 
-                   route.path.includes('gizlilik') ? `  <!-- ${route.path === '/gizlilik' ? 'Gizlilik Politikası' : 'Aki Finans Gizlilik Politikası'} -->` : 
-                   `  <!-- ${route.path} -->`;
+    const comment = index === 0
+      ? '  <!-- Ana Sayfa -->'
+      : route.path === '/gizlilik'
+      ? '  <!-- Gizlilik Politikası -->'
+      : route.path === '/gizlilik/aki-finans'
+      ? '  <!-- Aki Finans Gizlilik Politikası -->'
+      : route.path === '/gizlilik/akizen'
+      ? '  <!-- Akizen PC Gizlilik Politikası -->'
+      : `  <!-- ${route.path} -->`;
     
     sitemap += `${comment}
   <url>

@@ -821,6 +821,17 @@ body {
   box-shadow: 0 10px 30px rgba(255, 255, 255, 0.2);
 }
 
+.product-modal-coming-soon {
+  margin-top: 2rem;
+  padding: 1rem 1.25rem;
+  border-radius: 12px;
+  border: 1px solid rgba(251, 191, 36, 0.35);
+  background: rgba(251, 191, 36, 0.1);
+  color: #fbbf24;
+  font-weight: 600;
+  width: fit-content;
+}
+
 /* Responsive Design */
 @media (max-width: 968px) {
   .products-grid {
