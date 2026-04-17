@@ -61,8 +61,10 @@ const AkiyomLanding = () => {
       description: 'Bilgisayar performansını ve sistem sağlığını tek panelden takip edin, yardımcı araçlara hızlıca ulaşın.',
       image: '/Akizenpc.png',
       features: ['Canlı Performans İzleme', 'Sistem Sağlığı Kontrolü', 'Yardımcı Araçlara Erişim', 'Tek Panel Yönetimi'],
-      status: 'in-progress',
-      statusText: 'Yakında Microsoft Store\'da Yayında'
+      link: 'https://apps.microsoft.com/detail/9N7LNV11PWLP?hl=tr-tr&gl=TR&ocid=pdpshare',
+      status: 'published',
+      statusText: 'Microsoft Store\'da Yayında',
+      linkLabel: 'Microsoft Store\'a Git'
     }
   ];
 
