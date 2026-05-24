@@ -2,6 +2,35 @@ import { Resend } from 'resend';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
+const RATE_LIMIT_WINDOW_MS = 5 * 60 * 1000;
+const RATE_LIMIT_MAX = 3;
+const rateLimitMap = new Map();
+
+function getClientIp(req) {
+  const forwarded = req.headers['x-forwarded-for'];
+  if (forwarded) {
+    return String(forwarded).split(',')[0].trim();
+  }
+  return req.headers['x-real-ip'] || req.socket?.remoteAddress || 'unknown';
+}
+
+function isRateLimited(ip) {
+  const now = Date.now();
+  let entry = rateLimitMap.get(ip);
+
+  if (!entry || now >= entry.resetTime) {
+    rateLimitMap.set(ip, { count: 1, resetTime: now + RATE_LIMIT_WINDOW_MS });
+    return false;
+  }
+
+  if (entry.count >= RATE_LIMIT_MAX) {
+    return true;
+  }
+
+  entry.count += 1;
+  return false;
+}
+
 export default async function handler(req, res) {
   // CORS headers
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -19,7 +48,22 @@ export default async function handler(req, res) {
   }
 
   try {
-    const { projectType, fullName, companyName, projectDescription } = req.body;
+    const { projectType, fullName, companyName, projectDescription, website } = req.body;
+
+    // Honeypot — bot tuzağı (mail gönderme, başarılı gibi davran)
+    if (website && String(website).trim()) {
+      return res.status(200).json({
+        success: true,
+        message: 'Email başarıyla gönderildi',
+      });
+    }
+
+    const clientIp = getClientIp(req);
+    if (isRateLimited(clientIp)) {
+      return res.status(429).json({
+        error: 'Çok fazla istek gönderildi. Lütfen birkaç dakika bekleyin.',
+      });
+    }
 
     // Validasyon
     if (!fullName || !projectType || !projectDescription) {

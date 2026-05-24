@@ -3,29 +3,71 @@
   <!-- Ana Sayfa -->
   <url>
     <loc>https://akiyom.com/</loc>
-    <lastmod>2026-04-15</lastmod>
+    <lastmod>2026-05-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <!-- Gizlilik Politikası -->
   <url>
     <loc>https://akiyom.com/gizlilik</loc>
-    <lastmod>2026-04-15</lastmod>
+    <lastmod>2026-05-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <!-- Aki Finans Gizlilik Politikası -->
   <url>
     <loc>https://akiyom.com/gizlilik/aki-finans</loc>
-    <lastmod>2026-04-15</lastmod>
+    <lastmod>2026-05-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <!-- Akizen PC Gizlilik Politikası -->
   <url>
     <loc>https://akiyom.com/gizlilik/akizen</loc>
-    <lastmod>2026-04-15</lastmod>
+    <lastmod>2026-05-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <!-- /akiyom-ai -->
+  <url>
+    <loc>https://akiyom.com/akiyom-ai</loc>
+    <lastmod>2026-05-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <!-- /projeler -->
+  <url>
+    <loc>https://akiyom.com/projeler</loc>
+    <lastmod>2026-05-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <!-- /projeler/enigma-atlas -->
+  <url>
+    <loc>https://akiyom.com/projeler/enigma-atlas</loc>
+    <lastmod>2026-05-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <!-- /projeler/aki-finans -->
+  <url>
+    <loc>https://akiyom.com/projeler/aki-finans</loc>
+    <lastmod>2026-05-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <!-- /projeler/akizen-pc -->
+  <url>
+    <loc>https://akiyom.com/projeler/akizen-pc</loc>
+    <lastmod>2026-05-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <!-- /projeler/akibeat -->
+  <url>
+    <loc>https://akiyom.com/projeler/akibeat</loc>
+    <lastmod>2026-05-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
 </urlset>

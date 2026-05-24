@@ -35,6 +35,42 @@ const routes = [
     changefreq: 'monthly',
     priority: '0.7',
     lastmod: CURRENT_DATE
+  },
+  {
+    path: '/akiyom-ai',
+    changefreq: 'weekly',
+    priority: '0.9',
+    lastmod: CURRENT_DATE
+  },
+  {
+    path: '/projeler',
+    changefreq: 'weekly',
+    priority: '0.9',
+    lastmod: CURRENT_DATE
+  },
+  {
+    path: '/projeler/enigma-atlas',
+    changefreq: 'monthly',
+    priority: '0.8',
+    lastmod: CURRENT_DATE
+  },
+  {
+    path: '/projeler/aki-finans',
+    changefreq: 'monthly',
+    priority: '0.8',
+    lastmod: CURRENT_DATE
+  },
+  {
+    path: '/projeler/akizen-pc',
+    changefreq: 'monthly',
+    priority: '0.8',
+    lastmod: CURRENT_DATE
+  },
+  {
+    path: '/projeler/akibeat',
+    changefreq: 'monthly',
+    priority: '0.8',
+    lastmod: CURRENT_DATE
   }
 ];
 

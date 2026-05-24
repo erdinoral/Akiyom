@@ -54,7 +54,8 @@ const CookieBanner = () => {
             </div>
             <div className="cookie-banner-text">
               <p className="cookie-banner-message">
-                Gizliliğinize ve dijital deneyiminize önem veriyoruz. Akiyom, platform performansını optimize etmek ve size özel çözümler sunmak için yalnızca gerekli teknik çerezleri kullanır.
+                Gizliliğinize önem veriyoruz. Sitemizde yalnızca gerekli teknik çerezler ve çerez tercihiniz (tarayıcıda saklanır) kullanılır; reklam veya izleme çerezi yoktur. Ayrıntılar için{' '}
+                <Link to="/gizlilik" className="cookie-banner-privacy-inline">KVKK ve gizlilik metnimize</Link> bakın.
               </p>
             </div>
             <div className="cookie-banner-actions">

@@ -8,10 +8,12 @@ const ProjectForm = ({ isOpen, onClose }) => {
     projectType: '',
     fullName: '',
     companyName: '',
-    projectDescription: ''
+    projectDescription: '',
+    website: ''
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState(null); // 'success' | 'error' | null
+  const [errorMessage, setErrorMessage] = useState(null);
 
   const projectTypes = [
     { value: 'app', label: 'Uygulama' },
@@ -49,6 +51,7 @@ const ProjectForm = ({ isOpen, onClose }) => {
 
     setIsSubmitting(true);
     setSubmitStatus(null);
+    setErrorMessage(null);
 
     try {
       const response = await fetch('/api/send-project', {
@@ -65,7 +68,8 @@ const ProjectForm = ({ isOpen, onClose }) => {
           projectType: '',
           fullName: '',
           companyName: '',
-          projectDescription: ''
+          projectDescription: '',
+          website: ''
         });
         
         // 3 saniye sonra modal'ı kapat
@@ -74,6 +78,10 @@ const ProjectForm = ({ isOpen, onClose }) => {
           setSubmitStatus(null);
         }, 3000);
       } else {
+        const data = await response.json().catch(() => ({}));
+        if (response.status === 429 && data.error) {
+          setErrorMessage(data.error);
+        }
         setSubmitStatus('error');
       }
     } catch (error) {
@@ -122,6 +130,17 @@ const ProjectForm = ({ isOpen, onClose }) => {
             </p>
 
             <form onSubmit={handleSubmit} className="project-form">
+              <input
+                type="text"
+                name="website"
+                value={formData.website}
+                onChange={handleChange}
+                style={{ display: 'none' }}
+                tabIndex={-1}
+                autoComplete="off"
+                aria-hidden="true"
+              />
+
               {/* Proje Tipi */}
               <div className="project-form-group">
                 <label className="project-form-label">
@@ -250,7 +269,7 @@ const ProjectForm = ({ isOpen, onClose }) => {
                     <line x1="12" y1="8" x2="12" y2="12"></line>
                     <line x1="12" y1="16" x2="12.01" y2="16"></line>
                   </svg>
-                  Bir hata oluştu. Lütfen tüm zorunlu alanları doldurduğunuzdan emin olun ve tekrar deneyin.
+                  {errorMessage || 'Bir hata oluştu. Lütfen tüm zorunlu alanları doldurduğunuzdan emin olun ve tekrar deneyin.'}
                 </motion.div>
               )}
             </form>

@@ -5,6 +5,9 @@ import AkiyomLanding from './AkiyomLanding.jsx'
 import PrivacyPage from './PrivacyPage.jsx'
 import AkiFinansPrivacyPage from './AkiFinansPrivacyPage.jsx'
 import AkizenPrivacyPage from './AkizenPrivacyPage.jsx'
+import ProjectsPage from './src/ProjectsPage.jsx'
+import ProjectDetailPage from './src/ProjectDetailPage.jsx'
+import AkiyomAiPage from './src/AkiyomAiPage.jsx'
 import './index.css'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
@@ -15,6 +18,9 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <Route path="/gizlilik" element={<PrivacyPage />} />
         <Route path="/gizlilik/aki-finans" element={<AkiFinansPrivacyPage />} />
         <Route path="/gizlilik/akizen" element={<AkizenPrivacyPage />} />
+        <Route path="/projeler" element={<ProjectsPage />} />
+        <Route path="/projeler/:slug" element={<ProjectDetailPage />} />
+        <Route path="/akiyom-ai" element={<AkiyomAiPage />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>,
