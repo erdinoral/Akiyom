@@ -342,11 +342,14 @@ body {
 }
 
 .hero-slogan {
-  font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+  font-size: clamp(1.05rem, 2.2vw, 1.65rem);
   font-weight: 300;
   color: var(--text-secondary);
   letter-spacing: 0.01em;
   line-height: 1.5;
+  max-width: 28rem;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .hero-cta {

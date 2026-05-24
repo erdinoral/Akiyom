@@ -371,7 +371,7 @@ const AkiyomLanding = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
           >
-            Müzik, Üretkenlik ve Geliştirme Adına Her Şey.
+            Yazılım, Yapay Zeka ve Dijital Ürünler Adına Her Şey.
           </motion.p>
           <motion.button
             type="button"
@@ -399,8 +399,8 @@ const AkiyomLanding = () => {
         >
           <h2 className="section-title">Vizyonumuz</h2>
           <p className="vision-text">
-            Hayalleri teknolojiyle buluşturma misyonuyla yola çıktık. Akiyom, müzik, üretkenlik ve geliştirme
-            alanlarında yenilikçi çözümler sunarak kullanıcılarımızın potansiyelini ortaya çıkarmayı hedefliyor.
+            Hayalleri teknolojiyle buluşturma misyonuyla yola çıktık. Kendi ürünlerimizi geliştirirken Akiyom Studio
+            ile özel yazılım, Akiyom AI ile kurumsal yerel yapay zeka altyapısı sunuyoruz.
           </p>
           <p className="vision-text">
             Teknoloji ve yaratıcılığın kesiştiği noktada, her projeyi bir sanat eseri olarak görüyoruz. 
@@ -409,10 +409,9 @@ const AkiyomLanding = () => {
             izler bırakan çözümler yaratmak.
           </p>
           <p className="vision-text">
-            Akiyom ekosistemi olarak, müzik üreticilerinden finansal analiz yapanlara, oyun severlerden 
-            gizem avcılarına kadar geniş bir kullanıcı kitlesine hizmet veriyoruz. Her platform, kendi 
-            alanında derinlemesine uzmanlaşmış, ancak aynı zamanda birbirini destekleyen bir ekosistem 
-            oluşturuyor.
+            Akiyom ekosistemi; bireysel kullanıcılardan KOBİ&apos;lere, kurumsal ekiplerden içerik
+            platformlarına kadar geniş bir kitleye hizmet verir. Her ürün kendi alanında uzmanlaşır;
+            Studio ve AI hizmetleri ise fikirden canlıya uzanan yolu kısaltır.
           </p>
         </motion.div>
       </section>
@@ -478,9 +477,9 @@ const AkiyomLanding = () => {
         >
           Akiyom ekosistemi, farklı ihtiyaçlara yönelik özel olarak tasarlanmış dijital çözümlerden oluşuyor.
           Her ürün, kendi alanında derinlemesine uzmanlaşmış, ancak aynı zamanda birbirini destekleyen bir 
-          yapıya sahip. Müzik üretiminden finansal analize, topluluk odaklı içerik platformlarına kadar geniş bir yelpazede
-          hizmet veriyoruz. Aşağıdaki ürünlerimiz, kullanıcılarımızın günlük hayatlarını kolaylaştırmak ve 
-          yaratıcı potansiyellerini ortaya çıkarmak için geliştirildi.
+          yapıya sahip. Müzik ve finans uygulamalarından oyun rehberlerine ve sistem araçlarına kadar
+          farklı alanlarda çözümler üretiyoruz. Aşağıdaki ürünler, günlük işleri kolaylaştırmak ve
+          üretkenliği artırmak için geliştirildi.
         </motion.p>
         
         <LayoutGroup>

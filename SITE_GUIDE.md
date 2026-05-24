@@ -10,9 +10,9 @@
 
 ### Akiyom kimdir?
 
-**Akiyom**, mÃ¼zik, Ã¼retkenlik ve yazÄ±lÄ±m geliÅŸtirme alanÄ±nda kendi Ã¼rÃ¼nlerini Ã¼reten; aynÄ± zamanda **Akiyom Studio** markasÄ±yla dÄ±ÅŸ mÃ¼ÅŸterilere web sitesi ve uygulama geliÅŸtiren bir dijital stÃ¼dyo / Ã¼rÃ¼n ekosistemidir.
+**Akiyom**, kendi dijital ürünlerini geliştiren; **Akiyom Studio** ile özel yazılım, **Akiyom AI** ile kurumsal yerel AI sunan bir ürün ve hizmet ekosistemidir.
 
-**Slogan:** *MÃ¼zik, Ãœretkenlik ve GeliÅŸtirme AdÄ±na Her Åey.*
+**Slogan:** *Yazılım, Yapay Zeka ve Dijital Ürünler Adına Her Şey.*
 
 ### Sitenin asÄ±l iÅŸ hedefi
 
