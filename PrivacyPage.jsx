@@ -86,10 +86,10 @@ const PrivacyPage = () => {
 
               <h3 className="privacy-content-subtitle">Web sitesi ve &quot;Projenizi Anlatın&quot; formu</h3>
               <p>
-                Studio hizmetleri için gönderdiğiniz ad, e-posta, telefon (isteğe bağlı), proje açıklaması ve
-                bütçe bilgisi; talebinizi değerlendirmek, size dönüş yapmak ve teklif sürecini yürütmek amacıyla
-                işlenir. Form gönderimi, e-posta altyapısı (Resend) üzerinden iletilir; spam önleme için teknik
-                oran sınırlaması ve bot koruması uygulanabilir.
+                Studio hizmetleri için gönderdiğiniz ad, e-posta, şirket adı (isteğe bağlı), proje tipi ve proje
+                açıklaması; talebinizi değerlendirmek, size dönüş yapmak ve teklif sürecini yürütmek amacıyla
+                işlenir. Form verileri güvenli veritabanı altyapısında (Supabase) saklanır; spam önleme için
+                teknik oran sınırlaması ve bot koruması uygulanabilir.
               </p>
 
               <h3 className="privacy-content-subtitle">Akiyom AI — ödeme ve teklif iletişimi</h3>
@@ -112,9 +112,8 @@ const PrivacyPage = () => {
               <h2 className="privacy-content-title">2. Hukuki Sebep ve Aktarım</h2>
               <p>
                 Verileriniz; sözleşmenin kurulması veya ifası, meşru menfaat (iş geliştirme ve güvenlik) ve
-                açık rızanız (form gönderimi) kapsamında işlenebilir. Yurt içi hizmet sağlayıcılarına (ör.
-                e-posta iletimi, barındırma) yalnızca hizmetin sunulması için gerekli ölçüde aktarım yapılabilir.
-                Açık rızanız olmadan yurt dışına aktarım yapılmaz.
+                açık rızanız (form gönderimi) kapsamında işlenebilir. Yurt içi/yurt dışı hizmet sağlayıcılarına
+                (ör. barındırma, veritabanı) yalnızca hizmetin sunulması için gerekli ölçüde aktarım yapılabilir.
               </p>
 
               <h2 className="privacy-content-title">3. Saklama Süresi</h2>

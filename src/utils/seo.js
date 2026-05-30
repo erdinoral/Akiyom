@@ -1,12 +1,13 @@
+import React from 'react';
+
 const SITE_URL = 'https://akiyom.com';
 
 const DEFAULT = {
   title: 'Akiyom Studio | Web Sitesi & Uygulama Geliştirme — İstanbul',
   description:
-    "İstanbul'da web sitesi ve mobil uygulama geliştirme. Kişisel site, kurumsal yazılım, React & Vite. Akiyom Studio ile projenizi hayata geçirin.",
+    "İstanbul'da web sitesi, mobil uygulama ve ERP geliştirme. Kişisel site, kurumsal yazılım, CRM ve stok yönetimi. Akiyom Studio ile projenizi hayata geçirin.",
   path: '/',
 };
-
 function setMeta(attr, name, content) {
   if (!content) return;
   let el = document.querySelector(`meta[${attr}="${name}"]`);
@@ -79,3 +80,12 @@ export function injectJsonLd(id, data) {
 }
 
 export { SITE_URL, DEFAULT };
+
+/**
+ * React hook — mount'ta SEO günceller, unmount'ta geri alır.
+ */
+export function usePageSeo({ title, description, path = '/' }) {
+  React.useEffect(() => {
+    return setPageSeo({ title, description, path });
+  }, [title, description, path]);
+}

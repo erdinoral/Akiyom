@@ -3,6 +3,10 @@
 
 User-agent: *
 Allow: /
+Disallow: /profil
+Disallow: /giris
+Disallow: /kayit-ol
+Disallow: /panel
 
 # Sitemap konumu
 Sitemap: https://akiyom.com/sitemap.xml

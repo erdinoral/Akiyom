@@ -7,6 +7,7 @@ const ProjectForm = ({ isOpen, onClose }) => {
   const [formData, setFormData] = useState({
     projectType: '',
     fullName: '',
+    email: '',
     companyName: '',
     projectDescription: '',
     website: ''
@@ -18,6 +19,7 @@ const ProjectForm = ({ isOpen, onClose }) => {
   const projectTypes = [
     { value: 'app', label: 'Uygulama' },
     { value: 'website', label: 'Web Sitesi' },
+    { value: 'erp', label: 'ERP / Kurumsal Yazılım' },
     { value: 'widget', label: 'Widget' },
     { value: 'other', label: 'Diğer' }
   ];
@@ -49,6 +51,11 @@ const ProjectForm = ({ isOpen, onClose }) => {
       return;
     }
 
+    if (!formData.email.trim()) {
+      setSubmitStatus('error');
+      return;
+    }
+
     setIsSubmitting(true);
     setSubmitStatus(null);
     setErrorMessage(null);
@@ -67,6 +74,7 @@ const ProjectForm = ({ isOpen, onClose }) => {
         setFormData({
           projectType: '',
           fullName: '',
+          email: '',
           companyName: '',
           projectDescription: '',
           website: ''
@@ -180,6 +188,23 @@ const ProjectForm = ({ isOpen, onClose }) => {
                 />
               </div>
 
+              {/* E-posta */}
+              <div className="project-form-group">
+                <label htmlFor="email" className="project-form-label">
+                  E-posta <span className="required">*</span>
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  className="project-form-input"
+                  placeholder="ornek@email.com"
+                  required
+                />
+              </div>
+
               {/* Şirket İsmi */}
               <div className="project-form-group">
                 <label htmlFor="companyName" className="project-form-label">
@@ -254,7 +279,7 @@ const ProjectForm = ({ isOpen, onClose }) => {
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                     <polyline points="20 6 9 17 4 12"></polyline>
                   </svg>
-                  Mesajınız başarıyla gönderildi! En kısa sürede size dönüş yapacağız.
+                  Mesajınız alındı! En kısa sürede size dönüş yapacağız.
                 </motion.div>
               )}
 

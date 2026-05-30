@@ -123,6 +123,10 @@ function generateRobotsTxt() {
 
 User-agent: *
 Allow: /
+Disallow: /profil
+Disallow: /giris
+Disallow: /kayit-ol
+Disallow: /panel
 
 # Sitemap konumu
 Sitemap: ${SITE_URL}/sitemap.xml

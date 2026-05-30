@@ -4,6 +4,8 @@ import { motion, useScroll, useTransform, AnimatePresence, LayoutGroup } from 'f
 import ProjectForm from './ProjectForm';
 import CookieBanner from './CookieBanner';
 import AkiyomAiPromo from './src/components/AkiyomAiPromo.jsx';
+import SiteNavbar from './src/components/SiteNavbar.jsx';
+import VisionSection from './src/components/VisionSection.jsx';
 import './AkiyomLanding.css';
 
 const WHATSAPP_HREF = 'https://wa.me/90XXXXXXXXXX';
@@ -146,8 +148,8 @@ const AkiyomLanding = () => {
     {
       category: 'Ticari',
       title: 'Ticari Uygulama Paketi',
-      description: 'Şirketlere yönelik operasyon, müşteri yönetimi ve süreç otomasyonu için ölçeklenebilir uygulamalar.',
-      items: ['Yetkilendirme ve rol yönetimi', 'Panel ve raporlama ekranları', 'API ve üçüncü taraf entegrasyonları'],
+      description: 'ERP, CRM ve operasyon yönetimi dahil şirketlere yönelik süreç otomasyonu için ölçeklenebilir uygulamalar.',
+      items: ['Yetkilendirme ve rol yönetimi', 'Panel ve raporlama ekranları', 'ERP/CRM modülleri ve entegrasyonlar'],
       duration: '6-12 hafta',
       pricing: 'Başlangıç: 75.000 TL',
       details: ['İş akışına özel modüler mimari', 'Şirket ekiplerine göre rol bazlı ekranlar', 'Canlıya alma ve ölçeklenebilir altyapı']
@@ -178,6 +180,12 @@ const AkiyomLanding = () => {
       description: 'Operasyon, müşteri yönetimi ve süreç otomasyonu için ölçeklenebilir çözümler.',
       tags: ['CRM', 'Otomasyon', 'Panel'],
       icon: '⚙️'
+    },
+    {
+      title: 'ERP ve Kurumsal Yazılımlar',
+      description: 'Stok, muhasebe, satış, üretim ve insan kaynakları süreçlerini tek platformda yöneten özel ERP ve benzeri kurumsal yazılımlar.',
+      tags: ['ERP', 'Stok', 'Muhasebe', 'CRM'],
+      icon: '📊'
     }
   ];
 
@@ -203,6 +211,7 @@ const AkiyomLanding = () => {
       "serviceType": [
         "Web Sitesi Geliştirme",
         "Uygulama Geliştirme",
+        "ERP ve Kurumsal Yazılım Geliştirme",
         "Yazılım Danışmanlığı",
         "Kurumsal Yerel AI Altyapısı"
       ],
@@ -214,7 +223,7 @@ const AkiyomLanding = () => {
       "offers": {
         "@type": "AggregateOffer",
         "priceCurrency": "TRY",
-        "offerCount": 4
+        "offerCount": 5
       },
       "url": "https://akiyom.com",
       "hasOfferCatalog": {
@@ -250,7 +259,15 @@ const AkiyomLanding = () => {
             "itemOffered": {
               "@type": "Service",
               "name": "Ticari Uygulama Paketi",
-              "description": "Şirketlere yönelik operasyon, panel ve süreç otomasyonu uygulamaları"
+              "description": "Şirketlere yönelik ERP, CRM, panel ve süreç otomasyonu uygulamaları"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "ERP ve Kurumsal Yazılım",
+              "description": "Stok, muhasebe, satış ve operasyon süreçleri için özel ERP ve kurumsal yazılım çözümleri"
             }
           },
           {
@@ -307,41 +324,7 @@ const AkiyomLanding = () => {
       {/* Content Layer */}
       <div className="content-layer">
       {/* Sticky Navbar */}
-      <motion.nav 
-        className="navbar"
-        style={{ opacity: navbarOpacity }}
-      >
-        <div className="nav-container">
-          <div className="nav-brand">
-            <Link 
-              to="/" 
-              className="nav-logo-link"
-              onClick={(e) => {
-                // Eğer zaten ana sayfadaysa, sayfayı en üste kaydır
-                if (location.pathname === '/') {
-                  e.preventDefault();
-                  window.scrollTo({ top: 0, behavior: 'smooth' });
-                }
-              }}
-              aria-label="Ana sayfaya dön"
-            >
-              <motion.div 
-                className="nav-logo"
-              >
-                <span className="nav-logo-a">A</span>
-              </motion.div>
-              <span className="nav-brand-text">AK<span className="star-i-nav">İ</span>YOM</span>
-            </Link>
-          </div>
-          <div className="nav-links">
-            <a href="#vizyon">Vizyon</a>
-            <a href="#urunler">Ürünler</a>
-            <Link to="/projeler">Projeler</Link>
-            <Link to="/akiyom-ai">Akiyom AI</Link>
-            <a href="#hedefler">Hedefler</a>
-          </div>
-        </div>
-      </motion.nav>
+      <SiteNavbar style={{ opacity: navbarOpacity }} variant="hash" />
 
       {/* Hero Section */}
       <motion.section 
@@ -389,32 +372,7 @@ const AkiyomLanding = () => {
       </motion.section>
 
       {/* Vision Section */}
-      <section id="vizyon" className="vision-section">
-        <motion.div
-          className="vision-content"
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
-        >
-          <h2 className="section-title">Vizyonumuz</h2>
-          <p className="vision-text">
-            Hayalleri teknolojiyle buluşturma misyonuyla yola çıktık. Kendi ürünlerimizi geliştirirken Akiyom Studio
-            ile özel yazılım, Akiyom AI ile kurumsal yerel yapay zeka altyapısı sunuyoruz.
-          </p>
-          <p className="vision-text">
-            Teknoloji ve yaratıcılığın kesiştiği noktada, her projeyi bir sanat eseri olarak görüyoruz. 
-            Kullanıcı deneyiminden performansa, güvenlikten ölçeklenebilirliğe kadar her detayı özenle 
-            tasarlıyoruz. Amacımız, sadece yazılım geliştirmek değil; dijital dünyada anlamlı ve kalıcı 
-            izler bırakan çözümler yaratmak.
-          </p>
-          <p className="vision-text">
-            Akiyom ekosistemi; bireysel kullanıcılardan KOBİ&apos;lere, kurumsal ekiplerden içerik
-            platformlarına kadar geniş bir kitleye hizmet verir. Her ürün kendi alanında uzmanlaşır;
-            Studio ve AI hizmetleri ise fikirden canlıya uzanan yolu kısaltır.
-          </p>
-        </motion.div>
-      </section>
+      <VisionSection />
 
       {/* Goals/Roadmap Section */}
       <section id="hedefler" className="goals-section">
@@ -603,8 +561,8 @@ const AkiyomLanding = () => {
         >
           <h2 className="section-title">Neler Geliştiriyoruz?</h2>
           <p className="solutions-showcase-intro">
-            Ticari web sitelerinden topluluk ve forum platformlarına, vlog odaklı içerik sitelerinden şirket içi
-            uygulamalara kadar farklı ihtiyaçlara uygun dijital ürünler tasarlıyor ve geliştiriyoruz.
+            Ticari web sitelerinden topluluk ve forum platformlarına, vlog odaklı içerik sitelerinden ERP ve kurumsal
+            yazılımlara kadar farklı ihtiyaçlara uygun dijital ürünler tasarlıyor ve geliştiriyoruz.
           </p>
 
           <div className="solutions-showcase-grid">
@@ -650,8 +608,8 @@ const AkiyomLanding = () => {
           <p className="studio-slogan">Sizin Vizyonunuz, Bizim Teknolojimiz.</p>
           <p className="studio-description">
             Akibeat, Aki Finans, Enigma Atlas ve Akizen PC gibi projelerde edindiğimiz mühendislik
-            tecrübesini, artık sizin iş hedeflerinize taşıyoruz. Kişisel ya da ticari fark etmeksizin web sitesi ve
-            uygulama kurulumlarında; planlama, tasarım ve geliştirme adımlarını tek bir çatı altında yönetiyoruz.
+            tecrübesini, artık sizin iş hedeflerinize taşıyoruz. Web sitesi ve uygulamalardan ERP, CRM ve kurumsal
+            yazılımlara kadar; planlama, tasarım ve geliştirme adımlarını tek bir çatı altında yönetiyoruz.
           </p>
           
           <div className="studio-services">
@@ -660,8 +618,8 @@ const AkiyomLanding = () => {
               <p className="studio-service-description">Kişisel ve ticari hedeflere uygun web/mobil çözümler.</p>
             </div>
             <div className="studio-service-item">
-              <h3 className="studio-service-title">Kurumsal Yazılım Çözümleri</h3>
-              <p className="studio-service-description">Şirketlere yönelik panel, otomasyon ve entegrasyon sistemleri.</p>
+              <h3 className="studio-service-title">ERP ve Kurumsal Yazılımlar</h3>
+              <p className="studio-service-description">Stok, muhasebe, satış ve operasyon süreçleri için ERP, CRM ve entegrasyon sistemleri.</p>
             </div>
           </div>
 
