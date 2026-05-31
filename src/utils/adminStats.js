@@ -1,3 +1,6 @@
+import { supabase } from '../lib/supabase.js';
+import { FEEDBACK_STATUS_LABELS } from '../data/feedbackStatus.js';
+
 const PROJECT_TYPE_LABELS = {
   app: 'Uygulama',
   website: 'Web Sitesi',
@@ -119,4 +122,58 @@ export function formatDate(value, withTime = false) {
   return new Intl.DateTimeFormat('tr-TR', opts).format(new Date(value));
 }
 
-export { PROJECT_TYPE_LABELS, STATUS_LABELS, PLATFORM_LABELS };
+export async function resolveFeedbackImageUrl(imagePath) {
+  if (!imagePath || !supabase) return null;
+  if (imagePath.startsWith('http://') || imagePath.startsWith('https://')) return imagePath;
+
+  const path = imagePath.replace(/^feedback-images\//, '');
+  const { data, error } = await supabase.storage.from('feedback-images').createSignedUrl(path, 3600);
+  if (!error && data?.signedUrl) return data.signedUrl;
+
+  const { data: publicData } = supabase.storage.from('feedback-images').getPublicUrl(path);
+  return publicData?.publicUrl ?? null;
+}
+
+export const INQUIRY_STATUS_LABELS = STATUS_LABELS;
+
+export const BILLING_PERIOD_LABELS = {
+  monthly: 'Aylık ödeme',
+  annual: 'Yıllık ödeme',
+};
+
+export function computeAiInquiryStats(inquiries) {
+  const byStatus = {};
+  inquiries.forEach((row) => {
+    byStatus[row.status] = (byStatus[row.status] || 0) + 1;
+  });
+  return {
+    total: inquiries.length,
+    new: byStatus.new || 0,
+    byStatus,
+    recent: [...inquiries]
+      .sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
+      .slice(0, 5),
+  };
+}
+
+export function computeFeedbackStats(feedback) {
+  const byStatus = {};
+  const byApp = {};
+
+  feedback.forEach((item) => {
+    const status = item.status || 'new';
+    byStatus[status] = (byStatus[status] || 0) + 1;
+    const app = item.app_name || item.app_code || 'Diğer';
+    byApp[app] = (byApp[app] || 0) + 1;
+  });
+
+  return {
+    total: feedback.length,
+    new: byStatus.new || 0,
+    byStatus,
+    byApp,
+    recent: [...feedback].sort((a, b) => new Date(b.created_at) - new Date(a.created_at)).slice(0, 5),
+  };
+}
+
+export { PROJECT_TYPE_LABELS, STATUS_LABELS, PLATFORM_LABELS, FEEDBACK_STATUS_LABELS };

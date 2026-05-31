@@ -5,7 +5,10 @@ import ProjectForm from './ProjectForm';
 import CookieBanner from './CookieBanner';
 import AkiyomAiPromo from './src/components/AkiyomAiPromo.jsx';
 import SiteNavbar from './src/components/SiteNavbar.jsx';
+import SiteFooter from './src/components/SiteFooter.jsx';
 import VisionSection from './src/components/VisionSection.jsx';
+import PriceVatNote from './src/components/PriceVatNote.jsx';
+import { formatStudioStartPrice } from './src/utils/pricing.js';
 import './AkiyomLanding.css';
 
 const WHATSAPP_HREF = 'https://wa.me/90XXXXXXXXXX';
@@ -124,7 +127,7 @@ const AkiyomLanding = () => {
       description: 'Portfolyo, blog, kişisel marka veya içerik üretimi odaklı hızlı ve modern web siteleri.',
       items: ['Tek sayfa veya çok sayfa yapı', 'Responsive tasarım', 'Temel SEO altyapısı'],
       duration: '1-3 hafta',
-      pricing: 'Başlangıç: 15.000 TL',
+      priceFrom: 15000,
       details: ['Kurulum ve yayına alma', 'Temel içerik yerleşimi', 'Bakım için teslim sonrası destek']
     },
     {
@@ -133,7 +136,7 @@ const AkiyomLanding = () => {
       description: 'Bireysel üretkenlik, takip ve otomasyon ihtiyaçlarına uygun web veya mobil uygulama çözümleri.',
       items: ['Kullanıcı hesap sistemi', 'Veri saklama ve raporlama', 'Özel özellik geliştirme'],
       duration: '3-6 hafta',
-      pricing: 'Başlangıç: 30.000 TL',
+      priceFrom: 30000,
       details: ['MVP odaklı hızlı geliştirme', 'Kişisel kullanım senaryoları', 'İsteğe göre ek modül geliştirme']
     },
     {
@@ -142,7 +145,7 @@ const AkiyomLanding = () => {
       description: 'Marka, şirket ve e-ticaret süreçlerine uygun, dönüşüm odaklı kurumsal web çözümleri.',
       items: ['Kurumsal sayfa yapısı', 'Gelişmiş form ve entegrasyonlar', 'Performans ve güvenlik optimizasyonu'],
       duration: '3-8 hafta',
-      pricing: 'Başlangıç: 45.000 TL',
+      priceFrom: 45000,
       details: ['Kurumsal kimliğe uygun tasarım dili', 'SEO ve performans optimizasyonu', 'CRM veya harici servis entegrasyonu']
     },
     {
@@ -151,7 +154,7 @@ const AkiyomLanding = () => {
       description: 'ERP, CRM ve operasyon yönetimi dahil şirketlere yönelik süreç otomasyonu için ölçeklenebilir uygulamalar.',
       items: ['Yetkilendirme ve rol yönetimi', 'Panel ve raporlama ekranları', 'ERP/CRM modülleri ve entegrasyonlar'],
       duration: '6-12 hafta',
-      pricing: 'Başlangıç: 75.000 TL',
+      priceFrom: 75000,
       details: ['İş akışına özel modüler mimari', 'Şirket ekiplerine göre rol bazlı ekranlar', 'Canlıya alma ve ölçeklenebilir altyapı']
     }
   ];
@@ -638,10 +641,13 @@ const AkiyomLanding = () => {
                     <li key={item}>{item}</li>
                   ))}
                 </ul>
+                <p className="studio-package-price">{formatStudioStartPrice(pkg.priceFrom)}</p>
                 <p className="studio-package-note">Detayları görmek için tıklayın.</p>
               </div>
             ))}
           </div>
+
+          <PriceVatNote className="studio-price-vat-note" />
 
           <div className="studio-action">
             <button 
@@ -726,9 +732,11 @@ const AkiyomLanding = () => {
                   </div>
                   <div className="studio-package-meta-item">
                     <span className="studio-package-meta-label">Tahmini Ücret</span>
-                    <span className="studio-package-meta-value">{selectedStudioPackage.pricing}</span>
+                    <span className="studio-package-meta-value">{formatStudioStartPrice(selectedStudioPackage.priceFrom)}</span>
                   </div>
                 </motion.div>
+
+                <PriceVatNote className="studio-price-vat-note studio-price-vat-note-modal" />
 
                 <motion.div
                   className="studio-package-modal-list"
@@ -759,46 +767,10 @@ const AkiyomLanding = () => {
         )}
       </AnimatePresence>
 
-      {/* Footer */}
-      <footer className="footer">
-        <div className="footer-container">
-          <div className="footer-copyright">
-            © 2026 Akiyom. Tüm hakları saklıdır.
-          </div>
-          <div className="footer-links">
-            <Link to="/akiyom-ai" className="footer-link">
-              Akiyom AI
-            </Link>
-            <Link
-              to="/gizlilik"
-              className="footer-link"
-            >
-              Gizlilik Politikası
-            </Link>
-            <a 
-              href="#kullanim" 
-              className="footer-link"
-              onClick={(e) => {
-                e.preventDefault();
-                setSelectedPage('terms');
-              }}
-            >
-              Kullanım Koşulları
-            </a>
-            <a 
-              href="#iletisim" 
-              className="footer-link"
-              onClick={(e) => {
-                e.preventDefault();
-                setSelectedPage('contact');
-              }}
-            >
-              İletişim
-            </a>
-            <WhatsAppLink />
-          </div>
-        </div>
-      </footer>
+      <SiteFooter
+        onContactClick={() => setSelectedPage('contact')}
+        onTermsClick={() => setSelectedPage('terms')}
+      />
 
       {/* Page Modals */}
       <AnimatePresence>

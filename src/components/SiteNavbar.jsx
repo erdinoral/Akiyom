@@ -41,22 +41,24 @@ const SiteNavbar = ({ style, variant = 'router' }) => {
           </Link>
         </div>
 
-        <div className="nav-right">
-          <div className="nav-links">
-            <NavLink hash="#vizyon" to="/#vizyon">
-              Vizyon
-            </NavLink>
-            <NavLink hash="#urunler" to="/#urunler">
-              Ürünler
-            </NavLink>
-            <Link to="/projeler">Projeler</Link>
-            <Link to="/akiyom-ai">Akiyom AI</Link>
-            <NavLink hash="#hedefler" to="/#hedefler">
-              Hedefler
-            </NavLink>
-          </div>
-          <NavAuth />
+        <div className="nav-links">
+          <NavLink hash="#vizyon" to="/#vizyon">
+            Vizyon
+          </NavLink>
+          <NavLink hash="#urunler" to="/#urunler">
+            Ürünler
+          </NavLink>
+          <Link to="/projeler">Projeler</Link>
+          <Link to="/akiyom-ai" className="nav-link--akiyom-ai akiyom-ai-gradient-text--animated">
+            Akiyom AI
+          </Link>
+          <NavLink hash="#hedefler" to="/#hedefler">
+            Hedefler
+          </NavLink>
+          <Link to="/biz-kimiz">Biz Kimiz</Link>
         </div>
+
+        <NavAuth />
       </div>
     </motion.nav>
   );

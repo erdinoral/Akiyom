@@ -112,4 +112,88 @@ update public.profiles
 set is_admin = true, updated_at = now()
 where lower(email) = 'erdinoral31@gmail.com';
 
+-- 8) app_feedback — admin panel erişimi (tablo zaten varsa sadece policy ekler)
+-- Detay: supabase/app_feedback.sql
+
+alter table public.app_feedback
+  add column if not exists admin_reply text,
+  add column if not exists replied_at timestamptz,
+  add column if not exists client_ref text,
+  add column if not exists updated_at timestamptz not null default now();
+
+-- status check — panel: Kapandı, Yapım aşamasında vb. (app_feedback.sql ile aynı)
+do $$
+declare r record;
+begin
+  for r in
+    select c.conname from pg_constraint c
+    join pg_class t on c.conrelid = t.oid
+    join pg_namespace n on t.relnamespace = n.oid
+    where n.nspname = 'public' and t.relname = 'app_feedback' and c.contype = 'c'
+      and (pg_get_constraintdef(c.oid) ilike '%status%' or c.conname ilike '%status%')
+  loop
+    execute format('alter table public.app_feedback drop constraint if exists %I', r.conname);
+  end loop;
+end $$;
+alter table public.app_feedback drop constraint if exists app_feedback_status_check;
+alter table public.app_feedback
+  add constraint app_feedback_status_check
+  check (status in ('new', 'read', 'in_progress', 'replied', 'closed'));
+
+-- RPC ve trigger için supabase/app_feedback.sql dosyasının tamamını çalıştırın.
+
+drop policy if exists "Admins can read app feedback" on public.app_feedback;
+create policy "Admins can read app feedback"
+  on public.app_feedback for select
+  using (public.is_akiyom_admin());
+
+drop policy if exists "Admins can update app feedback" on public.app_feedback;
+create policy "Admins can update app feedback"
+  on public.app_feedback for update
+  using (public.is_akiyom_admin())
+  with check (public.is_akiyom_admin());
+
+drop policy if exists "feedback_images_admin_select" on storage.objects;
+create policy "feedback_images_admin_select"
+  on storage.objects for select
+  using (
+    bucket_id = 'feedback-images'
+    and public.is_akiyom_admin()
+  );
+
+-- 9) Akiyom AI ödeme / teklif iletişimi — detay: supabase/akiyom_ai_inquiries.sql
+create table if not exists public.akiyom_ai_inquiries (
+  id uuid primary key default gen_random_uuid(),
+  plan_name text,
+  billing_period text check (billing_period is null or billing_period in ('monthly', 'annual')),
+  full_name text not null,
+  email text not null,
+  company_name text,
+  phone text,
+  message text not null default '',
+  status text not null default 'new' check (status in ('new', 'read', 'contacted', 'closed')),
+  admin_notes text,
+  created_at timestamptz not null default now(),
+  updated_at timestamptz not null default now()
+);
+
+create index if not exists akiyom_ai_inquiries_created_at_idx on public.akiyom_ai_inquiries (created_at desc);
+create index if not exists akiyom_ai_inquiries_status_idx on public.akiyom_ai_inquiries (status);
+
+alter table public.akiyom_ai_inquiries enable row level security;
+
+drop trigger if exists akiyom_ai_inquiries_updated_at on public.akiyom_ai_inquiries;
+create trigger akiyom_ai_inquiries_updated_at
+  before update on public.akiyom_ai_inquiries
+  for each row execute function public.set_akiyom_updated_at();
+
+drop policy if exists "Admins can read akiyom ai inquiries" on public.akiyom_ai_inquiries;
+create policy "Admins can read akiyom ai inquiries"
+  on public.akiyom_ai_inquiries for select using (public.is_akiyom_admin());
+
+drop policy if exists "Admins can update akiyom ai inquiries" on public.akiyom_ai_inquiries;
+create policy "Admins can update akiyom ai inquiries"
+  on public.akiyom_ai_inquiries for update
+  using (public.is_akiyom_admin()) with check (public.is_akiyom_admin());
+
 -- Bitti.

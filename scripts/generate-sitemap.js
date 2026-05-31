@@ -43,6 +43,12 @@ const routes = [
     lastmod: CURRENT_DATE
   },
   {
+    path: '/biz-kimiz',
+    changefreq: 'monthly',
+    priority: '0.85',
+    lastmod: CURRENT_DATE
+  },
+  {
     path: '/projeler',
     changefreq: 'weekly',
     priority: '0.9',

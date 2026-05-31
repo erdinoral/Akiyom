@@ -5,6 +5,9 @@ import {
   formatCurrency,
   formatDate,
 } from '../../utils/adminStats';
+import AdminSelect from './AdminSelect';
+
+const PLATFORM_OPTIONS = Object.entries(PLATFORM_LABELS).map(([value, label]) => ({ value, label }));
 
 const EMPTY_FORM = {
   recorded_date: new Date().toISOString().slice(0, 10),
@@ -117,17 +120,12 @@ const AdminMarketing = ({ marketing, onAddMetric, onDeleteMetric, saving, error 
               </label>
               <label className="admin-field">
                 <span>Platform</span>
-                <select
-                  className="admin-select"
+                <AdminSelect
                   value={form.platform}
-                  onChange={(e) => setForm({ ...form, platform: e.target.value })}
-                >
-                  {Object.entries(PLATFORM_LABELS).map(([value, label]) => (
-                    <option key={value} value={value}>
-                      {label}
-                    </option>
-                  ))}
-                </select>
+                  onChange={(platform) => setForm({ ...form, platform })}
+                  options={PLATFORM_OPTIONS}
+                  aria-label="Platform seç"
+                />
               </label>
             </div>
             <label className="admin-field">

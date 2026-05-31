@@ -112,7 +112,7 @@ const AkiyomAiPromo = () => {
         <div className="akiyom-ai-promo-footer">
           <div className="akiyom-ai-promo-price-hint">
             <span className="akiyom-ai-promo-price-label">Aylık lisans</span>
-            <span className="akiyom-ai-promo-price-value">5.000 ₺&apos;den başlayan paketler</span>
+            <span className="akiyom-ai-promo-price-value">5.000 ₺&apos;den başlayan paketler + KDV</span>
           </div>
           <div className="akiyom-ai-promo-actions">
             <Link to="/akiyom-ai" className="akiyom-ai-promo-btn primary">

@@ -5,12 +5,23 @@ import { useAuth } from '../../context/AuthContext';
 const NAV_ITEMS = [
   { id: 'overview', label: 'Genel Bakış', icon: '◈' },
   { id: 'leads', label: 'Proje Talepleri', icon: '✉' },
+  { id: 'ai-inquiries', label: 'AI Ödeme İletişim', icon: '◇' },
+  { id: 'feedback', label: 'Görüş & Öneriler', icon: '💬' },
   { id: 'members', label: 'Üyeler', icon: '👤' },
   { id: 'statistics', label: 'İstatistikler', icon: '▤' },
   { id: 'marketing', label: 'Reklam Analizi', icon: '◎' },
 ];
 
-const AdminLayout = ({ activeTab, onTabChange, newLeadsCount, children, onRefresh, refreshing }) => {
+const AdminLayout = ({
+  activeTab,
+  onTabChange,
+  newLeadsCount,
+  newAiInquiriesCount = 0,
+  newFeedbackCount,
+  children,
+  onRefresh,
+  refreshing,
+}) => {
   const { profile, user } = useAuth();
   const displayName = profile?.full_name || user?.email?.split('@')[0] || 'Admin';
 
@@ -48,6 +59,12 @@ const AdminLayout = ({ activeTab, onTabChange, newLeadsCount, children, onRefres
                 {item.label}
                 {item.id === 'leads' && newLeadsCount > 0 && (
                   <span className="admin-sidebar-badge">{newLeadsCount}</span>
+                )}
+                {item.id === 'ai-inquiries' && newAiInquiriesCount > 0 && (
+                  <span className="admin-sidebar-badge">{newAiInquiriesCount}</span>
+                )}
+                {item.id === 'feedback' && newFeedbackCount > 0 && (
+                  <span className="admin-sidebar-badge">{newFeedbackCount}</span>
                 )}
               </button>
             ))}

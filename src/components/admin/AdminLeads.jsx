@@ -1,11 +1,19 @@
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import { motion } from 'framer-motion';
 import { PROJECT_TYPE_LABELS, STATUS_LABELS, formatDate } from '../../utils/adminStats';
+import AdminSelect from './AdminSelect';
+
+const LEAD_STATUS_OPTIONS = Object.entries(STATUS_LABELS).map(([value, label]) => ({ value, label }));
 
 const AdminLeads = ({ leads, onStatusChange, onNotesChange, updatingId, error }) => {
   const [statusFilter, setStatusFilter] = useState('all');
   const [selectedLead, setSelectedLead] = useState(null);
   const [notesDraft, setNotesDraft] = useState('');
+
+  const statusFilterOptions = useMemo(
+    () => [{ value: 'all', label: `Tümü (${leads.length})` }, ...LEAD_STATUS_OPTIONS],
+    [leads.length]
+  );
 
   const filtered =
     statusFilter === 'all' ? leads : leads.filter((lead) => lead.status === statusFilter);
@@ -31,14 +39,7 @@ const AdminLeads = ({ leads, onStatusChange, onNotesChange, updatingId, error })
         </div>
         <label className="admin-filter">
           <span>Durum filtresi</span>
-          <select value={statusFilter} onChange={(e) => setStatusFilter(e.target.value)} className="admin-select">
-            <option value="all">Tümü ({leads.length})</option>
-            {Object.entries(STATUS_LABELS).map(([value, label]) => (
-              <option key={value} value={value}>
-                {label}
-              </option>
-            ))}
-          </select>
+          <AdminSelect value={statusFilter} onChange={setStatusFilter} options={statusFilterOptions} aria-label="Durum filtresi" />
         </label>
       </header>
 
@@ -70,18 +71,14 @@ const AdminLeads = ({ leads, onStatusChange, onNotesChange, updatingId, error })
                 <button type="button" className="admin-link-button" onClick={() => openLead(lead)}>
                   Detay
                 </button>
-                <select
-                  className="admin-select admin-select-inline"
+                <AdminSelect
+                  className="admin-select-inline"
                   value={lead.status}
                   disabled={updatingId === lead.id}
-                  onChange={(e) => onStatusChange(lead.id, e.target.value)}
-                >
-                  {Object.entries(STATUS_LABELS).map(([value, label]) => (
-                    <option key={value} value={value}>
-                      {label}
-                    </option>
-                  ))}
-                </select>
+                  onChange={(nextStatus) => onStatusChange(lead.id, nextStatus)}
+                  options={LEAD_STATUS_OPTIONS}
+                  aria-label="Durum değiştir"
+                />
               </div>
             </article>
           ))}
@@ -142,21 +139,16 @@ const AdminLeads = ({ leads, onStatusChange, onNotesChange, updatingId, error })
             </div>
 
             <div className="admin-modal-actions">
-              <select
-                className="admin-select"
+              <AdminSelect
                 value={selectedLead.status}
                 disabled={updatingId === selectedLead.id}
-                onChange={(e) => {
-                  onStatusChange(selectedLead.id, e.target.value);
-                  setSelectedLead({ ...selectedLead, status: e.target.value });
+                onChange={(nextStatus) => {
+                  onStatusChange(selectedLead.id, nextStatus);
+                  setSelectedLead({ ...selectedLead, status: nextStatus });
                 }}
-              >
-                {Object.entries(STATUS_LABELS).map(([value, label]) => (
-                  <option key={value} value={value}>
-                    {label}
-                  </option>
-                ))}
-              </select>
+                options={LEAD_STATUS_OPTIONS}
+                aria-label="Durum değiştir"
+              />
               <a href={`mailto:${selectedLead.email}`} className="admin-submit-button">
                 E-posta gönder
               </a>

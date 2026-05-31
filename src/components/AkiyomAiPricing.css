@@ -1,3 +1,29 @@
+/* Akiyom AI iletişim modalı */
+.akiyom-ai-inquiry-modal-badge {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #a78bfa;
+  border: 1px solid rgba(167, 139, 250, 0.35);
+  background: rgba(26, 16, 48, 0.8);
+  padding: 4px 12px;
+  border-radius: 99px;
+  margin-bottom: 10px;
+}
+
+.akiyom-ai-inquiry-modal-hint {
+  margin-top: 12px;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.45);
+  text-align: center;
+}
+
+.akiyom-ai-inquiry-modal-hint a {
+  color: #a78bfa;
+}
+
 /* Akiyom AI — referans UI korunur; tipografi ve zemin siteyle uyumlu */
 .akiyom-ai {
   --ai-bg: #0a0a0f;
@@ -11,7 +37,14 @@
   --ai-accent: #a78bfa;
   --ai-accent-strong: #7c3aed;
   --ai-accent-hover: #6d28d9;
+  --ai-chat: #60a5fa;
+  --ai-image: #a78bfa;
+  --ai-video: #22d3ee;
+  --ai-music: #fbbf24;
 
+  position: relative;
+  overflow-x: clip;
+  overflow-y: visible;
   padding: 4rem 2rem 6rem;
   max-width: 1280px;
   margin: 0 auto;
@@ -19,7 +52,78 @@
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 }
 
+/* Arka plan — renkli yüzen ışık küreleri */
+.akiyom-ai-ambient {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.akiyom-ai-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(72px);
+  opacity: 0.45;
+  animation: akiyom-ai-orb-float 14s ease-in-out infinite;
+}
+
+.akiyom-ai-orb--violet {
+  width: min(420px, 55vw);
+  height: min(420px, 55vw);
+  background: radial-gradient(circle, rgba(124, 58, 237, 0.55) 0%, transparent 70%);
+  top: -8%;
+  left: 10%;
+  animation-delay: 0s;
+}
+
+.akiyom-ai-orb--blue {
+  width: min(320px, 45vw);
+  height: min(320px, 45vw);
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.4) 0%, transparent 70%);
+  top: 35%;
+  right: -5%;
+  animation-delay: -4s;
+  animation-duration: 18s;
+}
+
+.akiyom-ai-orb--cyan {
+  width: min(280px, 40vw);
+  height: min(280px, 40vw);
+  background: radial-gradient(circle, rgba(34, 211, 238, 0.35) 0%, transparent 70%);
+  bottom: 15%;
+  left: 25%;
+  animation-delay: -7s;
+  animation-duration: 16s;
+}
+
+.akiyom-ai-orb--amber {
+  width: min(240px, 35vw);
+  height: min(240px, 35vw);
+  background: radial-gradient(circle, rgba(251, 191, 36, 0.28) 0%, transparent 70%);
+  bottom: 5%;
+  right: 20%;
+  animation-delay: -2s;
+  animation-duration: 20s;
+}
+
+@keyframes akiyom-ai-orb-float {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(24px, -18px) scale(1.06);
+  }
+  66% {
+    transform: translate(-16px, 12px) scale(0.94);
+  }
+}
+
 .akiyom-ai-wrap {
+  position: relative;
+  z-index: 1;
   max-width: 1200px;
   margin: 0 auto;
   padding: 48px 24px 64px;
@@ -38,7 +142,7 @@
 
 .akiyom-ai-badge {
   display: inline-block;
-  background: #1a1030;
+  background: linear-gradient(135deg, #1a1030 0%, #251a45 100%);
   color: var(--ai-accent);
   border: 1px solid var(--ai-border-accent);
   font-size: 12px;
@@ -48,6 +152,7 @@
   margin-bottom: 24px;
   letter-spacing: 0.04em;
   text-transform: uppercase;
+  box-shadow: 0 2px 12px rgba(124, 58, 237, 0.12);
 }
 
 .akiyom-ai-section-title {
@@ -55,11 +160,9 @@
   font-weight: 700;
   line-height: 1.2;
   margin-bottom: 12px;
-  background: linear-gradient(135deg, var(--text-primary) 55%, var(--ai-accent));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
 }
+
+/* Akan gradient: AkiyomLanding.css → .akiyom-ai-gradient-text--animated */
 
 .akiyom-ai-section-sub {
   font-size: 16px;
@@ -134,6 +237,8 @@
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 20px;
   margin-bottom: 48px;
+  padding-top: 1.125rem;
+  overflow: visible;
 }
 
 .akiyom-ai-card {
@@ -144,31 +249,170 @@
   display: flex;
   flex-direction: column;
   position: relative;
-  transition: border-color 0.2s ease, transform 0.25s ease;
+  isolation: isolate;
+  transition: border-color 0.35s ease, box-shadow 0.4s ease, transform 0.35s ease;
+  overflow: visible;
+}
+
+/* Tüm paketler — hover’da yumuşak kenar ışığı */
+.akiyom-ai-card::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(145deg, transparent 55%, var(--card-accent-soft, rgba(167, 139, 250, 0.25)) 100%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.45s ease;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.akiyom-ai-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(ellipse 90% 55% at 50% 0%, var(--card-glow, rgba(124, 58, 237, 0.06)) 0%, transparent 72%);
+  opacity: 0;
+  transition: opacity 0.45s ease;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.akiyom-ai-card:hover::before {
+  opacity: 0.35;
+}
+
+.akiyom-ai-card:hover::after {
+  opacity: 0.55;
 }
 
 .akiyom-ai-card:hover {
-  border-color: var(--ai-border-accent);
+  border-color: var(--card-accent-border, rgba(167, 139, 250, 0.22));
+  box-shadow: 0 10px 32px var(--card-glow, rgba(124, 58, 237, 0.08));
+}
+
+.akiyom-ai-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+.akiyom-ai-card--mikro {
+  --card-accent-soft: rgba(96, 165, 250, 0.22);
+  --card-accent-border: rgba(96, 165, 250, 0.28);
+  --card-glow: rgba(96, 165, 250, 0.07);
+}
+
+.akiyom-ai-card--profesyonel {
+  --card-accent-soft: rgba(167, 139, 250, 0.22);
+  --card-accent-border: rgba(167, 139, 250, 0.3);
+  --card-glow: rgba(167, 139, 250, 0.08);
+}
+
+.akiyom-ai-card--kurumsal {
+  --card-accent-soft: rgba(34, 211, 238, 0.2);
+  --card-accent-border: rgba(34, 211, 238, 0.26);
+  --card-glow: rgba(34, 211, 238, 0.07);
+}
+
+.akiyom-ai-card--holding {
+  --card-accent-soft: rgba(251, 191, 36, 0.18);
+  --card-accent-border: rgba(251, 191, 36, 0.24);
+  --card-glow: rgba(251, 191, 36, 0.06);
 }
 
 .akiyom-ai-card.featured {
-  border: 2px solid var(--ai-accent-strong);
+  border: 1px solid rgba(167, 139, 250, 0.28);
   background: #110f20;
+  box-shadow: 0 6px 28px rgba(124, 58, 237, 0.07);
+}
+
+.akiyom-ai-card.featured:hover {
+  border-color: rgba(167, 139, 250, 0.38);
+  box-shadow: 0 12px 36px rgba(124, 58, 237, 0.1);
+}
+
+.akiyom-ai-gen-modules {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+
+.akiyom-ai-gen-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 10px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 99px;
+  border: 1px solid #2a2740;
+  color: #5c5a72;
+  background: #12101c;
+  opacity: 0.55;
+  transition: opacity 0.2s ease, transform 0.2s ease, box-shadow 0.25s ease;
+}
+
+.akiyom-ai-gen-pill-emoji {
+  font-size: 11px;
+  line-height: 1;
+}
+
+.akiyom-ai-gen-pill.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.akiyom-ai-gen-pill--chat.active {
+  color: var(--ai-chat);
+  border-color: rgba(96, 165, 250, 0.28);
+  background: rgba(96, 165, 250, 0.08);
+  box-shadow: none;
+}
+
+.akiyom-ai-gen-pill--image.active {
+  color: var(--ai-image);
+  border-color: rgba(167, 139, 250, 0.3);
+  background: rgba(167, 139, 250, 0.08);
+  box-shadow: none;
+}
+
+.akiyom-ai-gen-pill--video.active {
+  color: var(--ai-video);
+  border-color: rgba(34, 211, 238, 0.28);
+  background: rgba(34, 211, 238, 0.07);
+  box-shadow: none;
+}
+
+.akiyom-ai-gen-pill--music.active {
+  color: var(--ai-music);
+  border-color: rgba(251, 191, 36, 0.28);
+  background: rgba(251, 191, 36, 0.07);
+  box-shadow: none;
 }
 
 .akiyom-ai-popular-badge {
   position: absolute;
-  top: -13px;
+  top: -0.75rem;
   left: 50%;
   transform: translateX(-50%);
-  background: var(--ai-accent-strong);
+  background: rgba(91, 58, 158, 0.95);
   color: var(--ai-text);
   font-size: 11px;
   font-weight: 600;
-  padding: 4px 14px;
+  padding: 5px 14px;
   border-radius: 99px;
   white-space: nowrap;
   letter-spacing: 0.04em;
+  z-index: 5;
+  border: 1px solid rgba(167, 139, 250, 0.35);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
 }
 
 .akiyom-ai-plan-icon {
@@ -197,7 +441,19 @@
 }
 
 .akiyom-ai-plan-price {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.15rem 0.35rem;
   margin-bottom: 2px;
+}
+
+.akiyom-ai-price-vat-note {
+  margin: 0.25rem 0 2rem;
+  text-align: center;
+  max-width: 42rem;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .akiyom-ai-price-main {
@@ -336,6 +592,46 @@
   color: #2e2c3e;
 }
 
+.akiyom-ai-feat--chat:not(.muted) .akiyom-ai-v-icon {
+  color: var(--ai-chat);
+}
+
+.akiyom-ai-feat--image:not(.muted) .akiyom-ai-v-icon {
+  color: var(--ai-image);
+}
+
+.akiyom-ai-feat--video:not(.muted) .akiyom-ai-v-icon {
+  color: var(--ai-video);
+}
+
+.akiyom-ai-feat--music:not(.muted) .akiyom-ai-v-icon {
+  color: var(--ai-music);
+}
+
+.akiyom-ai-feat--chat:not(.muted),
+.akiyom-ai-feat--image:not(.muted),
+.akiyom-ai-feat--video:not(.muted),
+.akiyom-ai-feat--music:not(.muted) {
+  padding-left: 4px;
+  border-left: 2px solid transparent;
+}
+
+.akiyom-ai-feat--chat:not(.muted) {
+  border-left-color: rgba(96, 165, 250, 0.5);
+}
+
+.akiyom-ai-feat--image:not(.muted) {
+  border-left-color: rgba(167, 139, 250, 0.5);
+}
+
+.akiyom-ai-feat--video:not(.muted) {
+  border-left-color: rgba(34, 211, 238, 0.5);
+}
+
+.akiyom-ai-feat--music:not(.muted) {
+  border-left-color: rgba(251, 191, 36, 0.5);
+}
+
 .akiyom-ai-btn {
   width: 100%;
   padding: 12px;
@@ -370,6 +666,80 @@
   border-radius: 16px;
   padding: 32px;
   margin-bottom: 48px;
+  position: relative;
+  overflow: hidden;
+}
+
+.akiyom-ai-compare::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    var(--ai-chat),
+    var(--ai-image),
+    var(--ai-video),
+    var(--ai-music),
+    var(--ai-accent-strong)
+  );
+  background-size: 200% 100%;
+  animation: akiyom-ai-compare-bar 6s linear infinite;
+}
+
+@keyframes akiyom-ai-compare-bar {
+  0% {
+    background-position: 0% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.akiyom-ai-compare-row--chat .akiyom-ai-check-icon {
+  color: var(--ai-chat);
+}
+
+.akiyom-ai-compare-row--image .akiyom-ai-check-icon {
+  color: var(--ai-image);
+}
+
+.akiyom-ai-compare-row--video .akiyom-ai-check-icon {
+  color: var(--ai-video);
+}
+
+.akiyom-ai-compare-row--music .akiyom-ai-check-icon {
+  color: var(--ai-music);
+}
+
+.akiyom-ai-compare-row--chat:first-child,
+.akiyom-ai-compare-cell.akiyom-ai-compare-row--chat:first-child {
+  color: var(--ai-chat);
+}
+
+.akiyom-ai-compare-cell.akiyom-ai-compare-row--chat:first-child,
+.akiyom-ai-compare-cell.akiyom-ai-compare-row--image:first-child,
+.akiyom-ai-compare-cell.akiyom-ai-compare-row--video:first-child,
+.akiyom-ai-compare-cell.akiyom-ai-compare-row--music:first-child {
+  font-weight: 600;
+}
+
+.akiyom-ai-compare-cell.akiyom-ai-compare-row--chat:first-child {
+  color: var(--ai-chat);
+}
+
+.akiyom-ai-compare-cell.akiyom-ai-compare-row--image:first-child {
+  color: var(--ai-image);
+}
+
+.akiyom-ai-compare-cell.akiyom-ai-compare-row--video:first-child {
+  color: var(--ai-video);
+}
+
+.akiyom-ai-compare-cell.akiyom-ai-compare-row--music:first-child {
+  color: var(--ai-music);
 }
 
 .akiyom-ai-compare-title {
@@ -484,7 +854,7 @@
 }
 
 .akiyom-ai-cta-row {
-  background: #110f20;
+  background: linear-gradient(135deg, #110f20 0%, #15102a 50%, #0f1520 100%);
   border: 1px solid var(--ai-border-accent);
   border-radius: 16px;
   padding: 32px;
@@ -493,6 +863,27 @@
   justify-content: space-between;
   gap: 24px;
   flex-wrap: wrap;
+  position: relative;
+  overflow: hidden;
+  animation: akiyom-ai-cta-glow 4s ease-in-out infinite;
+}
+
+.akiyom-ai-cta-row::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 80% 50%, rgba(124, 58, 237, 0.12) 0%, transparent 55%);
+  pointer-events: none;
+}
+
+@keyframes akiyom-ai-cta-glow {
+  0%,
+  100% {
+    box-shadow: 0 0 0 rgba(124, 58, 237, 0);
+  }
+  50% {
+    box-shadow: 0 0 48px rgba(124, 58, 237, 0.12);
+  }
 }
 
 .akiyom-ai-cta-text h3 {
@@ -572,11 +963,23 @@
 }
 
 /* /akiyom-ai sayfası — tam genişlik (yüksek özgüllük, .akiyom-ai kurallarını ezer) */
+@media (prefers-reduced-motion: reduce) {
+  .akiyom-ai-orb,
+  .akiyom-ai-badge,
+  .akiyom-ai-gradient-text--animated,
+  .akiyom-ai-gen-pill.active,
+  .akiyom-ai-compare::before,
+  .akiyom-ai-cta-row {
+    animation: none;
+  }
+}
+
 .akiyom-ai.akiyom-ai--page {
   padding: 0;
   margin: 0;
   max-width: none;
   width: 100%;
+  min-height: 100vh;
   background: linear-gradient(
     165deg,
     rgba(10, 10, 15, 0.98) 0%,
@@ -585,10 +988,17 @@
   );
 }
 
+.akiyom-ai.akiyom-ai--page .akiyom-ai-ambient {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+}
+
 .akiyom-ai.akiyom-ai--page .akiyom-ai-wrap {
   max-width: none;
   width: 100%;
   margin: 0;
+  z-index: 1;
   /* Sabit navbar altında başlık görünsün (projeler sayfası ile aynı üst boşluk) */
   padding: clamp(5.5rem, 10vh, 7rem) clamp(1rem, 2.5vw, 2.5rem) 4rem;
   border: none;

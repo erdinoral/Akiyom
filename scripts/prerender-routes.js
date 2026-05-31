@@ -28,6 +28,11 @@ const ROUTE_META = {
     description:
       "Verileriniz şirket dışına çıkmadan yerel AI sunucu çözümleri. Mikro'dan Holding'e modüler paketler, Graph-RAG, FLUX ve özelleştirilebilir GPU altyapısı.",
   },
+  '/biz-kimiz': {
+    title: 'Biz Kimiz — Akiyom Yazılım ve Geliştirme',
+    description:
+      '2025\'te Erdin Oral tarafından kurulan Akiyom; İstanbul merkezli ürün, Studio ve Akiyom AI ekosistemi.',
+  },
   '/projeler': {
     title: 'Projelerimiz — Akiyom Studio',
     description: 'Akiyom tarafından geliştirilen web ve masaüstü projeler: Enigma Atlas, Aki Finans, Akizen PC, Akibeat.',

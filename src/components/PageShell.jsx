@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import SiteNavbar from './SiteNavbar';
+import SiteFooter from './SiteFooter';
 import '../../AkiyomLanding.css';
 
 const PageShell = ({ children }) => {
@@ -19,22 +20,7 @@ const PageShell = ({ children }) => {
       <div className={`content-layer${isFullWidthPage ? ' content-layer--full-width' : ''}`}>
         <SiteNavbar />
         {children}
-        <footer className="footer">
-          <div className="footer-container">
-            <div className="footer-copyright">© 2026 Akiyom. Tüm hakları saklıdır.</div>
-            <div className="footer-links">
-              <Link to="/gizlilik" className="footer-link">
-                Gizlilik Politikası
-              </Link>
-              <Link to="/projeler" className="footer-link">
-                Projeler
-              </Link>
-              <Link to="/akiyom-ai" className="footer-link">
-                Akiyom AI
-              </Link>
-            </div>
-          </div>
-        </footer>
+        <SiteFooter showWhatsApp={false} />
       </div>
     </div>
   );

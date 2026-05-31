@@ -3,8 +3,13 @@ import { Link } from 'react-router-dom';
 import {
   PROJECT_TYPE_LABELS,
   STATUS_LABELS,
+  FEEDBACK_STATUS_LABELS,
   computeLeadStats,
   computeMarketingStats,
+  computeFeedbackStats,
+  computeAiInquiryStats,
+  BILLING_PERIOD_LABELS,
+  INQUIRY_STATUS_LABELS,
   formatCurrency,
   formatDate,
 } from '../../utils/adminStats';
@@ -39,9 +44,11 @@ function MiniBarChart({ items, valueKey = 'count' }) {
   );
 }
 
-const AdminOverview = ({ leads, members, marketing }) => {
+const AdminOverview = ({ leads, members, marketing, feedback = [], aiInquiries = [] }) => {
   const leadStats = computeLeadStats(leads);
   const marketingStats = computeMarketingStats(marketing);
+  const feedbackStats = computeFeedbackStats(feedback);
+  const aiInquiryStats = computeAiInquiryStats(aiInquiries);
 
   return (
     <div className="admin-section">
@@ -55,6 +62,12 @@ const AdminOverview = ({ leads, members, marketing }) => {
 
       <div className="admin-kpi-grid">
         <StatCard label="Toplam talep" value={leadStats.total} hint={`${leadStats.new} yeni`} highlight />
+        <StatCard
+          label="AI ödeme iletişim"
+          value={aiInquiryStats.total}
+          hint={`${aiInquiryStats.new} yeni`}
+        />
+        <StatCard label="Görüş & öneri" value={feedbackStats.total} hint={`${feedbackStats.new} yeni`} />
         <StatCard label="Bu hafta" value={leadStats.thisWeek} hint="Son 7 gün" />
         <StatCard label="Kayıtlı üye" value={members.length} hint={`${members.filter((m) => m.is_admin).length} admin`} />
         <StatCard
@@ -122,10 +135,98 @@ const AdminOverview = ({ leads, members, marketing }) => {
         )}
       </section>
 
+      <section className="admin-panel-card">
+        <div className="admin-panel-card-head">
+          <h2 className="admin-panel-title">Son AI ödeme iletişimleri</h2>
+          <Link to="/panel?tab=ai-inquiries" className="admin-text-link">
+            Tümünü gör →
+          </Link>
+        </div>
+        {aiInquiryStats.recent.length === 0 ? (
+          <p className="admin-muted">Henüz Akiyom AI iletişim talebi yok.</p>
+        ) : (
+          <div className="admin-table-wrap">
+            <table className="admin-table">
+              <thead>
+                <tr>
+                  <th>Ad</th>
+                  <th>Paket</th>
+                  <th>Durum</th>
+                  <th>Tarih</th>
+                </tr>
+              </thead>
+              <tbody>
+                {aiInquiryStats.recent.map((row) => (
+                  <tr key={row.id}>
+                    <td>{row.full_name}</td>
+                    <td>
+                      {row.plan_name || 'Genel'}
+                      {row.billing_period
+                        ? ` · ${BILLING_PERIOD_LABELS[row.billing_period] || row.billing_period}`
+                        : ''}
+                    </td>
+                    <td>
+                      <span className={`admin-status-pill admin-status-pill-${row.status}`}>
+                        {INQUIRY_STATUS_LABELS[row.status]}
+                      </span>
+                    </td>
+                    <td>{formatDate(row.created_at, true)}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
+      </section>
+
+      <section className="admin-panel-card">
+        <div className="admin-panel-card-head">
+          <h2 className="admin-panel-title">Son görüş & öneriler</h2>
+          <Link to="/panel?tab=feedback" className="admin-text-link">
+            Tümünü gör →
+          </Link>
+        </div>
+        {feedbackStats.recent.length === 0 ? (
+          <p className="admin-muted">Henüz görüş/öneri yok.</p>
+        ) : (
+          <div className="admin-table-wrap">
+            <table className="admin-table">
+              <thead>
+                <tr>
+                  <th>Uygulama</th>
+                  <th>Başlık</th>
+                  <th>Durum</th>
+                  <th>Tarih</th>
+                </tr>
+              </thead>
+              <tbody>
+                {feedbackStats.recent.map((item) => {
+                  const status = item.status || 'new';
+                  return (
+                    <tr key={item.id}>
+                      <td>{item.app_name || item.app_code}</td>
+                      <td>{item.title || 'Başlıksız'}</td>
+                      <td>
+                        <span className={`admin-status-pill admin-status-pill-${status}`}>
+                          {FEEDBACK_STATUS_LABELS[status] || status}
+                        </span>
+                      </td>
+                      <td>{formatDate(item.created_at, true)}</td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
+        )}
+      </section>
+
       <section className="admin-panel-card admin-panel-card-info">
         <h2 className="admin-panel-title">Hızlı notlar</h2>
         <ul className="admin-checklist">
+          <li>Görüş & öneriler uygulamalardan otomatik düşer — &quot;Görüş & Öneriler&quot; sekmesinden yönetilir.</li>
           <li>Proje talepleri formdan otomatik düşer — e-posta gönderilmez.</li>
+          <li>Akiyom AI ödeme iletişimi &quot;AI Ödeme İletişim&quot; sekmesinde listelenir.</li>
           <li>Reklam metriklerini &quot;Reklam Analizi&quot; sekmesinden manuel ekleyebilirsiniz.</li>
           <li>Google Ads / GA4 API entegrasyonu ileride bu panele bağlanabilir.</li>
         </ul>
