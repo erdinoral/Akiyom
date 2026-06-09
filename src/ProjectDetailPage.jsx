@@ -3,6 +3,7 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import PageShell from './components/PageShell.jsx';
 import projects from './data/projects.js';
+import ProductDetailSections from './components/ProductDetailSections.jsx';
 import { setPageSeo, injectJsonLd } from './utils/seo.js';
 import '../AkiyomLanding.css';
 
@@ -128,6 +129,7 @@ const ProjectDetailPage = () => {
 
   const isLive = project.status === 'Yayında';
   const hasUrl = Boolean(project.url?.startsWith('http'));
+  const hasRichDetail = project.detailSections?.length > 0;
 
   return (
     <PageShell>
@@ -141,6 +143,12 @@ const ProjectDetailPage = () => {
           <Link to="/projeler" className="project-detail-back">
             ← Tüm Projeler
           </Link>
+
+          {project.thumbnail && (
+            <div className="project-detail-hero-image">
+              <img src={project.thumbnail} alt={project.title} />
+            </div>
+          )}
 
           <header className="project-detail-hero">
             <h1 className="project-detail-title">{project.title}</h1>
@@ -165,7 +173,7 @@ const ProjectDetailPage = () => {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Canlıya Git
+                {project.linkLabel || 'Canlıya Git'}
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <path d="M7 17L17 7M7 7h10v10" />
                 </svg>
@@ -184,34 +192,40 @@ const ProjectDetailPage = () => {
             </div>
           </div>
 
-          <div className="project-detail-cards">
-            {contentCards.map(({ key, title, Icon }, index) => (
-              <motion.article
-                key={key}
-                className="project-detail-card"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-40px' }}
-                transition={{ duration: 0.6, delay: index * 0.08, ease }}
-              >
-                <div className="project-detail-card-head">
-                  <Icon />
-                  <h2 className="project-detail-card-title">{title}</h2>
-                </div>
-                <p className="project-detail-card-text">{project[key]}</p>
-              </motion.article>
-            ))}
-          </div>
+          {hasRichDetail ? (
+            <ProductDetailSections sections={project.detailSections} />
+          ) : (
+            <>
+              <div className="project-detail-cards">
+                {contentCards.map(({ key, title, Icon }, index) => (
+                  <motion.article
+                    key={key}
+                    className="project-detail-card"
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: '-40px' }}
+                    transition={{ duration: 0.6, delay: index * 0.08, ease }}
+                  >
+                    <div className="project-detail-card-head">
+                      <Icon />
+                      <h2 className="project-detail-card-title">{title}</h2>
+                    </div>
+                    <p className="project-detail-card-text">{project[key]}</p>
+                  </motion.article>
+                ))}
+              </div>
 
-          <motion.div
-            className="project-detail-summary"
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7, ease }}
-          >
-            <p>{project.summary}</p>
-          </motion.div>
+              <motion.div
+                className="project-detail-summary"
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.7, ease }}
+              >
+                <p>{project.summary}</p>
+              </motion.div>
+            </>
+          )}
 
           {project.screenshots?.length > 0 && (
             <div className="project-detail-screenshots">

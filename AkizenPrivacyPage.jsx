@@ -36,7 +36,7 @@ const AkizenPrivacyPage = () => {
             </div>
             <div className="nav-links">
               <Link to="/#vizyon">Vizyon</Link>
-              <Link to="/#urunler">Ürünler</Link>
+              <Link to="/#projeler">Projeler</Link>
               <Link to="/#hedefler">Hedefler</Link>
             </div>
           </div>

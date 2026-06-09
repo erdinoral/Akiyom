@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { motion, useScroll, useTransform, AnimatePresence, LayoutGroup } from 'framer-motion';
+import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
 import ProjectForm from './ProjectForm';
 import CookieBanner from './CookieBanner';
 import AkiyomAiPromo from './src/components/AkiyomAiPromo.jsx';
@@ -9,6 +9,8 @@ import SiteFooter from './src/components/SiteFooter.jsx';
 import VisionSection from './src/components/VisionSection.jsx';
 import PriceVatNote from './src/components/PriceVatNote.jsx';
 import { formatStudioStartPrice } from './src/utils/pricing.js';
+import projects from './src/data/projects.js';
+import ProjectCard from './src/components/ProjectCard.jsx';
 import './AkiyomLanding.css';
 
 const WHATSAPP_HREF = 'https://wa.me/90XXXXXXXXXX';
@@ -28,7 +30,6 @@ const WhatsAppLink = () => (
 );
 
 const AkiyomLanding = () => {
-  const [selectedProduct, setSelectedProduct] = useState(null);
   const [selectedStudioPackage, setSelectedStudioPackage] = useState(null);
   const [selectedPage, setSelectedPage] = useState(null);
   const [isProjectFormOpen, setIsProjectFormOpen] = useState(false);
@@ -47,55 +48,6 @@ const AkiyomLanding = () => {
   const heroOpacity = useTransform(scrollY, [0, 500], [1, 0]);
   // Navbar opacity: Sayfa başında da görünür olmalı (0.3), scroll yapıldıkça daha belirgin (1)
   const navbarOpacity = useTransform(scrollY, [0, 300], [0.3, 1]);
-
-  const products = [
-    {
-      id: 1,
-      name: 'Akibeat',
-      tagline: 'Müzik analiz motoru ve mastering asistanı',
-      description: 'Yapay zeka destekli müzik analizi ve profesyonel mastering çözümleri. Ses kalitesini optimize eden, müzisyenler için güçlü bir araç.',
-      image: '/akibeat.png',
-      features: ['AI Destekli Analiz', 'Otomatik Mastering', 'Gerçek Zamanlı İşleme', 'Profesyonel Çıktı'],
-      link: 'https://akibeat.akiyom.com',
-      status: 'in-progress',
-      statusText: 'Devam Eden Proje'
-    },
-    {
-      id: 2,
-      name: 'Aki Finans',
-      tagline: 'Finansal analiz ve cüzdan yönetimi',
-      description: 'Kişisel finanslarınızı yönetin, analiz edin ve optimize edin. Akıllı bütçeleme ve harcama takibi ile finansal hedeflerinize ulaşın.',
-      image: '/akis.png',
-      features: ['Bütçe Yönetimi', 'Harcama Analizi', 'Hedef Takibi', 'Güvenli Cüzdan'],
-      link: 'https://apps.microsoft.com/detail/9PKRN1TB6RN5?hl=tr-tr&gl=TR&ocid=pdpshare',
-      status: 'published',
-      statusText: 'Microsoft Store\'da Yayında'
-    },
-    {
-      id: 3,
-      name: 'Enigma Atlas',
-      tagline: 'Dünya gizemlerini keşfetme platformu',
-      description: 'Dünyanın en büyük gizemlerini keşfedin. İnteraktif haritalar, derinlemesine analizler ve topluluk destekli araştırmalar.',
-      image: '/enigmaatlas.png',
-      features: ['İnteraktif Haritalar', 'Derinlemesine Analiz', 'Topluluk Araştırmaları', 'Multimedya İçerik'],
-      link: 'https://enigma.akiyom.com/',
-      status: 'published',
-      statusText: 'Yayında',
-      linkLabel: 'Siteye Git'
-    },
-    {
-      id: 4,
-      name: 'Akizen PC',
-      tagline: 'Bilgisayar performans ve sağlığını görüntüleme uygulaması',
-      description: 'Bilgisayar performansını ve sistem sağlığını tek panelden takip edin, yardımcı araçlara hızlıca ulaşın.',
-      image: '/Akizenpc.png',
-      features: ['Canlı Performans İzleme', 'Sistem Sağlığı Kontrolü', 'Yardımcı Araçlara Erişim', 'Tek Panel Yönetimi'],
-      link: 'https://apps.microsoft.com/detail/9N7LNV11PWLP?hl=tr-tr&gl=TR&ocid=pdpshare',
-      status: 'published',
-      statusText: 'Microsoft Store\'da Yayında',
-      linkLabel: 'Microsoft Store\'a Git'
-    }
-  ];
 
   const goals = [
     {
@@ -417,140 +369,44 @@ const AkiyomLanding = () => {
         </motion.div>
       </section>
 
-      {/* Products Grid Section */}
-      <section id="urunler" className="products-section">
-        <motion.h2
-          className="section-title"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
-        >
-          Ürünlerimiz
-        </motion.h2>
-        
-        <motion.p
-          className="products-intro"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.8, delay: 0.2, ease: [0.25, 0.1, 0.25, 1] }}
-        >
-          Akiyom ekosistemi, farklı ihtiyaçlara yönelik özel olarak tasarlanmış dijital çözümlerden oluşuyor.
-          Her ürün, kendi alanında derinlemesine uzmanlaşmış, ancak aynı zamanda birbirini destekleyen bir 
-          yapıya sahip. Müzik ve finans uygulamalarından oyun rehberlerine ve sistem araçlarına kadar
-          farklı alanlarda çözümler üretiyoruz. Aşağıdaki ürünler, günlük işleri kolaylaştırmak ve
-          üretkenliği artırmak için geliştirildi.
-        </motion.p>
-        
-        <LayoutGroup>
-          <div className="products-grid">
-            {products.map((product, index) => (
-              <motion.div
-                key={product.id}
-                className="product-card"
-                layout
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.6, delay: index * 0.1, ease: [0.25, 0.1, 0.25, 1] }}
-                whileHover={{ y: -8, transition: { duration: 0.6, ease: [0.25, 0.1, 0.25, 1] } }}
-                onClick={() => setSelectedProduct(product)}
-              >
-                <div 
-                  className="product-card-background"
-                  style={{ backgroundImage: `url(${product.image})` }}
-                ></div>
-                <div className="product-card-gradient"></div>
-                {product.status && (
-                  <div className={`product-status-badge product-status-${product.status}`}>
-                    <span className="product-status-text">{product.statusText}</span>
-                    {product.status === 'in-progress' && (
-                      <span className="product-status-pulse"></span>
-                    )}
-                  </div>
-                )}
-                <div className="product-card-inner">
-                  <h3 className="product-name">{product.name}</h3>
-                  <p className="product-tagline">{product.tagline}</p>
-                  <div className="product-hover-indicator">
-                    <span>Detayları Gör</span>
-                  </div>
-                </div>
-              </motion.div>
+      {/* Projects Preview Section */}
+      <section id="projeler" className="home-projects-section">
+        <div className="home-projects-container">
+          <motion.header
+            className="home-projects-header"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-100px' }}
+            transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
+          >
+            <h2 className="section-title">Projelerimiz</h2>
+            <p className="home-projects-intro">
+              Akiyom ekosisteminde geliştirdiğimiz web ve masaüstü uygulamaları. Müzik ve finans araçlarından
+              POS otomasyonuna, keşif platformlarından sistem yardımcılarına kadar farklı alanlarda çözümler üretiyoruz.
+            </p>
+          </motion.header>
+
+          <div className="projects-page-grid home-projects-grid">
+            {projects.map((project, index) => (
+              <ProjectCard key={project.slug} project={project} index={index} />
             ))}
           </div>
 
-          {/* Product Detail Modal */}
-          <AnimatePresence>
-            {selectedProduct && (
-              <motion.div
-                className="product-modal-overlay"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                onClick={() => setSelectedProduct(null)}
-              >
-                <motion.div
-                  className="product-modal"
-                  layoutId={`product-${selectedProduct.id}`}
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.9 }}
-                  transition={{ duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
-                  onClick={(e) => e.stopPropagation()}
-                >
-                  <button 
-                    className="modal-close"
-                    onClick={() => setSelectedProduct(null)}
-                    aria-label="Kapat"
-                  >
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                      <line x1="18" y1="6" x2="6" y2="18"></line>
-                      <line x1="6" y1="6" x2="18" y2="18"></line>
-                    </svg>
-                  </button>
-                  
-                  <div className="product-modal-content">
-                    <div className="product-modal-image">
-                      <img src={selectedProduct.image} alt={selectedProduct.name} />
-                    </div>
-                    <div className="product-modal-info">
-                      <h2 className="product-modal-name">{selectedProduct.name}</h2>
-                      <p className="product-modal-tagline">{selectedProduct.tagline}</p>
-                      <p className="product-modal-description">{selectedProduct.description}</p>
-                      
-                      <div className="product-modal-features">
-                        <h3>Özellikler</h3>
-                        <ul>
-                          {selectedProduct.features.map((feature, idx) => (
-                            <li key={idx}>{feature}</li>
-                          ))}
-                        </ul>
-                      </div>
-                      
-                      {selectedProduct.link ? (
-                        <a 
-                          href={selectedProduct.link}
-                          className="product-modal-button"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          {selectedProduct.linkLabel ?? 'Uygulamaya Git'}
-                          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                            <path d="M7 17L17 7M7 7h10v10"></path>
-                          </svg>
-                        </a>
-                      ) : (
-                        <div className="product-modal-coming-soon">Yakında Microsoft Store'da Yayında</div>
-                      )}
-                    </div>
-                  </div>
-                </motion.div>
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </LayoutGroup>
+          <motion.div
+            className="home-projects-footer"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-60px' }}
+            transition={{ duration: 0.7, ease: [0.25, 0.1, 0.25, 1] }}
+          >
+            <Link to="/projeler" className="home-projects-link">
+              Tüm projeleri gör
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M7 17L17 7M7 7h10v10" />
+              </svg>
+            </Link>
+          </motion.div>
+        </div>
       </section>
 
       {/* Solutions Showcase Section */}

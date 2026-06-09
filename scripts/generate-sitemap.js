@@ -77,6 +77,12 @@ const routes = [
     changefreq: 'monthly',
     priority: '0.8',
     lastmod: CURRENT_DATE
+  },
+  {
+    path: '/projeler/akipos',
+    changefreq: 'monthly',
+    priority: '0.8',
+    lastmod: CURRENT_DATE
   }
 ];
 

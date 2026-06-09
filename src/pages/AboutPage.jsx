@@ -49,19 +49,10 @@ const AboutPage = () => {
           </header>
 
           <section className="about-block about-founder-section">
-            <div className="about-founder-layout">
-              <div className="about-founder-copy">
-                <h2 className="about-section-title">Kurucu</h2>
-                <h3 className="about-founder-name">{ABOUT_FOUNDER.name}</h3>
-                <p className="about-founder-role">{ABOUT_FOUNDER.role}</p>
-                <p className="about-text">{ABOUT_FOUNDER.bio}</p>
-              </div>
-              {ABOUT_FOUNDER.imagePlaceholder && (
-                <div className="about-founder-visual" aria-hidden="true">
-                  <span className="about-founder-visual-label">Görsel yakında</span>
-                </div>
-              )}
-            </div>
+            <h2 className="about-section-title">Kurucu</h2>
+            <h3 className="about-founder-name">{ABOUT_FOUNDER.name}</h3>
+            <p className="about-founder-role">{ABOUT_FOUNDER.role}</p>
+            <p className="about-text">{ABOUT_FOUNDER.bio}</p>
           </section>
 
           <section className="about-block">

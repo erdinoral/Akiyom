@@ -1,5 +1,10 @@
 /** Biz Kimiz sayfası içeriği — metinleri buradan güncelleyebilirsiniz. */
 
+import projects from './projects.js';
+
+const activeProductLineCount = String(projects.length);
+const activeProductLineHint = projects.map((project) => project.title).join(', ');
+
 export const ABOUT_COMPANY = {
   legalName: 'Akiyom Yazılım ve Geliştirme',
   foundedYear: 2025,
@@ -33,7 +38,7 @@ export const ABOUT_STORY = [
 
 export const ABOUT_STATS = [
   { value: '2025', label: 'Kuruluş yılı', hint: 'Akiyom\'un resmi başlangıcı' },
-  { value: '4', label: 'Aktif ürün hattı', hint: 'Akibeat, Aki Finans, Enigma Atlas, Akizen PC' },
+  { value: activeProductLineCount, label: 'Aktif ürün hattı', hint: activeProductLineHint },
   { value: '3', label: 'Hizmet kolu', hint: 'Ürünler, Akiyom Studio, Akiyom AI' },
   { value: '2', label: 'Store yayını', hint: 'Microsoft Store\'da canlı uygulamalar' },
 ];
@@ -42,7 +47,6 @@ export const ABOUT_FOUNDER = {
   name: 'Erdin Oral',
   role: 'Kurucu & Geliştirici',
   bio: 'Akiyom\'un kurucusu. Ürün tasarımından full-stack geliştirmeye, yayın süreçlerinden kurumsal AI mimarisine kadar ekosistemin tüm katmanlarında doğrudan üretime odaklanır. Studio ve AI projelerinde de aynı standartla çalışır.',
-  imagePlaceholder: true,
 };
 
 export const ABOUT_PILLARS = [

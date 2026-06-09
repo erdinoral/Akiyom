@@ -45,10 +45,9 @@ const SiteNavbar = ({ style, variant = 'router' }) => {
           <NavLink hash="#vizyon" to="/#vizyon">
             Vizyon
           </NavLink>
-          <NavLink hash="#urunler" to="/#urunler">
-            Ürünler
+          <NavLink hash="#projeler" to="/#projeler">
+            Projeler
           </NavLink>
-          <Link to="/projeler">Projeler</Link>
           <Link to="/akiyom-ai" className="nav-link--akiyom-ai akiyom-ai-gradient-text--animated">
             Akiyom AI
           </Link>

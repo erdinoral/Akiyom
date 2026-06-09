@@ -245,7 +245,14 @@ const AdminPanelPage = () => {
       .single();
     setUpdatingId(null);
     if (updateError) {
-      setError('Yanıt kaydedilemedi. admin_reply sütununu eklemek için supabase/app_feedback.sql dosyasını çalıştırın.');
+      const missingColumn = /admin_reply|replied_at|column/i.test(updateError.message);
+      const invalidStatus = updateError.code === '23514';
+      const hint = missingColumn
+        ? ' Supabase SQL Editor’da supabase/app_feedback_admin_reply.sql dosyasını çalıştırın.'
+        : invalidStatus
+          ? ' Geçersiz durum: supabase/app_feedback_admin_reply.sql veya app_feedback.sql dosyasını çalıştırın.'
+          : '';
+      setError(`Yanıt kaydedilemedi: ${updateError.message}${hint}`);
       return false;
     }
     setFeedback((prev) => prev.map((f) => (f.id === feedbackId ? { ...f, ...data } : f)));

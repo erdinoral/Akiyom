@@ -53,8 +53,7 @@ const PrivacyPage = () => {
             </div>
             <div className="nav-links">
               <Link to="/#vizyon">Vizyon</Link>
-              <Link to="/#urunler">Ürünler</Link>
-              <Link to="/projeler">Projeler</Link>
+              <Link to="/#projeler">Projeler</Link>
               <Link to="/akiyom-ai">Akiyom AI</Link>
             </div>
           </div>

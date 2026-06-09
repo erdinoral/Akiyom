@@ -756,6 +756,13 @@ body {
   border-color: rgba(34, 197, 94, 0.3);
 }
 
+.product-status-testing {
+  background: rgba(139, 92, 246, 0.15);
+  color: #a78bfa;
+  border-color: rgba(139, 92, 246, 0.35);
+  animation: badge-pulse 2s ease-in-out infinite;
+}
+
 .product-status-text {
   position: relative;
   z-index: 1;
@@ -996,6 +1003,175 @@ body {
   color: #fbbf24;
   font-weight: 600;
   width: fit-content;
+}
+
+.product-modal-testing {
+  border-color: rgba(139, 92, 246, 0.35);
+  background: rgba(139, 92, 246, 0.1);
+  color: #a78bfa;
+}
+
+.product-modal-wide {
+  max-width: 920px;
+  width: min(92vw, 920px);
+  max-height: 90vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.product-modal-content-full {
+  display: flex;
+  flex-direction: column;
+  grid-template-columns: none;
+  overflow-y: auto;
+  max-height: 90vh;
+}
+
+.product-modal-hero-image {
+  width: 100%;
+  flex-shrink: 0;
+  overflow: hidden;
+  border-radius: 24px 24px 0 0;
+}
+
+.product-modal-hero-image img {
+  width: 100%;
+  height: auto;
+  max-height: 320px;
+  object-fit: cover;
+  display: block;
+}
+
+.product-modal-body {
+  padding: 2rem 2.5rem 2.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.product-modal-body .product-modal-info {
+  padding: 0;
+  gap: 0.75rem;
+}
+
+.product-modal-status {
+  display: inline-flex;
+  align-self: flex-start;
+  padding: 0.4rem 0.9rem;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.product-modal-detail {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.product-modal-detail-intro {
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.product-modal-detail-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 0.75rem;
+  letter-spacing: -0.02em;
+}
+
+.product-modal-detail-lead {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: var(--text-secondary);
+  font-weight: 300;
+}
+
+.product-modal-detail-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.product-modal-detail-heading {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.product-modal-detail-subheading {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-top: 0.5rem;
+}
+
+.product-modal-detail-text {
+  font-size: 1rem;
+  line-height: 1.75;
+  color: var(--text-secondary);
+  font-weight: 300;
+}
+
+.product-modal-detail-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  padding-left: 0;
+}
+
+.product-modal-detail-list li {
+  font-size: 0.98rem;
+  line-height: 1.65;
+  color: var(--text-secondary);
+  font-weight: 300;
+  padding-left: 1.25rem;
+  position: relative;
+}
+
+.product-modal-detail-list li::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  color: #a78bfa;
+}
+
+.product-modal-detail-subsection {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.product-modal-detail-faq {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.product-modal-detail-faq-item dt {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 0.35rem;
+}
+
+.product-modal-detail-faq-item dd {
+  font-size: 0.98rem;
+  line-height: 1.65;
+  color: var(--text-secondary);
+  font-weight: 300;
+  margin: 0;
+}
+
+.product-modal-detail-cta {
+  padding: 1.25rem 1.5rem;
+  border-radius: 14px;
+  background: rgba(139, 92, 246, 0.08);
+  border: 1px solid rgba(139, 92, 246, 0.2);
 }
 
 /* Responsive Design */
@@ -2961,13 +3137,6 @@ html {
   background: rgba(255, 255, 255, 0.02);
 }
 
-.about-founder-layout {
-  display: grid;
-  grid-template-columns: 1fr minmax(200px, 280px);
-  gap: 2rem;
-  align-items: center;
-}
-
 .about-founder-name {
   font-size: 1.5rem;
   font-weight: 700;
@@ -2978,22 +3147,6 @@ html {
   font-size: 0.95rem;
   color: #93c5fd;
   margin-bottom: 1rem;
-}
-
-.about-founder-visual {
-  aspect-ratio: 4 / 5;
-  border-radius: 16px;
-  border: 1px dashed rgba(255, 255, 255, 0.18);
-  background: rgba(255, 255, 255, 0.03);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.about-founder-visual-label {
-  font-size: 0.85rem;
-  color: rgba(255, 255, 255, 0.35);
-  letter-spacing: 0.04em;
 }
 
 .about-stats-intro {
@@ -3219,16 +3372,6 @@ html {
 @media (max-width: 768px) {
   .about-page {
     padding: 5.5rem 1.25rem 7rem;
-  }
-
-  .about-founder-layout {
-    grid-template-columns: 1fr;
-  }
-
-  .about-founder-visual {
-    max-height: 200px;
-    aspect-ratio: auto;
-    min-height: 160px;
   }
 
   .about-process-step {
@@ -4024,6 +4167,66 @@ html {
   }
 }
 
+/* Home projects preview */
+.home-projects-section {
+  padding: 6rem 2rem;
+}
+
+.home-projects-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.home-projects-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.home-projects-intro {
+  max-width: 720px;
+  margin: 1.25rem auto 0;
+  font-size: clamp(1rem, 2vw, 1.15rem);
+  font-weight: 300;
+  line-height: 1.75;
+  color: var(--text-secondary);
+}
+
+.home-projects-grid {
+  margin-bottom: 2.5rem;
+}
+
+.home-projects-footer {
+  display: flex;
+  justify-content: center;
+}
+
+.home-projects-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.85rem 1.5rem;
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--text-primary);
+  text-decoration: none;
+  font-weight: 600;
+  transition: background 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+}
+
+.home-projects-link:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+  .home-projects-section {
+    padding: 4rem 1.5rem;
+  }
+}
+
 /* Projects page */
 .projects-page {
   min-height: calc(100vh - 200px);
@@ -4342,8 +4545,28 @@ html {
   color: var(--text-primary);
 }
 
+.project-detail-hero-image {
+  margin-bottom: 2rem;
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1px solid var(--border-color);
+}
+
+.project-detail-hero-image img {
+  width: 100%;
+  height: auto;
+  max-height: 420px;
+  object-fit: cover;
+  display: block;
+}
+
 .project-detail-hero {
   margin-bottom: 2.5rem;
+}
+
+.project-detail .product-modal-detail {
+  margin-top: 0.5rem;
+  margin-bottom: 2rem;
 }
 
 .project-detail-title {
