@@ -23,19 +23,33 @@ export const supabase = isSupabaseConfigured
     })
   : null;
 
+const PROFILE_SELECTS = [
+  'id, email, username, is_admin, is_editor, updated_at',
+  'id, email, username, is_admin, updated_at',
+  'id, email, username, is_admin, is_editor',
+  'id, email, username, is_admin',
+];
+
 export async function fetchProfile(userId) {
   if (!supabase || !userId) return null;
 
-  const { data, error } = await supabase
-    .from('profiles')
-    .select('id, email, username, is_admin, updated_at, created_at')
-    .eq('id', userId)
-    .maybeSingle();
+  for (const select of PROFILE_SELECTS) {
+    const { data, error } = await supabase.from('profiles').select(select).eq('id', userId).maybeSingle();
 
-  if (error) {
-    console.error('Profil yüklenemedi:', error.message);
-    return null;
+    if (!error && data) {
+      return {
+        ...data,
+        is_editor: data.is_editor ?? false,
+        updated_at: data.updated_at ?? null,
+      };
+    }
+
+    if (error && !/column|does not exist/i.test(error.message)) {
+      console.error('Profil yüklenemedi:', error.message);
+      return null;
+    }
   }
 
-  return data;
+  console.error('Profil yüklenemedi: profiles tablosu beklenen sütunları içermiyor.');
+  return null;
 }

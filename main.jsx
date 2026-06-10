@@ -13,6 +13,8 @@ import AuthPage from './src/pages/AuthPage.jsx'
 import ProfilePage from './src/pages/ProfilePage.jsx'
 import AdminPanelPage from './src/pages/AdminPanelPage.jsx'
 import AboutPage from './src/pages/AboutPage.jsx'
+import BlogPage from './src/pages/BlogPage.jsx'
+import BlogPostPage from './src/pages/BlogPostPage.jsx'
 import './index.css'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
@@ -26,6 +28,8 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           <Route path="/gizlilik/akizen" element={<AkizenPrivacyPage />} />
           <Route path="/projeler" element={<ProjectsPage />} />
           <Route path="/projeler/:slug" element={<ProjectDetailPage />} />
+          <Route path="/blog" element={<BlogPage />} />
+          <Route path="/blog/:slug" element={<BlogPostPage />} />
           <Route path="/akiyom-ai" element={<AkiyomAiPage />} />
           <Route path="/biz-kimiz" element={<AboutPage />} />
           <Route path="/kayit-ol" element={<AuthPage mode="register" />} />

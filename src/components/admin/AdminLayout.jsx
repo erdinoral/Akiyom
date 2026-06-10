@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
+import { getProfileDisplayName } from '../../utils/profileDisplayName';
 
 const NAV_ITEMS = [
   { id: 'overview', label: 'Genel Bakış', icon: '◈' },
@@ -10,6 +11,7 @@ const NAV_ITEMS = [
   { id: 'members', label: 'Üyeler', icon: '👤' },
   { id: 'statistics', label: 'İstatistikler', icon: '▤' },
   { id: 'marketing', label: 'Reklam Analizi', icon: '◎' },
+  { id: 'blog', label: 'Blog & Haberler', icon: '✎' },
 ];
 
 const AdminLayout = ({
@@ -21,9 +23,11 @@ const AdminLayout = ({
   children,
   onRefresh,
   refreshing,
+  editorOnly = false,
 }) => {
   const { profile, user } = useAuth();
-  const displayName = profile?.full_name || user?.email?.split('@')[0] || 'Admin';
+  const displayName = getProfileDisplayName(user, profile) || 'Admin';
+  const navItems = editorOnly ? NAV_ITEMS.filter((item) => item.id === 'blog') : NAV_ITEMS;
 
   return (
     <div className="akiyom-landing admin-layout-root">
@@ -40,13 +44,13 @@ const AdminLayout = ({
               <span className="nav-logo-a">A</span>
             </Link>
             <div>
-              <p className="admin-sidebar-title">Akiyom Panel</p>
+              <p className="admin-sidebar-title">{editorOnly ? 'İçerik Paneli' : 'Akiyom Panel'}</p>
               <p className="admin-sidebar-user">{displayName}</p>
             </div>
           </div>
 
           <nav className="admin-sidebar-nav" aria-label="Admin menü">
-            {NAV_ITEMS.map((item) => (
+            {navItems.map((item) => (
               <button
                 key={item.id}
                 type="button"

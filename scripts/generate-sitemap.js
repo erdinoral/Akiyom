@@ -83,6 +83,12 @@ const routes = [
     changefreq: 'monthly',
     priority: '0.8',
     lastmod: CURRENT_DATE
+  },
+  {
+    path: '/blog',
+    changefreq: 'weekly',
+    priority: '0.85',
+    lastmod: CURRENT_DATE
   }
 ];
 

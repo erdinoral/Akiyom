@@ -8,11 +8,38 @@ const ADMIN_EMAILS = (import.meta.env.VITE_ADMIN_EMAILS || 'erdinoral31@gmail.co
   .map((email) => email.trim().toLowerCase())
   .filter(Boolean);
 
+function isProfileFlagEnabled(value) {
+  return value === true || value === 'true' || value === 1 || value === 't';
+}
+
 function resolveIsAdmin(user, profile) {
-  if (profile?.is_admin === true) return true;
+  if (isProfileFlagEnabled(profile?.is_admin)) return true;
   if (profile?.role === 'admin') return true;
   const email = user?.email?.toLowerCase();
   return Boolean(email && ADMIN_EMAILS.includes(email));
+}
+
+function resolveIsEditor(profile) {
+  if (isProfileFlagEnabled(profile?.is_editor)) return true;
+  if (profile?.role === 'editor') return true;
+  return false;
+}
+
+function resolveCanManageBlogDb(profile) {
+  if (!profile) return false;
+  return isProfileFlagEnabled(profile.is_admin) || isProfileFlagEnabled(profile.is_editor);
+}
+
+function resolveCanManageBlog(user, profile) {
+  if (resolveCanManageBlogDb(profile)) return true;
+  if (resolveIsEditor(profile)) return true;
+  return resolveIsAdmin(user, profile);
+}
+
+function resolveNeedsBlogSetup(user, profile) {
+  if (!user || !profile) return false;
+  if (resolveCanManageBlogDb(profile)) return false;
+  return resolveIsAdmin(user, profile) || resolveIsEditor(profile);
 }
 
 export function isAdminEmail(email) {
@@ -54,7 +81,7 @@ export function AuthProvider({ children }) {
 
     const {
       data: { subscription },
-    } = supabase.auth.onAuthStateChange((_event, session) => {
+    } = supabase.auth.onAuthStateChange((event, session) => {
       const nextUser = session?.user ?? null;
       setUser(nextUser);
       if (nextUser) {
@@ -69,6 +96,39 @@ export function AuthProvider({ children }) {
       subscription.unsubscribe();
     };
   }, [loadProfile]);
+
+  useEffect(() => {
+    if (!isSupabaseConfigured || !supabase || !user?.id) return undefined;
+
+    const refresh = () => loadProfile(user.id);
+
+    const onVisibilityChange = () => {
+      if (document.visibilityState === 'visible') refresh();
+    };
+
+    window.addEventListener('focus', refresh);
+    document.addEventListener('visibilitychange', onVisibilityChange);
+
+    const channel = supabase
+      .channel(`profile-sync-${user.id}`)
+      .on(
+        'postgres_changes',
+        {
+          event: 'UPDATE',
+          schema: 'public',
+          table: 'profiles',
+          filter: `id=eq.${user.id}`,
+        },
+        refresh
+      )
+      .subscribe();
+
+    return () => {
+      window.removeEventListener('focus', refresh);
+      document.removeEventListener('visibilitychange', onVisibilityChange);
+      supabase.removeChannel(channel);
+    };
+  }, [user?.id, loadProfile]);
 
   const signUp = useCallback(async ({ email, password, fullName }) => {
     if (!supabase) {
@@ -112,6 +172,9 @@ export function AuthProvider({ children }) {
       loading,
       isAuthenticated: Boolean(user),
       isAdmin: resolveIsAdmin(user, profile),
+      isEditor: resolveIsEditor(profile),
+      canManageBlog: resolveCanManageBlog(user, profile),
+      needsBlogSetup: resolveNeedsBlogSetup(user, profile),
       isConfigured: isSupabaseConfigured,
       signUp,
       signIn,

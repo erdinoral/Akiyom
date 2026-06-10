@@ -62,6 +62,12 @@ const AboutPage = () => {
                 {paragraph}
               </p>
             ))}
+            {ABOUT_NAME_ORIGIN.axiomNote && (
+              <aside className="about-axiom-note">
+                <h3 className="about-axiom-note-title">{ABOUT_NAME_ORIGIN.axiomNote.title}</h3>
+                <p className="about-text about-axiom-note-text">{ABOUT_NAME_ORIGIN.axiomNote.text}</p>
+              </aside>
+            )}
           </section>
 
           <section className="about-block">

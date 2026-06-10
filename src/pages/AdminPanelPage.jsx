@@ -8,16 +8,20 @@ import AdminStatistics from '../components/admin/AdminStatistics';
 import AdminMarketing from '../components/admin/AdminMarketing';
 import AdminFeedback from '../components/admin/AdminFeedback';
 import AdminAiInquiries from '../components/admin/AdminAiInquiries';
+import AdminBlog from '../components/admin/AdminBlog';
 import { useAuth } from '../context/AuthContext';
 import { supabase } from '../lib/supabase';
 import { usePageSeo } from '../utils/seo.js';
 
-const VALID_TABS = ['overview', 'leads', 'ai-inquiries', 'feedback', 'members', 'statistics', 'marketing'];
+const VALID_TABS = ['overview', 'leads', 'ai-inquiries', 'feedback', 'members', 'statistics', 'marketing', 'blog'];
 
 const AdminPanelPage = () => {
   const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
-  const { loading, isAuthenticated, isAdmin, isConfigured, refreshProfile } = useAuth();
+  const { loading, isAuthenticated, isAdmin, isEditor, needsBlogSetup, isConfigured, refreshProfile, user } = useAuth();
+
+  const canAccessPanel = isAdmin || isEditor;
+  const editorOnly = isEditor && !isAdmin;
 
   const tabParam = searchParams.get('tab') || 'overview';
   const activeTab = VALID_TABS.includes(tabParam) ? tabParam : 'overview';
@@ -27,6 +31,7 @@ const AdminPanelPage = () => {
   const [marketing, setMarketing] = useState([]);
   const [feedback, setFeedback] = useState([]);
   const [aiInquiries, setAiInquiries] = useState([]);
+  const [blogPosts, setBlogPosts] = useState([]);
   const [fetching, setFetching] = useState(true);
   const [saving, setSaving] = useState(false);
   const [updatingId, setUpdatingId] = useState(null);
@@ -39,10 +44,16 @@ const AdminPanelPage = () => {
   });
 
   useEffect(() => {
-    if (!loading && (!isAuthenticated || !isAdmin)) {
+    if (!loading && (!isAuthenticated || !canAccessPanel)) {
       navigate('/giris', { replace: true, state: { from: '/panel' } });
     }
-  }, [isAuthenticated, isAdmin, loading, navigate]);
+  }, [isAuthenticated, canAccessPanel, loading, navigate]);
+
+  useEffect(() => {
+    if (editorOnly && activeTab !== 'blog') {
+      setSearchParams({ tab: 'blog' });
+    }
+  }, [editorOnly, activeTab, setSearchParams]);
 
   useEffect(() => {
     if (isAuthenticated) {
@@ -56,12 +67,30 @@ const AdminPanelPage = () => {
     setFetching(true);
     setError('');
 
-    const [leadsRes, membersRes, marketingRes, feedbackRes, aiInquiriesRes] = await Promise.all([
+    if (editorOnly) {
+      const blogRes = await supabase.from('blog_posts').select('*').order('created_at', { ascending: false });
+      if (blogRes.error) {
+        const code = blogRes.error.code;
+        if (code === '42501' || blogRes.error.message?.includes('permission')) {
+          setError('Blog yazılarına erişim reddedildi. is_editor veya is_admin yetkisi gerekir.');
+        } else if (code !== 'PGRST205') {
+          setError(`Blog yazıları yüklenemedi: ${blogRes.error.message}`);
+        }
+        setBlogPosts([]);
+      } else {
+        setBlogPosts(blogRes.data ?? []);
+      }
+      setFetching(false);
+      return;
+    }
+
+    const [leadsRes, membersRes, marketingRes, feedbackRes, aiInquiriesRes, blogRes] = await Promise.all([
       supabase.from('project_leads').select('*').order('created_at', { ascending: false }),
-      supabase.from('profiles').select('id, email, username, is_admin, updated_at').order('updated_at', { ascending: false }),
+      supabase.from('profiles').select('id, email, username, is_admin, is_editor, updated_at').order('updated_at', { ascending: false }),
       supabase.from('marketing_metrics').select('*').order('recorded_date', { ascending: false }),
       supabase.from('app_feedback').select('*').order('created_at', { ascending: false }),
       supabase.from('akiyom_ai_inquiries').select('*').order('created_at', { ascending: false }),
+      supabase.from('blog_posts').select('*').order('created_at', { ascending: false }),
     ]);
 
     if (leadsRes.error) {
@@ -106,6 +135,21 @@ const AdminPanelPage = () => {
       setAiInquiries(aiInquiriesRes.data ?? []);
     }
 
+    if (blogRes.error) {
+      const code = blogRes.error.code;
+      if (code === 'PGRST205' || blogRes.error.message?.includes('blog_posts')) {
+        setBlogPosts([]);
+      } else if (code === '42501' || blogRes.error.message?.includes('permission')) {
+        setError((prev) => prev || 'Blog yazılarına erişim reddedildi.');
+        setBlogPosts([]);
+      } else if (code !== 'PGRST205') {
+        setError((prev) => prev || `Blog yazıları yüklenemedi: ${blogRes.error.message}`);
+        setBlogPosts([]);
+      }
+    } else {
+      setBlogPosts(blogRes.data ?? []);
+    }
+
     if (feedbackRes.error) {
       const code = feedbackRes.error.code;
       if (code === '42501' || feedbackRes.error.message?.includes('permission')) {
@@ -122,11 +166,11 @@ const AdminPanelPage = () => {
     }
 
     setFetching(false);
-  }, []);
+  }, [editorOnly]);
 
   useEffect(() => {
-    if (isAdmin) loadAll();
-  }, [isAdmin, loadAll]);
+    if (canAccessPanel) loadAll();
+  }, [canAccessPanel, loadAll]);
 
   const newLeadsCount = useMemo(() => leads.filter((l) => l.status === 'new').length, [leads]);
   const newFeedbackCount = useMemo(
@@ -269,6 +313,48 @@ const AdminPanelPage = () => {
     }
   };
 
+  const handleSaveBlogPost = async (payload, postId) => {
+    if (!supabase) return false;
+    setSaving(true);
+    setError('');
+
+    const request = postId
+      ? supabase.from('blog_posts').update(payload).eq('id', postId).select('*').single()
+      : supabase.from('blog_posts').insert(payload).select('*').single();
+
+    const { data, error: saveError } = await request;
+    setSaving(false);
+
+    if (saveError) {
+      const hint =
+        saveError.code === 'PGRST205' || saveError.message?.includes('blog_posts')
+          ? ' Supabase SQL Editor’da supabase/blog_posts.sql dosyasını çalıştırın.'
+          : saveError.code === '23505'
+            ? ' Bu slug zaten kullanılıyor; farklı bir slug deneyin.'
+            : '';
+      setError(`Yazı kaydedilemedi: ${saveError.message}${hint}`);
+      return false;
+    }
+
+    setBlogPosts((prev) => {
+      if (postId) {
+        return prev.map((post) => (post.id === postId ? data : post));
+      }
+      return [data, ...prev];
+    });
+    return true;
+  };
+
+  const handleDeleteBlogPost = async (id) => {
+    if (!supabase || !window.confirm('Bu yazıyı silmek istiyor musunuz?')) return;
+    const { error: deleteError } = await supabase.from('blog_posts').delete().eq('id', id);
+    if (deleteError) {
+      setError('Yazı silinemedi.');
+    } else {
+      setBlogPosts((prev) => prev.filter((post) => post.id !== id));
+    }
+  };
+
   if (!isConfigured) {
     return (
       <section className="admin-page">
@@ -277,7 +363,7 @@ const AdminPanelPage = () => {
     );
   }
 
-  if (loading || !isAdmin) {
+  if (loading || !canAccessPanel) {
     return (
       <div className="akiyom-landing admin-layout-root">
         <div className="background-base-layer" />
@@ -291,7 +377,7 @@ const AdminPanelPage = () => {
   }
 
   const renderTab = () => {
-    if (fetching && leads.length === 0 && members.length === 0) {
+    if (fetching && blogPosts.length === 0 && !editorOnly && leads.length === 0 && members.length === 0) {
       return (
         <div className="admin-empty">
           <div className="profile-loading-spinner" aria-label="Yükleniyor" />
@@ -344,6 +430,31 @@ const AdminPanelPage = () => {
             error={error}
           />
         );
+      case 'blog':
+        return (
+          <div className="admin-section">
+            {needsBlogSetup && (
+              <div className="blog-editor-setup" style={{ marginBottom: '1.5rem' }}>
+                <p className="blog-editor-setup-title">Profilde admin bayrağı görünmüyor</p>
+                <p className="blog-editor-setup-text">
+                  Giriş hesabı: <strong>{user?.email || '—'}</strong>. SQL’i bu e-posta ile çalıştırın, sonra çıkış yapıp
+                  tekrar giriş yapın.
+                </p>
+                <pre className="blog-editor-setup-code">{`update public.profiles
+set is_admin = true
+where lower(email) = '${(user?.email || 'sizin@email.com').toLowerCase()}';`}</pre>
+              </div>
+            )}
+            <AdminBlog
+              posts={blogPosts}
+              onSavePost={handleSaveBlogPost}
+              onDeletePost={handleDeleteBlogPost}
+              saving={saving}
+              updatingId={updatingId}
+              error={error}
+            />
+          </div>
+        );
       default:
         return (
           <AdminOverview
@@ -366,6 +477,7 @@ const AdminPanelPage = () => {
       newAiInquiriesCount={newAiInquiriesCount}
       onRefresh={loadAll}
       refreshing={fetching}
+      editorOnly={editorOnly}
     >
       {renderTab()}
     </AdminLayout>

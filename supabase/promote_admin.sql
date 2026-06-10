@@ -2,7 +2,7 @@
 -- Supabase Dashboard → SQL Editor → bir kez çalıştırın.
 
 update public.profiles
-set role = 'admin', updated_at = now()
+set role = 'admin', is_admin = true, updated_at = now()
 where lower(email) = 'erdinoral31@gmail.com';
 
 -- Trigger'ı güncelle (yeni kayıtlar için)

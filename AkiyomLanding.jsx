@@ -46,8 +46,6 @@ const AkiyomLanding = () => {
   // Hero scroll animasyonları
   const heroScale = useTransform(scrollY, [0, 500], [1, 0.3]);
   const heroOpacity = useTransform(scrollY, [0, 500], [1, 0]);
-  // Navbar opacity: Sayfa başında da görünür olmalı (0.3), scroll yapıldıkça daha belirgin (1)
-  const navbarOpacity = useTransform(scrollY, [0, 300], [0.3, 1]);
 
   const goals = [
     {
@@ -279,7 +277,12 @@ const AkiyomLanding = () => {
       {/* Content Layer */}
       <div className="content-layer">
       {/* Sticky Navbar */}
-      <SiteNavbar style={{ opacity: navbarOpacity }} variant="hash" />
+      <SiteNavbar
+        variant="hash"
+        onContactClick={() => setSelectedPage('contact')}
+        onTermsClick={() => setSelectedPage('terms')}
+        showWhatsApp
+      />
 
       {/* Hero Section */}
       <motion.section 

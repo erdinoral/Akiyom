@@ -14,6 +14,9 @@ const SiteFooter = ({ onContactClick, onTermsClick, showWhatsApp = true }) => (
         <Link to="/projeler" className="footer-link">
           Projeler
         </Link>
+        <Link to="/blog" className="footer-link">
+          Blog & Haberler
+        </Link>
         <Link
           to="/akiyom-ai"
           className="footer-link footer-link--akiyom-ai akiyom-ai-gradient-text--animated"

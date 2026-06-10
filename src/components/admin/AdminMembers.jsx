@@ -3,7 +3,8 @@ import { formatDate } from '../../utils/adminStats';
 
 const AdminMembers = ({ members }) => {
   const admins = members.filter((m) => m.is_admin === true);
-  const users = members.filter((m) => !m.is_admin);
+  const editors = members.filter((m) => m.is_editor === true && !m.is_admin);
+  const users = members.filter((m) => !m.is_admin && !m.is_editor);
 
   return (
     <div className="admin-section">
@@ -23,6 +24,10 @@ const AdminMembers = ({ members }) => {
         <div className="admin-kpi-card">
           <span className="admin-kpi-label">Yönetici</span>
           <strong className="admin-kpi-value">{admins.length}</strong>
+        </div>
+        <div className="admin-kpi-card">
+          <span className="admin-kpi-label">Editör</span>
+          <strong className="admin-kpi-value">{editors.length}</strong>
         </div>
         <div className="admin-kpi-card">
           <span className="admin-kpi-label">Standart üye</span>
@@ -53,6 +58,8 @@ const AdminMembers = ({ members }) => {
                     <td>
                       {member.is_admin ? (
                         <span className="admin-status-pill admin-status-pill-contacted">Yönetici</span>
+                      ) : member.is_editor ? (
+                        <span className="admin-status-pill admin-status-pill-in_progress">Editör</span>
                       ) : (
                         <span className="admin-status-pill admin-status-pill-read">Üye</span>
                       )}

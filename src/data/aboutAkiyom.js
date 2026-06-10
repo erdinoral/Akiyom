@@ -25,9 +25,14 @@ export const ABOUT_MISSION =
 export const ABOUT_NAME_ORIGIN = {
   title: 'Akiyom ismi nereden geliyor?',
   paragraphs: [
-    'İngilizcedeki axiom (aksiyom) kavramından ilham aldık: kanıtlanabilir, güvenilir ve sağlam bir başlangıç noktası. Üzerine kurduğunuz her şeyin doğru temele dayanması gerekir — yazılımda da öyle.',
-    'Akiyom, bu fikri Türkçedeki aksiyon ile buluşturur: doğru temel + hareket. Statik bir ajans değil; ürün çıkaran, geliştiren ve canlı tutan bir yapı. İsmimiz, ne yaptığımızın özünü taşır.',
+    'Akiyom, İngilizcedeki axiom (Türkçede aksiyom) kelimesinden türetilmiştir. Matematik ve mantıkta aksiyom, kanıt gerektirmeden doğru kabul edilen, sağlam bir başlangıç ilkesidir — üzerine kurduğunuz her şeyin dayandığı temel taş.',
+    'Biz de yazılım ve ürün geliştirmede aynı mantığı izliyoruz: önce güvenilir altyapı, sonra hızlı hareket. Akiyom; bu “sağlam temel + aksiyon” birleşimini taşır. Statik bir ajans değil; ürün çıkaran, geliştiren ve canlı tutan bir yapıyız.',
   ],
+  axiomNote: {
+    title: 'Aksiyom (axiom) nedir?',
+    text:
+      'Kısaca: tartışmasız kabul edilen, kendiliğinden doğru sayılan temel bir ilke. Örneğin “paralel doğrular sonsuza kadar uzar” bir aksiyomdur — önce bu temel konur, sonra teoremler onun üzerine inşa edilir. Akiyom markası da bu fikirden esinlenir: yazılımda önce sağlam temel, sonra ürün ve büyüme.',
+  },
 };
 
 export const ABOUT_STORY = [

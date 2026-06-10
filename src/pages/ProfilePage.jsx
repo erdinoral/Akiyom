@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import PageShell from '../components/PageShell';
 import { useAuth } from '../context/AuthContext';
 import { usePageSeo } from '../utils/seo.js';
+import { getProfileDisplayName } from '../utils/profileDisplayName';
 
 function formatDate(value) {
   if (!value) return '—';
@@ -27,7 +28,7 @@ function getInitials(name, email) {
 
 const ProfilePage = () => {
   const navigate = useNavigate();
-  const { user, profile, loading, isAuthenticated, isAdmin, signOut, refreshProfile, isConfigured } =
+  const { user, profile, loading, isAuthenticated, isAdmin, isEditor, canManageBlog, signOut, refreshProfile, isConfigured } =
     useAuth();
   const [signingOut, setSigningOut] = useState(false);
 
@@ -80,12 +81,7 @@ const ProfilePage = () => {
     );
   }
 
-  const displayName =
-    profile?.username ||
-    profile?.full_name ||
-    user?.user_metadata?.full_name ||
-    user?.email?.split('@')[0] ||
-    'Akiyom Üyesi';
+  const displayName = getProfileDisplayName(user, profile);
 
   return (
     <PageShell>
@@ -103,6 +99,7 @@ const ProfilePage = () => {
               <h1 className="profile-title">{displayName}</h1>
               <p className="profile-email">{user.email}</p>
               {isAdmin && <span className="profile-admin-badge">Yönetici</span>}
+              {isEditor && !isAdmin && <span className="profile-admin-badge profile-editor-badge">Editör</span>}
             </div>
           </div>
 
@@ -119,7 +116,9 @@ const ProfilePage = () => {
             </div>
             <div className="profile-detail-item">
               <span className="profile-detail-label">Hesap türü</span>
-              <span className="profile-detail-value">{isAdmin ? 'Yönetici' : 'Standart üye'}</span>
+              <span className="profile-detail-value">
+                {isAdmin ? 'Yönetici' : isEditor ? 'Editör' : 'Standart üye'}
+              </span>
             </div>
           </div>
 
@@ -129,12 +128,22 @@ const ProfilePage = () => {
                 Yönetim Paneli
               </Link>
             )}
+            {canManageBlog && !isAdmin && (
+              <>
+                <Link to="/blog" className="profile-button profile-button-primary">
+                  Blog & Haberler sayfasında yaz
+                </Link>
+                <Link to="/panel?tab=blog" className="profile-button profile-button-secondary">
+                  İçerik paneli
+                </Link>
+              </>
+            )}
             <Link to="/" className="profile-button profile-button-secondary">
               Ana Sayfa
             </Link>
             <button
               type="button"
-              className={`profile-button ${isAdmin ? 'profile-button-secondary' : 'profile-button-primary'}`}
+              className={`profile-button ${isAdmin || canManageBlog ? 'profile-button-secondary' : 'profile-button-primary'}`}
               onClick={handleSignOut}
               disabled={signingOut}
             >
@@ -145,6 +154,7 @@ const ProfilePage = () => {
           <p className="profile-note">
             Bu hesap tüm Akiyom ürün ve hizmetlerinde kullanılabilir.
             {isAdmin && ' Proje taleplerini admin panelinden yönetebilirsiniz.'}
+            {isEditor && !isAdmin && ' Blog ve haber içeriklerini blog sayfasından veya içerik panelinden yönetebilirsiniz.'}
           </p>
         </motion.div>
       </section>

@@ -57,6 +57,10 @@ const ROUTE_META = {
     title: 'AKİPos — Akiyom Projeler',
     description: 'AKİPos satış, stok ve raporlama otomasyonu POS uygulaması.',
   },
+  '/blog': {
+    title: 'Blog & Haberler — Akiyom',
+    description: 'Akiyom blog yazıları, ürün haberleri ve duyurular.',
+  },
 };
 
 const ROUTES = Object.keys(ROUTE_META);
