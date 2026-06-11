@@ -438,8 +438,9 @@ body {
 }
 
 .nav-mobile-backdrop {
-  position: absolute;
+  position: fixed;
   inset: 0;
+  z-index: 0;
   border: none;
   background: rgba(0, 0, 0, 0.62);
   backdrop-filter: blur(8px);
@@ -448,10 +449,11 @@ body {
 }
 
 .nav-mobile-panel {
-  position: absolute;
+  position: fixed;
   top: 0;
   right: 0;
   left: 0;
+  z-index: 1;
   max-height: min(92vh, 720px);
   margin: 0.75rem;
   border-radius: 20px;
@@ -462,6 +464,7 @@ body {
   border: 1px solid rgba(255, 255, 255, 0.1);
   box-shadow: 0 24px 80px rgba(0, 0, 0, 0.55);
   animation: nav-mobile-slide-in 0.28s cubic-bezier(0.25, 0.1, 0.25, 1);
+  pointer-events: auto;
 }
 
 @keyframes nav-mobile-slide-in {
@@ -565,6 +568,9 @@ body {
   text-decoration: none;
   font-size: 1rem;
   font-weight: 500;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
   transition: background 0.2s ease, color 0.2s ease;
 }
 

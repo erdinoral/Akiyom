@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { getProfileDisplayName } from '../utils/profileDisplayName';
 
@@ -15,8 +15,15 @@ function getInitials(name, email) {
 }
 
 const NavAuth = ({ layout = 'inline', onNavigate }) => {
+  const navigate = useNavigate();
   const { user, profile, loading, isAuthenticated, isAdmin, isConfigured } = useAuth();
   const stacked = layout === 'stacked';
+
+  const handleStackedNav = (to) => (event) => {
+    event.preventDefault();
+    navigate(to);
+    onNavigate?.();
+  };
 
   if (!isConfigured) {
     return null;
@@ -29,16 +36,25 @@ const NavAuth = ({ layout = 'inline', onNavigate }) => {
   if (!isAuthenticated) {
     return (
       <div className={`nav-auth${stacked ? ' nav-auth-stacked' : ''}`}>
-        <Link
-          to="/giris"
-          className={`nav-auth-link${stacked ? '' : ' nav-auth-link-muted'}`}
-          onClick={onNavigate}
-        >
-          Giriş
-        </Link>
-        <Link to="/kayit-ol" className="nav-auth-button" onClick={onNavigate}>
-          Kayıt Ol
-        </Link>
+        {stacked ? (
+          <>
+            <a href="/giris" className="nav-auth-link" onClick={handleStackedNav('/giris')}>
+              Giriş
+            </a>
+            <a href="/kayit-ol" className="nav-auth-button" onClick={handleStackedNav('/kayit-ol')}>
+              Kayıt Ol
+            </a>
+          </>
+        ) : (
+          <>
+            <Link to="/giris" className="nav-auth-link nav-auth-link-muted">
+              Giriş
+            </Link>
+            <Link to="/kayit-ol" className="nav-auth-button">
+              Kayıt Ol
+            </Link>
+          </>
+        )}
       </div>
     );
   }
@@ -47,21 +63,34 @@ const NavAuth = ({ layout = 'inline', onNavigate }) => {
 
   return (
     <div className={`nav-auth${stacked ? ' nav-auth-stacked' : ''}`}>
-      {isAdmin && (
-        <Link to="/panel" className="nav-auth-panel-button" onClick={onNavigate}>
-          Panel
+      {isAdmin &&
+        (stacked ? (
+          <a href="/panel" className="nav-auth-panel-button" onClick={handleStackedNav('/panel')}>
+            Panel
+          </a>
+        ) : (
+          <Link to="/panel" className="nav-auth-panel-button">
+            Panel
+          </Link>
+        ))}
+      {stacked ? (
+        <a
+          href="/profil"
+          className="nav-auth-profile"
+          aria-label="Profil sayfasına git"
+          onClick={handleStackedNav('/profil')}
+        >
+          <span className="nav-auth-avatar">{getInitials(displayName, user?.email)}</span>
+          <span className="nav-auth-name">{displayName}</span>
+          {isAdmin && <span className="nav-auth-badge">Admin</span>}
+        </a>
+      ) : (
+        <Link to="/profil" className="nav-auth-profile" aria-label="Profil sayfasına git">
+          <span className="nav-auth-avatar">{getInitials(displayName, user?.email)}</span>
+          <span className="nav-auth-name">{displayName}</span>
+          {isAdmin && <span className="nav-auth-badge">Admin</span>}
         </Link>
       )}
-      <Link
-        to="/profil"
-        className="nav-auth-profile"
-        aria-label="Profil sayfasına git"
-        onClick={onNavigate}
-      >
-        <span className="nav-auth-avatar">{getInitials(displayName, user?.email)}</span>
-        <span className="nav-auth-name">{displayName}</span>
-        {isAdmin && <span className="nav-auth-badge">Admin</span>}
-      </Link>
     </div>
   );
 };

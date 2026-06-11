@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import NavAuth from './NavAuth';
 import '../../AkiyomLanding.css';
@@ -16,10 +16,15 @@ const SiteNavbar = ({
   showWhatsApp = false,
 }) => {
   const location = useLocation();
+  const navigate = useNavigate();
   const isHome = location.pathname === '/';
   const [menuOpen, setMenuOpen] = useState(false);
 
   const closeMenu = useCallback(() => setMenuOpen(false), []);
+
+  const deferCloseMenu = useCallback(() => {
+    window.setTimeout(closeMenu, 0);
+  }, [closeMenu]);
 
   const handleLogoClick = (e) => {
     closeMenu();
@@ -60,17 +65,28 @@ const SiteNavbar = ({
 
   const NavLink = ({ hash, to, children, className = '' }) => {
     const linkClass = className ? ` ${className}` : '';
-    if (variant === 'hash' && isHome) {
+
+    if (variant === 'hash' && isHome && hash) {
       return (
-        <a href={hash} className={`nav-mobile-link${linkClass}`} onClick={closeMenu}>
+        <a href={hash} className={`nav-mobile-link${linkClass}`} onClick={deferCloseMenu}>
           {children}
         </a>
       );
     }
+
+    const destination = to || hash || '/';
+
     return (
-      <Link to={to} className={`nav-mobile-link${linkClass}`} onClick={closeMenu}>
+      <a
+        href={destination}
+        className={`nav-mobile-link${linkClass}`}
+        onClick={(event) => {
+          event.preventDefault();
+          navigate(destination);
+        }}
+      >
         {children}
-      </Link>
+      </a>
     );
   };
 
@@ -135,7 +151,7 @@ const SiteNavbar = ({
 
             <div className="nav-mobile-section">
               <p className="nav-mobile-label">Hesap</p>
-              <NavAuth layout="stacked" onNavigate={closeMenu} />
+              <NavAuth layout="stacked" onNavigate={deferCloseMenu} />
             </div>
 
             <div className="nav-mobile-section">
@@ -170,7 +186,7 @@ const SiteNavbar = ({
                     İletişim
                   </a>
                 ) : (
-                  <a href="mailto:akiyom.iletisim@gmail.com" className="nav-mobile-link" onClick={closeMenu}>
+                  <a href="mailto:akiyom.iletisim@gmail.com" className="nav-mobile-link" onClick={deferCloseMenu}>
                     İletişim
                   </a>
                 )}
@@ -180,7 +196,7 @@ const SiteNavbar = ({
                     target="_blank"
                     rel="noopener noreferrer"
                     className="nav-mobile-link nav-mobile-link-whatsapp"
-                    onClick={closeMenu}
+                    onClick={deferCloseMenu}
                   >
                     WhatsApp
                   </a>
