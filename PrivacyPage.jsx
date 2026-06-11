@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { setPageSeo } from './src/utils/seo.js';
+import AkiyomLogoMark from './src/components/AkiyomLogoMark.jsx';
 import './AkiyomLanding.css';
 
 const PrivacyPage = () => {
@@ -44,7 +45,7 @@ const PrivacyPage = () => {
                 aria-label="Ana sayfaya dön"
               >
                 <motion.div className="nav-logo">
-                  <span className="nav-logo-a">A</span>
+                  <AkiyomLogoMark size={40} />
                 </motion.div>
                 <span className="nav-brand-text">
                   AK<span className="star-i-nav">İ</span>YOM

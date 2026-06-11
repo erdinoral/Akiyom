@@ -35,7 +35,7 @@ const ROUTE_META = {
   },
   '/projeler': {
     title: 'Projelerimiz — Akiyom Studio',
-    description: 'Akiyom tarafından geliştirilen web ve masaüstü projeler: AKİPos, Enigma Atlas, Aki Finans, Akizen PC, Akibeat.',
+    description: 'Akiyom tarafından geliştirilen web ve masaüstü projeler: AkiFactory, AKİPos, Enigma Atlas, Aki Finans, Akizen PC, Akibeat.',
   },
   '/projeler/enigma-atlas': {
     title: 'Enigma Atlas — Akiyom Projeler',
@@ -56,6 +56,10 @@ const ROUTE_META = {
   '/projeler/akipos': {
     title: 'AKİPos — Akiyom Projeler',
     description: 'AKİPos satış, stok ve raporlama otomasyonu POS uygulaması.',
+  },
+  '/projeler/akifactory': {
+    title: 'AkiFactory — Akiyom Projeler',
+    description: 'AkiFactory AI destekli kısa video stüdyosu — TikTok, Shorts ve Reels üretimi.',
   },
   '/blog': {
     title: 'Blog & Haberler — Akiyom',

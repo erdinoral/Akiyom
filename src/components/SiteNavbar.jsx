@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import AkiyomLogoMark from './AkiyomLogoMark';
 import NavAuth from './NavAuth';
 import '../../AkiyomLanding.css';
 
@@ -221,7 +222,7 @@ const SiteNavbar = ({
               aria-label="Ana sayfaya dön"
             >
               <motion.div className="nav-logo">
-                <span className="nav-logo-a">A</span>
+                <AkiyomLogoMark size={40} />
               </motion.div>
               <span className="nav-brand-text">
                 AK<span className="star-i-nav">İ</span>YOM

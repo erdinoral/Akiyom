@@ -62,6 +62,7 @@ export const ABOUT_PILLARS = [
       'Gerçek kullanıcılarla test ettiğimiz ürünler, Studio ve AI tarafındaki kalite standardımızın temelini oluşturur.',
     items: [
       'Akibeat — AI destekli müzik analizi',
+      'AkiFactory — AI destekli kısa video stüdyosu',
       'Aki Finans — kişisel finans (Microsoft Store)',
       'Enigma Atlas — keşif platformu',
       'Akizen PC — sistem sağlığı (Microsoft Store)',

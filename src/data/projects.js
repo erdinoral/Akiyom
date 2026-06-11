@@ -188,6 +188,84 @@ const projects = [
     ],
   },
   {
+    slug: 'akifactory',
+    title: 'AkiFactory',
+    subtitle: 'AI Destekli Kısa Video Stüdyosu',
+    category: 'Windows Uygulaması',
+    tech: ['Python', 'FastAPI', 'Ollama', 'FFmpeg', 'pywebview'],
+    duration: 'Devam ediyor',
+    status: 'Geliştirme Aşamasında',
+    url: '',
+    thumbnail: '/akifactory.png',
+    summary:
+      'TikTok, YouTube Shorts ve Reels için konudan videoya otomatik üretim. Ollama senaryo, Edge TTS, altyazı ve seri üretim kuyruğu — tek masaüstü stüdyoda.',
+    challenge:
+      'Kısa video üretimini birden fazla araç, API ve render adımına bölmeden yerel ve hızlı bir akışta toplamak.',
+    solution:
+      'MoneyPrinterTurbo motorunu sarmalayan FastAPI arayüzü, pywebview masaüstü kabuğu ve platform profilleriyle tek tıkla format, süre ve altyazı uyumu sağlandı.',
+    result: 'v2.3.0 sürümünde; taşınabilir EXE ve Windows kurulum paketi ile test kullanımında.',
+    screenshots: [],
+    detailSections: [
+      {
+        type: 'intro',
+        title: 'AkiFactory — Kısa Video Stüdyosu',
+        lead: 'Konudan TikTok, Shorts ve Reels videolarına: senaryo, ses, görüntü ve altyazıyı yerel AI ile tek panelde üretin.',
+      },
+      {
+        type: 'section',
+        title: 'Ne İşe Yarar?',
+        paragraphs: [
+          'AkiFactory, kısa form video üretimini masaüstünde toplayan bir Akiyom uygulamasıdır. Ollama ile senaryo ve caption üretir; Pexels görüntüleri, Edge TTS seslendirme ve FFmpeg render ile videoyu tamamlar.',
+          'Streamlit veya Gradio yerine özel web arayüzü (FastAPI + HTML/JS) ve pywebview ile native Windows penceresi sunar.',
+        ],
+        list: [
+          'Platform profili — TikTok, YouTube Shorts, Reels, LinkedIn',
+          'Üretim dili — TR, EN, DE, FR',
+          'Altyazı stilleri — TikTok, YouTube, Minimal veya özel',
+          'Seri üretim — en fazla 10 konu, sıralı kuyruk',
+          'Galeri — kalıcı videolar, hashtag ve caption kopyalama',
+        ],
+      },
+      {
+        type: 'section',
+        title: 'Teknik Altyapı',
+        subsections: [
+          {
+            title: 'Yerel AI ve Render',
+            items: [
+              'Ollama — senaryo, caption ve hashtag üretimi',
+              'Whisper — CUDA veya CPU ile altyazı zamanlaması',
+              'FFmpeg — NVENC (GPU) veya libx264 (CPU) encode',
+              'Edge TTS — çok dilli seslendirme',
+            ],
+          },
+          {
+            title: 'Kurulum Seçenekleri',
+            items: [
+              'Baslat.bat — kurulum + masaüstü penceresi (WebView2)',
+              'Taşınabilir EXE — release klasöründen çalıştırma',
+              'Windows Setup — Program Files kurulum sihirbazı (v2.3.0)',
+            ],
+          },
+        ],
+      },
+      {
+        type: 'section',
+        title: 'Kimler İçin?',
+        paragraphs: [
+          'İçerik üreticileri, sosyal medya yöneticileri ve kısa video denemelerini hızlıca üretmek isteyen ekipler için tasarlandı. İnternet bağlantısı Pexels ve TTS için gereklidir; Ollama yerelde çalışır.',
+        ],
+      },
+      {
+        type: 'cta',
+        title: 'Erken Erişim',
+        paragraphs: [
+          'AkiFactory şu an geliştirme ve test aşamasındadır. Kurulum, lisans veya iş birliği için bizimle iletişime geçebilirsiniz.',
+        ],
+      },
+    ],
+  },
+  {
     slug: 'akibeat',
     title: 'Akibeat',
     subtitle: 'AI Destekli Müzik Analiz ve Mastering',

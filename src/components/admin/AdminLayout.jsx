@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import { getProfileDisplayName } from '../../utils/profileDisplayName';
+import AkiyomLogoMark from '../AkiyomLogoMark';
 
 const NAV_ITEMS = [
   { id: 'overview', label: 'Genel Bakış', icon: '◈' },
@@ -40,8 +41,8 @@ const AdminLayout = ({
       <div className="admin-layout">
         <aside className="admin-sidebar">
           <div className="admin-sidebar-brand">
-            <Link to="/" className="admin-sidebar-logo">
-              <span className="nav-logo-a">A</span>
+            <Link to="/" className="admin-sidebar-logo" aria-label="Ana sayfaya dön">
+              <AkiyomLogoMark size={32} />
             </Link>
             <div>
               <p className="admin-sidebar-title">{editorOnly ? 'İçerik Paneli' : 'Akiyom Panel'}</p>

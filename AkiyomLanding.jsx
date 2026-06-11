@@ -153,7 +153,7 @@ const AkiyomLanding = () => {
         "@type": "Organization",
         "name": "Akiyom",
         "url": "https://akiyom.com",
-        "logo": "https://akiyom.com/og-image.png",
+        "logo": "https://akiyom.com/akiyom-logo.png",
         "contactPoint": {
           "@type": "ContactPoint",
           "email": "akiyom.iletisim@gmail.com",
