@@ -16,7 +16,7 @@ function getProjectInitials(title) {
 
 const ProjectCard = ({ project, index = 0 }) => {
   const [thumbFailed, setThumbFailed] = useState(false);
-  const showPlaceholder = thumbFailed || !project.thumbnail;
+  const showPlaceholder = thumbFailed || !(project.cardThumbnail || project.thumbnail);
   const isLive = project.status === 'Yayında';
 
   return (
@@ -37,7 +37,7 @@ const ProjectCard = ({ project, index = 0 }) => {
             </div>
           ) : (
             <img
-              src={project.thumbnail}
+              src={project.cardThumbnail || project.thumbnail}
               alt=""
               className="projects-page-card-image"
               onError={() => setThumbFailed(true)}

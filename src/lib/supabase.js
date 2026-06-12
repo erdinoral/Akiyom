@@ -53,3 +53,32 @@ export async function fetchProfile(userId) {
   console.error('Profil yüklenemedi: profiles tablosu beklenen sütunları içermiyor.');
   return null;
 }
+
+export async function isUsernameAvailable(username) {
+  if (!supabase || !username) return { available: false, error: null };
+
+  const { data, error } = await supabase.rpc('is_username_available', { p_username: username });
+
+  if (error) {
+    if (/function|does not exist/i.test(error.message || '')) {
+      const { data: row, error: fallbackError } = await supabase
+        .from('profiles')
+        .select('id')
+        .eq('username', username)
+        .maybeSingle();
+      if (fallbackError) return { available: false, error: fallbackError };
+      return { available: !row, error: null };
+    }
+    return { available: false, error };
+  }
+
+  return { available: Boolean(data), error: null };
+}
+
+export async function saveProfileUsername(userId, username) {
+  if (!supabase || !userId || !username) {
+    return { error: { message: 'Kullanıcı adı kaydedilemedi.' } };
+  }
+
+  return supabase.from('profiles').update({ username }).eq('id', userId);
+}

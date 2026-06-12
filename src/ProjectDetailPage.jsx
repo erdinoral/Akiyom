@@ -130,6 +130,7 @@ const ProjectDetailPage = () => {
   const isLive = project.status === 'Yayında';
   const hasUrl = Boolean(project.url?.startsWith('http'));
   const hasRichDetail = project.detailSections?.length > 0;
+  const heroImage = project.detailImage || project.thumbnail;
 
   return (
     <PageShell>
@@ -144,9 +145,9 @@ const ProjectDetailPage = () => {
             ← Tüm Projeler
           </Link>
 
-          {project.thumbnail && (
+          {heroImage && (
             <div className="project-detail-hero-image">
-              <img src={project.thumbnail} alt={project.title} />
+              <img src={heroImage} alt={project.title} />
             </div>
           )}
 

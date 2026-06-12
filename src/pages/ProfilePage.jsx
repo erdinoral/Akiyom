@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import PageShell from '../components/PageShell';
 import { useAuth } from '../context/AuthContext';
 import { usePageSeo } from '../utils/seo.js';
+import ProfileRequestsSection from '../components/ProfileRequestsSection';
 import { getProfileDisplayName } from '../utils/profileDisplayName';
 
 function formatDate(value) {
@@ -109,6 +110,12 @@ const ProfilePage = () => {
               <span className="profile-detail-value">Aktif</span>
             </div>
             <div className="profile-detail-item">
+              <span className="profile-detail-label">Kullanıcı adı</span>
+              <span className="profile-detail-value">
+                {profile?.username ? `@${profile.username}` : '—'}
+              </span>
+            </div>
+            <div className="profile-detail-item">
               <span className="profile-detail-label">Kayıt tarihi</span>
               <span className="profile-detail-value">
                 {formatDate(profile?.updated_at || user.created_at)}
@@ -156,6 +163,8 @@ const ProfilePage = () => {
             {isAdmin && ' Proje taleplerini admin panelinden yönetebilirsiniz.'}
             {isEditor && !isAdmin && ' Blog ve haber içeriklerini blog sayfasından veya içerik panelinden yönetebilirsiniz.'}
           </p>
+
+          <ProfileRequestsSection />
         </motion.div>
       </section>
     </PageShell>

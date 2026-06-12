@@ -58,10 +58,24 @@ function sanitizeText(value, maxLength) {
   return String(value).trim().slice(0, maxLength);
 }
 
+async function getUserIdFromAuthHeader(req, supabase) {
+  const authHeader = req.headers.authorization || req.headers.Authorization;
+  if (!authHeader || !String(authHeader).startsWith('Bearer ')) {
+    return null;
+  }
+
+  const token = String(authHeader).slice(7).trim();
+  if (!token) return null;
+
+  const { data, error } = await supabase.auth.getUser(token);
+  if (error || !data?.user?.id) return null;
+  return data.user.id;
+}
+
 export default async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
 
   if (req.method === 'OPTIONS') {
     return res.status(200).end();
@@ -112,6 +126,8 @@ export default async function handler(req, res) {
       return res.status(500).json({ error: 'Sunucu yapılandırması eksik' });
     }
 
+    const userId = await getUserIdFromAuthHeader(req, supabase);
+
     const { data, error } = await supabase
       .from('project_leads')
       .insert({
@@ -121,6 +137,7 @@ export default async function handler(req, res) {
         email: cleanEmail,
         project_description: cleanDescription,
         status: 'new',
+        user_id: userId,
       })
       .select('id')
       .single();

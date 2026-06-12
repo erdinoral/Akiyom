@@ -3,6 +3,8 @@ import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import PageShell from '../components/PageShell';
 import { useAuth, isAdminEmail } from '../context/AuthContext';
+import { isUsernameAvailable } from '../lib/supabase';
+import { normalizeUsername, validateUsername } from '../utils/username';
 import { usePageSeo } from '../utils/seo.js';
 
 const AuthPage = ({ mode = 'register' }) => {
@@ -12,6 +14,7 @@ const AuthPage = ({ mode = 'register' }) => {
   const { signIn, signUp, isAuthenticated, isAdmin, isConfigured, loading } = useAuth();
 
   const [fullName, setFullName] = useState('');
+  const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -61,6 +64,26 @@ const AuthPage = ({ mode = 'register' }) => {
       return;
     }
 
+    let normalizedUsername = '';
+    if (!isLogin) {
+      const usernameCheck = validateUsername(username);
+      if (!usernameCheck.ok) {
+        setError(usernameCheck.message);
+        return;
+      }
+      normalizedUsername = usernameCheck.username;
+
+      const { available, error: availabilityError } = await isUsernameAvailable(normalizedUsername);
+      if (availabilityError) {
+        setError('Kullanıcı adı kontrol edilemedi. Lütfen tekrar deneyin.');
+        return;
+      }
+      if (!available) {
+        setError('Bu kullanıcı adı zaten alınmış.');
+        return;
+      }
+    }
+
     setSubmitting(true);
 
     try {
@@ -82,10 +105,15 @@ const AuthPage = ({ mode = 'register' }) => {
         email: email.trim(),
         password,
         fullName: fullName.trim(),
+        username: normalizedUsername,
       });
 
       if (signUpError) {
-        setError(signUpError.message);
+        setError(
+          /duplicate|unique/i.test(signUpError.message || '')
+            ? 'Bu kullanıcı adı zaten alınmış.'
+            : signUpError.message
+        );
         return;
       }
 
@@ -153,6 +181,25 @@ const AuthPage = ({ mode = 'register' }) => {
                   placeholder="Adınız Soyadınız"
                   autoComplete="name"
                 />
+              </div>
+            )}
+
+            {!isLogin && (
+              <div className="auth-field">
+                <label htmlFor="username" className="auth-label">
+                  Kullanıcı adı
+                </label>
+                <input
+                  id="username"
+                  type="text"
+                  className="auth-input"
+                  value={username}
+                  onChange={(e) => setUsername(normalizeUsername(e.target.value))}
+                  placeholder="ornek_kullanici"
+                  autoComplete="username"
+                  spellCheck={false}
+                />
+                <p className="auth-field-hint">3–24 karakter; harf, rakam ve alt çizgi. Harf ile başlamalı.</p>
               </div>
             )}
 

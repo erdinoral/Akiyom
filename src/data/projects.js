@@ -9,6 +9,8 @@ const projects = [
     status: 'Yayında',
     url: 'https://enigma.akiyom.com',
     linkLabel: 'Siteye Git',
+    cardThumbnail: '/enigmaatlas-card.png',
+    detailImage: '/enigmaatlas.png',
     thumbnail: '/enigmaatlas.png',
     summary:
       'Dünyanın gizemli yerleri ve olaylarını interaktif biçimde keşfetmeye yarayan bir platform.',
@@ -18,6 +20,81 @@ const projects = [
       'Kart tabanlı keşif arayüzü, filtreleme sistemi ve animasyonlu geçişlerle zengin bir kullanıcı deneyimi oluşturuldu.',
     result: 'Yayına alındığı ilk ayda düzenli kullanıcı kitlesi oluştu.',
     screenshots: [],
+    detailSections: [
+      {
+        type: 'intro',
+        title: 'Enigma Atlas — Dünya Gizemleri Keşif Platformu',
+        lead: 'Tarihin, coğrafyanın ve bilinmeyenin kesiştiği noktaları kart tabanlı bir keşif deneyimiyle sunan web platformu.',
+      },
+      {
+        type: 'section',
+        title: 'Ne İşe Yarar?',
+        paragraphs: [
+          'Enigma Atlas, dünyanın gizemli yerlerini, olaylarını ve efsanelerini keşfetmek isteyenler için tasarlanmış interaktif bir web uygulamasıdır.',
+          'Yoğun içeriği sıkmadan sunmak için kart tabanlı gezinme, filtreleme ve animasyonlu geçişler kullanılır.',
+        ],
+        list: [
+          'Konum ve tema bazlı keşif kartları',
+          'Filtreleme ve hızlı gezinme',
+          'Mobil uyumlu, karanlık tema arayüz',
+          'Akıcı animasyonlar ve görsel odaklı sunum',
+        ],
+      },
+      {
+        type: 'section',
+        title: 'Teknik Altyapı',
+        subsections: [
+          {
+            title: 'Frontend ve Deneyim',
+            items: [
+              'React + Vite — hızlı geliştirme ve performans',
+              'Framer Motion — sayfa ve kart geçiş animasyonları',
+              'Responsive layout — masaüstü ve mobil uyum',
+            ],
+          },
+          {
+            title: 'Yayın',
+            items: [
+              'Vercel üzerinde canlı yayın',
+              'SEO dostu sayfa yapısı',
+              'Düşük gecikmeli statik + dinamik içerik akışı',
+            ],
+          },
+        ],
+      },
+      {
+        type: 'section',
+        title: 'Kimler İçin?',
+        paragraphs: [
+          'Meraklı gezginler, tarih ve gizem içeriklerini seven kullanıcılar ve keşif odaklı dijital deneyim arayan herkes için uygundur.',
+        ],
+      },
+      {
+        type: 'faq',
+        title: 'Merak Edilenler',
+        items: [
+          {
+            q: 'Ücretsiz mi?',
+            a: 'Platformu keşfetmek için enigma.akiyom.com adresinden erişebilirsiniz.',
+          },
+          {
+            q: 'Mobilde çalışır mı?',
+            a: 'Evet, responsive tasarım sayesinde telefon ve tablette de kullanılabilir.',
+          },
+          {
+            q: 'Hesap gerekir mi?',
+            a: 'Keşif deneyimi hesap gerektirmeden kullanılabilir; ek özellikler zamanla genişletilebilir.',
+          },
+        ],
+      },
+      {
+        type: 'cta',
+        title: 'Keşfe Başlayın',
+        paragraphs: [
+          'Enigma Atlas’ı ziyaret ederek dünyanın gizemli noktalarını interaktif biçimde keşfedebilirsiniz.',
+        ],
+      },
+    ],
   },
   {
     slug: 'aki-finans',
@@ -29,6 +106,7 @@ const projects = [
     status: 'Yayında',
     url: 'https://apps.microsoft.com/detail/9PKRN1TB6RN5?hl=tr-tr&gl=TR&ocid=pdpshare',
     linkLabel: "Microsoft Store'a Git",
+    detailImage: '/akifinans.png',
     thumbnail: '/akifinans.png',
     summary:
       'Günlük gelir-gider takibi, bütçe planlama ve finansal hedef yönetimi için Windows masaüstü uygulaması.',
@@ -38,6 +116,84 @@ const projects = [
       'Native Windows deneyimi sunmak için Windows App SDK kullanıldı, offline-first yaklaşımla tüm veriler lokalde tutuldu.',
     result: "Microsoft Store'da yayınlandı, düzenli güncelleme alıyor.",
     screenshots: [],
+    detailSections: [
+      {
+        type: 'intro',
+        title: 'Aki Finans — Kişisel Finans ve Cüzdan Yönetimi',
+        lead: 'Gelir-gider takibi, bütçe planlama ve finansal hedeflerinizi tek Windows uygulamasında, verileriniz cihazınızda kalarak yönetin.',
+      },
+      {
+        type: 'section',
+        title: 'Ne İşe Yarar?',
+        paragraphs: [
+          'Aki Finans, günlük harcamalarınızı ve gelirlerinizi takip etmenizi, bütçe oluşturmanızı ve finansal hedeflerinize ilerlemenizi sağlayan kişisel finans uygulamasıdır.',
+          'Tüm finansal veriler yalnızca cihazınızda saklanır; buluta otomatik yedekleme yapılmaz.',
+        ],
+        list: [
+          'Gelir ve gider kayıtları',
+          'Hesap bakiyeleri ve bütçe planlama',
+          'Finansal hedefler ve abonelik takibi',
+          'Borç / alacak yönetimi',
+          'Canlı döviz kuru ve kıymetli maden fiyatları',
+        ],
+      },
+      {
+        type: 'section',
+        title: 'Öne Çıkan Özellikler',
+        subsections: [
+          {
+            title: 'Günlük Kullanım',
+            items: [
+              'Hızlı işlem ekleme ve kategorilendirme',
+              'Para birimi ve dil tercihleri',
+              'Özet ekranlar ve dönemsel görünüm',
+              'Veritabanını sıfırlama ve manuel yedekleme',
+            ],
+          },
+          {
+            title: 'Gizlilik ve Güvenlik',
+            items: [
+              'Veriler yalnızca yerel cihazda tutulur',
+              'Reklam veya analitik veri toplama yok',
+              'Kişisel veri üçüncü taraflarla paylaşılmaz',
+              'Döviz kuru sorgularında kişisel veri gönderilmez',
+            ],
+          },
+        ],
+      },
+      {
+        type: 'section',
+        title: 'Kimler İçin?',
+        paragraphs: [
+          'Kişisel bütçesini düzenli takip etmek isteyen bireyler, abonelik ve borç yönetimi yapan kullanıcılar ve offline çalışan bir finans aracı arayan herkes için uygundur.',
+        ],
+      },
+      {
+        type: 'faq',
+        title: 'Merak Edilenler',
+        items: [
+          {
+            q: 'Verilerim nerede tutuluyor?',
+            a: 'Tüm finansal kayıtlar yalnızca cihazınızda, yerel veri klasöründe saklanır.',
+          },
+          {
+            q: 'İnternet gerekli mi?',
+            a: 'Günlük kayıt ve raporlama offline çalışır; canlı döviz kurları için internet bağlantısı gerekir.',
+          },
+          {
+            q: 'Nereden indirebilirim?',
+            a: 'Microsoft Store üzerinden Windows cihazınıza kurabilirsiniz.',
+          },
+        ],
+      },
+      {
+        type: 'cta',
+        title: 'Hemen İndirin',
+        paragraphs: [
+          'Aki Finans Microsoft Store’da yayında. Kişisel finans takibinize bugün başlayın.',
+        ],
+      },
+    ],
   },
   {
     slug: 'akizen-pc',
@@ -49,6 +205,7 @@ const projects = [
     status: 'Yayında',
     url: 'https://apps.microsoft.com/detail/9N7LNV11PWLP?hl=tr-tr&gl=TR&ocid=pdpshare',
     linkLabel: "Microsoft Store'a Git",
+    detailImage: '/Akizenpc.png',
     thumbnail: '/Akizenpc.png',
     summary:
       'Bilgisayar performansını izleyen, gereksiz dosyaları temizleyen ve sistem sağlığını raporlayan Windows uygulaması.',
@@ -57,6 +214,83 @@ const projects = [
       "İzin verilen Windows API'leri ile maksimum veri toplanarak kullanıcıya anlamlı öneriler sunuldu.",
     result: "Microsoft Store'da yayınlandı.",
     screenshots: [],
+    detailSections: [
+      {
+        type: 'intro',
+        title: 'Akizen PC — PC Performans ve Sistem Sağlığı',
+        lead: 'Bilgisayarınızın performansını izleyin, sistem sağlığını raporlayın ve gereksiz dosyaları güvenle temizleyin.',
+      },
+      {
+        type: 'section',
+        title: 'Ne İşe Yarar?',
+        paragraphs: [
+          'Akizen PC, Windows bilgisayarınızın kaynak kullanımını, sıcaklığını ve disk durumunu tek panelden takip etmenizi sağlar.',
+          'Performans düşüşlerini erken fark etmenize ve temel bakım adımlarını uygulamanıza yardımcı olur.',
+        ],
+        list: [
+          'CPU, RAM, disk ve sıcaklık izleme',
+          'Sistem sağlığı özeti ve uyarılar',
+          'Gereksiz dosya temizliği',
+          'Kullanıcı tercihleri ve tema ayarları',
+        ],
+      },
+      {
+        type: 'section',
+        title: 'Öne Çıkan Özellikler',
+        subsections: [
+          {
+            title: 'İzleme ve Raporlama',
+            items: [
+              'Anlık performans göstergeleri',
+              'Kaynak kullanım trendleri',
+              'Disk ve bellek durumu',
+              'Sistem sağlığı raporları',
+            ],
+          },
+          {
+            title: 'Gizlilik',
+            items: [
+              'Kişisel kimlik verisi talep edilmez',
+              'Veriler öncelikli olarak cihazda işlenir',
+              'Reklam veya pazarlama hedeflemesi yok',
+              'Minimum veri prensibiyle çalışır',
+            ],
+          },
+        ],
+      },
+      {
+        type: 'section',
+        title: 'Kimler İçin?',
+        paragraphs: [
+          'Bilgisayarını düzenli kullanan bireyler, performans sorunlarını erken yakalamak isteyen kullanıcılar ve basit sistem bakımı arayan herkes için uygundur.',
+        ],
+      },
+      {
+        type: 'faq',
+        title: 'Merak Edilenler',
+        items: [
+          {
+            q: 'Verilerim paylaşılır mı?',
+            a: 'Kişisel verileriniz üçüncü taraflarla paylaşılmaz; teknik veriler cihazınızda işlenir.',
+          },
+          {
+            q: 'Hangi platformda çalışır?',
+            a: 'Windows masaüstü uygulamasıdır; Microsoft Store’dan indirilebilir.',
+          },
+          {
+            q: 'Otomatik temizlik yapar mı?',
+            a: 'Temizlik ve bakım adımları kullanıcı kontrolünde sunulur; neyin silineceğine siz karar verirsiniz.',
+          },
+        ],
+      },
+      {
+        type: 'cta',
+        title: 'Microsoft Store’da',
+        paragraphs: [
+          'Akizen PC’yi Store’dan indirerek bilgisayarınızın sağlığını ve performansını takip etmeye başlayın.',
+        ],
+      },
+    ],
   },
   {
     slug: 'akipos',
@@ -67,6 +301,7 @@ const projects = [
     duration: 'Devam ediyor',
     status: 'Test Aşamasında',
     url: '',
+    detailImage: '/akipos.png',
     thumbnail: '/akipos.png',
     summary:
       'Küçük ve orta ölçekli işletmeler için kasa, stok, müşteri ve raporlama işlemlerini tek panelde yöneten Windows masaüstü POS uygulaması.',
@@ -196,7 +431,9 @@ const projects = [
     duration: 'Devam ediyor',
     status: 'Geliştirme Aşamasında',
     url: '',
-    thumbnail: '/akifactory.png',
+    cardThumbnail: '/akifactory-card.png',
+    detailImage: '/akifactory-app.png',
+    thumbnail: '/akifactory-app.png',
     summary:
       'TikTok, YouTube Shorts ve Reels için konudan videoya otomatik üretim. Ollama senaryo, Edge TTS, altyazı ve seri üretim kuyruğu — tek masaüstü stüdyoda.',
     challenge:
@@ -257,6 +494,24 @@ const projects = [
         ],
       },
       {
+        type: 'faq',
+        title: 'Merak Edilenler',
+        items: [
+          {
+            q: 'Hangi platformlar destekleniyor?',
+            a: 'TikTok, YouTube Shorts, Instagram Reels ve LinkedIn profilleriyle format, süre ve altyazı otomatik ayarlanır.',
+          },
+          {
+            q: 'İnternet gerekli mi?',
+            a: 'Ollama ve render yerelde çalışır; görsel ve TTS kaynakları için internet bağlantısı gerekir.',
+          },
+          {
+            q: 'Nasıl kurulur?',
+            a: 'Windows için taşınabilir EXE veya kurulum sihirbazı mevcuttur; erken erişim için iletişime geçebilirsiniz.',
+          },
+        ],
+      },
+      {
         type: 'cta',
         title: 'Erken Erişim',
         paragraphs: [
@@ -275,6 +530,8 @@ const projects = [
     status: 'Geliştirme Aşamasında',
     url: 'https://akibeat.akiyom.com',
     linkLabel: 'Uygulamaya Git',
+    cardThumbnail: '/akibeat-card.png',
+    detailImage: '/akibeat.png',
     thumbnail: '/akibeat.png',
     summary:
       'Müzisyenler için yapay zeka destekli ses analizi, mastering önerileri ve mix feedback platformu.',
@@ -284,6 +541,82 @@ const projects = [
       'Server-side AI pipeline ile client-side görselleştirme birleştirilerek düşük gecikmeli analiz sağlandı.',
     result: 'Beta aşamasında, erken erişim kullanıcıları test ediyor.',
     screenshots: [],
+    detailSections: [
+      {
+        type: 'intro',
+        title: 'Akibeat — AI Destekli Müzik Analiz ve Mastering',
+        lead: 'Miks ve mastering sürecinize yapay zeka destekli analiz, geri bildirim ve önerilerle hız kazandırın.',
+      },
+      {
+        type: 'section',
+        title: 'Ne İşe Yarar?',
+        paragraphs: [
+          'Akibeat, müzisyenler ve prodüktörler için ses dosyalarını analiz eden, mix kalitesi hakkında geri bildirim veren ve mastering yönünde öneriler sunan web tabanlı bir platformdur.',
+          'Karmaşık audio işleme pipeline’ı sunucu tarafında çalışır; arayüzde görselleştirme ve sonuçlar hızlı biçimde sunulur.',
+        ],
+        list: [
+          'AI destekli ses analizi',
+          'Mastering ve mix geri bildirimi',
+          'Görselleştirme ve rapor ekranları',
+          'Web tabanlı erişim — kurulum gerektirmez',
+        ],
+      },
+      {
+        type: 'section',
+        title: 'Teknik Altyapı',
+        subsections: [
+          {
+            title: 'Platform',
+            items: [
+              'React + Vite frontend',
+              'Supabase — hesap ve veri katmanı',
+              'Sunucu tarafı AI / audio pipeline',
+              'Düşük gecikmeli analiz akışı',
+            ],
+          },
+          {
+            title: 'Yol Haritası',
+            items: [
+              'Gelişmiş AI model entegrasyonları',
+              'Profesyonel kalite mastering önerileri',
+              'Performans ve model optimizasyonları',
+            ],
+          },
+        ],
+      },
+      {
+        type: 'section',
+        title: 'Kimler İçin?',
+        paragraphs: [
+          'Ev stüdyosu müzisyenleri, bağımsız prodüktörler, mix/mastering sürecinde objektif geri bildirim arayan sanatçılar ve AI destekli müzik araçlarını denemek isteyen kullanıcılar için tasarlandı.',
+        ],
+      },
+      {
+        type: 'faq',
+        title: 'Merak Edilenler',
+        items: [
+          {
+            q: 'Şu an kullanılabilir mi?',
+            a: 'Beta aşamasındadır; akibeat.akiyom.com üzerinden erken erişim denenebilir.',
+          },
+          {
+            q: 'Dosyalarım sunucuya gidiyor mu?',
+            a: 'Analiz için ses dosyası işlenir; kullanım ve gizlilik politikaları uygulama içinde açıklanır.',
+          },
+          {
+            q: 'Profesyonel mastering yerine geçer mi?',
+            a: 'Akibeat bir yardımcı analiz aracıdır; nihai kararlar sanatçıya aittir.',
+          },
+        ],
+      },
+      {
+        type: 'cta',
+        title: 'Beta’ya Katılın',
+        paragraphs: [
+          'Akibeat’i deneyerek AI destekli müzik analizini keşfedin veya erken erişim hakkında bizimle iletişime geçin.',
+        ],
+      },
+    ],
   },
 ];
 

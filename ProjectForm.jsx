@@ -1,9 +1,14 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useAuth } from './src/context/AuthContext';
+import FormMemberNotice from './src/components/FormMemberNotice';
+import { getAccessToken } from './src/utils/memberRequests';
+import { getProfileDisplayName } from './src/utils/profileDisplayName';
 import './AkiyomLanding.css';
 
 const ProjectForm = ({ isOpen, onClose }) => {
+  const { user, profile, isAuthenticated } = useAuth();
   const [formData, setFormData] = useState({
     projectType: '',
     fullName: '',
@@ -15,6 +20,15 @@ const ProjectForm = ({ isOpen, onClose }) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState(null); // 'success' | 'error' | null
   const [errorMessage, setErrorMessage] = useState(null);
+
+  useEffect(() => {
+    if (!isOpen || !isAuthenticated || !user) return;
+    setFormData((prev) => ({
+      ...prev,
+      fullName: prev.fullName || getProfileDisplayName(user, profile) || '',
+      email: prev.email || user.email || '',
+    }));
+  }, [isOpen, isAuthenticated, user, profile]);
 
   const projectTypes = [
     { value: 'app', label: 'Uygulama' },
@@ -61,11 +75,13 @@ const ProjectForm = ({ isOpen, onClose }) => {
     setErrorMessage(null);
 
     try {
+      const token = await getAccessToken();
+      const headers = { 'Content-Type': 'application/json' };
+      if (token) headers.Authorization = `Bearer ${token}`;
+
       const response = await fetch('/api/send-project', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers,
         body: JSON.stringify(formData),
       });
 
@@ -136,6 +152,8 @@ const ProjectForm = ({ isOpen, onClose }) => {
             <p className="project-form-subtitle">
               Dijital çözüm ihtiyacınızı bizimle paylaşın, size özel bir teklif hazırlayalım.
             </p>
+
+            <FormMemberNotice isAuthenticated={isAuthenticated} />
 
             <form onSubmit={handleSubmit} className="project-form">
               <input
@@ -280,6 +298,7 @@ const ProjectForm = ({ isOpen, onClose }) => {
                     <polyline points="20 6 9 17 4 12"></polyline>
                   </svg>
                   Mesajınız alındı! En kısa sürede size dönüş yapacağız.
+                  {isAuthenticated && ' Talebinizi Profilim sekmesinden takip edebilirsiniz.'}
                 </motion.div>
               )}
 

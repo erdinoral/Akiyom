@@ -24,6 +24,86 @@
   color: #a78bfa;
 }
 
+.akiyom-ai-inquiry-modal {
+  max-width: 640px;
+  background: linear-gradient(180deg, rgba(15, 14, 26, 0.98) 0%, rgba(10, 10, 15, 0.98) 100%);
+  border-color: rgba(167, 139, 250, 0.22);
+}
+
+.akiyom-ai-inquiry-modal .project-form-content {
+  padding: 2.75rem 2.5rem 2.25rem;
+}
+
+.akiyom-ai-inquiry-modal .project-form-title {
+  font-size: clamp(1.75rem, 4vw, 2.15rem);
+  margin-bottom: 0.65rem;
+}
+
+.akiyom-ai-inquiry-modal .project-form-subtitle {
+  font-size: 1rem;
+  margin-bottom: 1.75rem;
+}
+
+.akiyom-ai-inquiry-form {
+  gap: 1.15rem;
+}
+
+.akiyom-ai-inquiry-modal .project-form-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.akiyom-ai-inquiry-modal .project-form-input,
+.akiyom-ai-inquiry-modal .project-form-textarea {
+  min-height: 52px;
+  padding: 0.95rem 1.15rem;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  font-size: 1rem;
+}
+
+.akiyom-ai-inquiry-modal .project-form-input:focus,
+.akiyom-ai-inquiry-modal .project-form-textarea:focus {
+  border-color: rgba(167, 139, 250, 0.55);
+  background: rgba(255, 255, 255, 0.06);
+  box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.18);
+}
+
+.akiyom-ai-inquiry-modal .project-form-textarea {
+  min-height: 148px;
+  line-height: 1.6;
+}
+
+.akiyom-ai-inquiry-modal .project-form-label {
+  font-size: 0.92rem;
+}
+
+.akiyom-ai-inquiry-submit {
+  width: 100%;
+  min-height: 52px;
+  margin-top: 0.25rem;
+  background: linear-gradient(135deg, rgba(124, 58, 237, 0.35), rgba(167, 139, 250, 0.2));
+  border-color: rgba(167, 139, 250, 0.45);
+}
+
+.akiyom-ai-inquiry-submit:hover:not(:disabled) {
+  background: linear-gradient(135deg, rgba(124, 58, 237, 0.5), rgba(167, 139, 250, 0.28));
+  border-color: rgba(167, 139, 250, 0.65);
+  box-shadow: 0 0 28px rgba(124, 58, 237, 0.22);
+}
+
+@media (max-width: 640px) {
+  .akiyom-ai-inquiry-modal .project-form-content {
+    padding: 2rem 1.25rem 1.5rem;
+  }
+
+  .akiyom-ai-inquiry-modal .project-form-row {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* Akiyom AI — referans UI korunur; tipografi ve zemin siteyle uyumlu */
 .akiyom-ai {
   --ai-bg: #0a0a0f;

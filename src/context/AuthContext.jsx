@@ -1,5 +1,6 @@
 import React, { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react';
-import { fetchProfile, isSupabaseConfigured, supabase } from '../lib/supabase';
+import { fetchProfile, isSupabaseConfigured, saveProfileUsername, supabase } from '../lib/supabase';
+import { normalizeUsername } from '../utils/username';
 
 const AuthContext = createContext(null);
 
@@ -51,8 +52,15 @@ export function AuthProvider({ children }) {
   const [profile, setProfile] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  const loadProfile = useCallback(async (userId) => {
-    const nextProfile = await fetchProfile(userId);
+  const loadProfile = useCallback(async (userId, userMetadata) => {
+    let nextProfile = await fetchProfile(userId);
+
+    const pendingUsername = normalizeUsername(userMetadata?.username || '');
+    if (nextProfile && !nextProfile.username?.trim() && pendingUsername && supabase) {
+      await saveProfileUsername(userId, pendingUsername);
+      nextProfile = await fetchProfile(userId);
+    }
+
     setProfile(nextProfile);
     return nextProfile;
   }, []);
@@ -70,7 +78,7 @@ export function AuthProvider({ children }) {
       const nextUser = session?.user ?? null;
       setUser(nextUser);
       if (nextUser) {
-        loadProfile(nextUser.id).finally(() => {
+        loadProfile(nextUser.id, nextUser.user_metadata).finally(() => {
           if (mounted) setLoading(false);
         });
       } else {
@@ -85,7 +93,7 @@ export function AuthProvider({ children }) {
       const nextUser = session?.user ?? null;
       setUser(nextUser);
       if (nextUser) {
-        loadProfile(nextUser.id);
+        loadProfile(nextUser.id, nextUser.user_metadata);
       } else {
         setProfile(null);
       }
@@ -100,7 +108,7 @@ export function AuthProvider({ children }) {
   useEffect(() => {
     if (!isSupabaseConfigured || !supabase || !user?.id) return undefined;
 
-    const refresh = () => loadProfile(user.id);
+    const refresh = () => loadProfile(user.id, user.user_metadata);
 
     const onVisibilityChange = () => {
       if (document.visibilityState === 'visible') refresh();
@@ -130,18 +138,35 @@ export function AuthProvider({ children }) {
     };
   }, [user?.id, loadProfile]);
 
-  const signUp = useCallback(async ({ email, password, fullName }) => {
+  const signUp = useCallback(async ({ email, password, fullName, username }) => {
     if (!supabase) {
       return { error: { message: 'Supabase yapılandırması eksik.' } };
     }
 
-    return supabase.auth.signUp({
+    const result = await supabase.auth.signUp({
       email,
       password,
       options: {
-        data: { full_name: fullName },
+        data: {
+          full_name: fullName,
+          username,
+        },
       },
     });
+
+    if (!result.error && result.data?.user?.id && username) {
+      if (result.data.session) {
+        const { error: profileError } = await saveProfileUsername(result.data.user.id, username);
+        if (profileError && /duplicate|unique/i.test(profileError.message || '')) {
+          return {
+            ...result,
+            error: { message: 'Bu kullanıcı adı zaten alınmış.' },
+          };
+        }
+      }
+    }
+
+    return result;
   }, []);
 
   const signIn = useCallback(async ({ email, password }) => {
@@ -162,7 +187,7 @@ export function AuthProvider({ children }) {
 
   const refreshProfile = useCallback(async () => {
     if (!user) return null;
-    return loadProfile(user.id);
+    return loadProfile(user.id, user.user_metadata);
   }, [loadProfile, user]);
 
   const value = useMemo(
