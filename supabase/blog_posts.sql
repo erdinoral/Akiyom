@@ -88,6 +88,7 @@ create policy "Public can read published blog posts"
   );
 
 -- Bitti. Panel → Blog & Haberler sekmesinden yazı ekleyin.
+-- Kapak görseli yüklemek için: supabase/blog_storage.sql dosyasını da çalıştırın.
 --
 -- Admin hesabınız için (e-postayı değiştirin):
 -- update public.profiles set is_admin = true where lower(email) = 'erdinoral31@gmail.com';

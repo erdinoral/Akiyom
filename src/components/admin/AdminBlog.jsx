@@ -1,10 +1,12 @@
-import React, { useMemo, useState } from 'react';
+import React, { useMemo, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { formatDate } from '../../utils/adminStats';
+import { uploadBlogCoverImage } from '../../lib/blogClient';
 import {
   BLOG_STATUS_LABELS,
   BLOG_TYPE_LABELS,
-  isValidImageUrl,
+  formatBlogLoadError,
+  hasCoverImage,
   slugifyTitle,
 } from '../../utils/blogUtils';
 import AdminSelect from './AdminSelect';
@@ -36,6 +38,10 @@ const AdminBlog = ({ posts, onSavePost, onDeletePost, saving, updatingId, error,
   const [editingId, setEditingId] = useState(null);
   const [slugTouched, setSlugTouched] = useState(false);
   const [filter, setFilter] = useState('all');
+  const [coverImageMode, setCoverImageMode] = useState('upload');
+  const [uploadingCover, setUploadingCover] = useState(false);
+  const [coverUploadError, setCoverUploadError] = useState('');
+  const coverFileInputRef = useRef(null);
 
   const filteredPosts = useMemo(() => {
     if (filter === 'all') return posts;
@@ -46,11 +52,18 @@ const AdminBlog = ({ posts, onSavePost, onDeletePost, saving, updatingId, error,
     setForm(EMPTY_FORM);
     setEditingId(null);
     setSlugTouched(false);
+    setCoverImageMode('upload');
+    setCoverUploadError('');
+    if (coverFileInputRef.current) coverFileInputRef.current.value = '';
   };
 
   const startEdit = (post) => {
     setEditingId(post.id);
     setSlugTouched(true);
+    const coverUrl = post.cover_image_url || '';
+    setCoverImageMode(/supabase\.co\/storage\//i.test(coverUrl) ? 'upload' : coverUrl ? 'link' : 'upload');
+    setCoverUploadError('');
+    if (coverFileInputRef.current) coverFileInputRef.current.value = '';
     setForm({
       title: post.title || '',
       slug: post.slug || '',
@@ -62,6 +75,30 @@ const AdminBlog = ({ posts, onSavePost, onDeletePost, saving, updatingId, error,
       published_at: toDatetimeLocalValue(post.published_at),
     });
     window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleCoverFileChange = async (event) => {
+    const file = event.target.files?.[0];
+    if (!file) return;
+
+    setUploadingCover(true);
+    setCoverUploadError('');
+
+    const { url, error: uploadError } = await uploadBlogCoverImage(file);
+    setUploadingCover(false);
+
+    if (uploadError || !url) {
+      setCoverUploadError(formatBlogLoadError(uploadError));
+      return;
+    }
+
+    setForm((prev) => ({ ...prev, cover_image_url: url }));
+  };
+
+  const clearCoverImage = () => {
+    setForm((prev) => ({ ...prev, cover_image_url: '' }));
+    setCoverUploadError('');
+    if (coverFileInputRef.current) coverFileInputRef.current.value = '';
   };
 
   const handleTitleChange = (title) => {
@@ -101,7 +138,7 @@ const AdminBlog = ({ posts, onSavePost, onDeletePost, saving, updatingId, error,
     if (ok) resetForm();
   };
 
-  const showImagePreview = isValidImageUrl(form.cover_image_url);
+  const showImagePreview = hasCoverImage(form.cover_image_url);
 
   return (
     <div className={`admin-section${embedded ? ' admin-section-embedded' : ''}`}>
@@ -111,7 +148,7 @@ const AdminBlog = ({ posts, onSavePost, onDeletePost, saving, updatingId, error,
             <p className="admin-eyebrow">İçerik</p>
             <h1 className="admin-title">Blog & Haberler</h1>
             <p className="admin-subtitle">
-              Yazılarınızı buradan ekleyin. Kapak görseli için link yapıştırın; makale metnini alttaki alana yazın.
+              Yazılarınızı buradan ekleyin. Kapak görselini yükleyin veya link yapıştırın; makale metnini alttaki alana yazın.
             </p>
           </div>
         </header>
@@ -171,23 +208,76 @@ const AdminBlog = ({ posts, onSavePost, onDeletePost, saving, updatingId, error,
               />
             </label>
 
-            <label className="admin-field">
-              <span>Kapak görseli (link)</span>
-              <input
-                type="url"
-                className="admin-input"
-                value={form.cover_image_url}
-                onChange={(e) => setForm({ ...form, cover_image_url: e.target.value })}
-                placeholder="https://..."
-              />
-              <span className="admin-muted admin-field-hint">Görsel üst bölümde gösterilir. Doğrudan görsel linki yapıştırın.</span>
-            </label>
-
-            {showImagePreview && (
-              <div className="admin-blog-image-preview">
-                <img src={form.cover_image_url.trim()} alt="Kapak önizleme" onError={(e) => { e.currentTarget.style.display = 'none'; }} />
+            <div className="admin-field">
+              <span>Kapak görseli</span>
+              <div className="admin-blog-cover-mode" role="tablist" aria-label="Kapak görseli kaynağı">
+                <button
+                  type="button"
+                  className={`admin-blog-cover-mode-btn${coverImageMode === 'upload' ? ' active' : ''}`}
+                  onClick={() => setCoverImageMode('upload')}
+                  role="tab"
+                  aria-selected={coverImageMode === 'upload'}
+                >
+                  Yükle
+                </button>
+                <button
+                  type="button"
+                  className={`admin-blog-cover-mode-btn${coverImageMode === 'link' ? ' active' : ''}`}
+                  onClick={() => setCoverImageMode('link')}
+                  role="tab"
+                  aria-selected={coverImageMode === 'link'}
+                >
+                  Link
+                </button>
               </div>
-            )}
+
+              {coverImageMode === 'upload' ? (
+                <div className="admin-blog-cover-upload">
+                  <input
+                    ref={coverFileInputRef}
+                    type="file"
+                    accept="image/jpeg,image/png,image/webp,image/gif"
+                    className="admin-blog-cover-file"
+                    onChange={handleCoverFileChange}
+                    disabled={uploadingCover}
+                  />
+                  <span className="admin-muted admin-field-hint">
+                    JPG, PNG, WebP veya GIF — en fazla 5 MB. Yükleme sonrası link otomatik dolar.
+                  </span>
+                  {uploadingCover && <p className="admin-muted">Görsel yükleniyor...</p>}
+                  {coverUploadError && <p className="admin-error admin-blog-cover-error">{coverUploadError}</p>}
+                </div>
+              ) : (
+                <>
+                  <input
+                    type="url"
+                    className="admin-input"
+                    value={form.cover_image_url}
+                    onChange={(e) => setForm({ ...form, cover_image_url: e.target.value })}
+                    placeholder="https://..."
+                  />
+                  <span className="admin-muted admin-field-hint">Doğrudan görsel linki yapıştırın.</span>
+                </>
+              )}
+
+              {showImagePreview && (
+                <div className="admin-blog-image-preview">
+                  <img
+                    src={form.cover_image_url.trim()}
+                    alt="Kapak önizleme"
+                    onError={(e) => {
+                      e.currentTarget.style.display = 'none';
+                    }}
+                  />
+                </div>
+              )}
+
+              {showImagePreview && (
+                <button type="button" className="admin-link-button admin-blog-cover-clear" onClick={clearCoverImage}>
+                  Görseli kaldır
+                </button>
+              )}
+            </div>
 
             <label className="admin-field">
               <span>Kısa özet</span>

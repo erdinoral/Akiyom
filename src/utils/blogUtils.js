@@ -56,5 +56,12 @@ export function formatBlogLoadError(error) {
   if (/is_editor|column/i.test(message)) {
     return 'profiles.is_editor sütunu eksik. Supabase’de supabase/blog_editor_permissions.sql dosyasını çalıştırın.';
   }
+  if (/blog-covers|Bucket not found|storage/i.test(message)) {
+    return 'blog-covers depolama alanı bulunamadı. Supabase’de supabase/blog_storage.sql dosyasını çalıştırın.';
+  }
   return message || 'Yazılar yüklenemedi.';
+}
+
+export function hasCoverImage(url) {
+  return Boolean(url?.trim());
 }
