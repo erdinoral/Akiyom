@@ -55,6 +55,12 @@ const routes = [
     lastmod: CURRENT_DATE
   },
   {
+    path: '/projeler/aki',
+    changefreq: 'monthly',
+    priority: '0.85',
+    lastmod: CURRENT_DATE
+  },
+  {
     path: '/projeler/enigma-atlas',
     changefreq: 'monthly',
     priority: '0.8',

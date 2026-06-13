@@ -35,7 +35,11 @@ const ROUTE_META = {
   },
   '/projeler': {
     title: 'Projelerimiz — Akiyom Studio',
-    description: 'Akiyom tarafından geliştirilen web ve masaüstü projeler: AkiFactory, AKİPos, Enigma Atlas, Aki Finans, Akizen PC, Akibeat.',
+    description: 'Akiyom tarafından geliştirilen web ve masaüstü projeler: AKİ, AkiFactory, AKİPos, Enigma Atlas, Aki Finans, Akizen PC, Akibeat.',
+  },
+  '/projeler/aki': {
+    title: 'AKİ — Akiyom Projeler',
+    description: 'AKİ yerel AI asistanı — sohbet, görsel üretim, Ozan ve Brain uzman modelleri.',
   },
   '/projeler/enigma-atlas': {
     title: 'Enigma Atlas — Akiyom Projeler',

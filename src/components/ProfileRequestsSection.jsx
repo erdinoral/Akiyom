@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useAuth } from '../context/AuthContext';
 import { fetchMyMemberRequests, MEMBER_REQUEST_STATUS_LABELS } from '../utils/memberRequests';
 
 function formatDateTime(value) {
@@ -13,17 +14,28 @@ function formatDateTime(value) {
 }
 
 const ProfileRequestsSection = () => {
+  const { user, loading: authLoading } = useAuth();
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
 
   useEffect(() => {
+    if (authLoading || !user) return undefined;
+
     let mounted = true;
+    setLoading(true);
 
     fetchMyMemberRequests().then(({ data, error: fetchError }) => {
       if (!mounted) return;
       if (fetchError) {
-        setError('Talepler yüklenemedi. Supabase’de member_requests.sql dosyasını çalıştırdığınızdan emin olun.');
+        const detail = fetchError.message || '';
+        setError(
+          detail.includes('admin_notes') || detail.includes('user_id')
+            ? 'Talepler yüklenemedi. Supabase SQL Editor’da member_requests_fix.sql dosyasını çalıştırın.'
+            : detail.includes('giriş')
+              ? detail
+              : `Talepler yüklenemedi. Supabase’de member_requests_fix.sql dosyasını çalıştırın.${detail ? ` (${detail})` : ''}`,
+        );
         setItems([]);
       } else {
         setItems(data ?? []);
@@ -35,7 +47,7 @@ const ProfileRequestsSection = () => {
     return () => {
       mounted = false;
     };
-  }, []);
+  }, [authLoading, user]);
 
   return (
     <section className="profile-requests" aria-labelledby="profile-requests-title">
@@ -59,7 +71,8 @@ const ProfileRequestsSection = () => {
       ) : items.length === 0 ? (
         <p className="profile-requests-empty">
           Henüz kayıtlı bir talebiniz yok. Ana sayfadaki &quot;Projenizi Anlatın&quot; veya Akiyom AI sayfasından
-          iletişim formu gönderdiğinizde burada görünür.
+          iletişim formu gönderdiğinizde burada görünür. Daha önce gönderdiğiniz talepler, hesabınızdaki e-posta
+          adresiyle formda yazdığınız e-posta aynıysa burada listelenir.
         </p>
       ) : (
         <div className="profile-requests-list">

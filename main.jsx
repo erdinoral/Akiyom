@@ -15,11 +15,13 @@ import AdminPanelPage from './src/pages/AdminPanelPage.jsx'
 import AboutPage from './src/pages/AboutPage.jsx'
 import BlogPage from './src/pages/BlogPage.jsx'
 import BlogPostPage from './src/pages/BlogPostPage.jsx'
+import ScrollToTop from './src/components/ScrollToTop.jsx'
 import './index.css'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <BrowserRouter>
+      <ScrollToTop />
       <AuthProvider>
         <Routes>
           <Route path="/" element={<AkiyomLanding />} />

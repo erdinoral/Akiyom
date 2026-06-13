@@ -1,5 +1,104 @@
 const projects = [
   {
+    slug: 'aki',
+    title: 'AKİ',
+    subtitle: 'Yerel AI Asistanı',
+    category: 'Windows Uygulaması',
+    tech: ['React', 'FastAPI', 'Ollama', 'Electron', 'FLUX'],
+    duration: 'Devam ediyor',
+    status: 'Geliştirme Aşamasında',
+    url: '',
+    cardThumbnail: '/aki-card.png',
+    detailImage: '/aki-app.png',
+    thumbnail: '/aki-app.png',
+    summary:
+      'Akiyom AI’ın masaüstü uygulaması: yerel sohbet, görsel üretim, Ozan şarkı sözü ve Brain anime senaryo — verileriniz cihazınızdan çıkmaz.',
+    challenge:
+      'Bulut AI bağımlılığı olmadan sohbet, görsel, müzik ve video görevlerini tek arayüzde otomatik yönlendirmek.',
+    solution:
+      'Ollama + FastAPI backend, Electron kabuğu ve görev algılayıcı router ile tek sohbetten görsel (FLUX/SDXL), Ozan ve Brain uzman modellerine geçiş sağlandı.',
+    result: 'Masaüstü EXE ve başlat.bat ile yerel kullanım; kurumsal altyapı için Akiyom AI paketleriyle uyumlu.',
+    screenshots: [],
+    detailSections: [
+      {
+        type: 'intro',
+        title: 'AKİ — Yerel AI Asistanı',
+        lead: 'Akiyom AI’ın kişisel ve kurumsal yerel asistan uygulaması. Mod seçmeden yazın; sohbet, görsel, şarkı sözü veya senaryo otomatik algılansın.',
+      },
+      {
+        type: 'section',
+        title: 'Ne İşe Yarar?',
+        paragraphs: [
+          'AKİ, Ollama tabanlı yerel yapay zeka motorunu tek sohbet arayüzünde sunar. Görsel isteğinde FLUX veya SDXL devreye girer; şarkı sözü için Ozan, anime senaryo için Brain uzmanı otomatik seçilir.',
+          'Verileriniz buluta gönderilmeden kendi bilgisayarınızda işlenir. Electron masaüstü penceresi veya tarayıcı modunda çalışır.',
+        ],
+        list: [
+          'Tek sohbet — görev otomatik algılama (sohbet, görsel, Ozan, Brain)',
+          'Yerel görsel üretim — FLUX.1-dev, SDXL-Turbo',
+          'Ozan — şarkı sözü ve Suno formatı',
+          'Brain — anime senaryo ve video promptları',
+          'Dream Mode, sesli giriş, uzun süreli hafıza (Qdrant)',
+          'Kurulum paneli — Ollama ve modelleri uygulama içinden yönetim',
+        ],
+      },
+      {
+        type: 'section',
+        title: 'Teknik Altyapı',
+        subsections: [
+          {
+            title: 'Yerel AI Stack',
+            items: [
+              'Ollama — qwen3:14b sohbet, minicpm-v vision',
+              'FastAPI backend — görev router, web arama, Whisper STT',
+              'Diffusers — FLUX.1-dev ve SDXL-Turbo yerel render',
+              'Qdrant — yerel vektör hafıza',
+            ],
+          },
+          {
+            title: 'Masaüstü',
+            items: [
+              'React + Vite frontend, cam panel dark UI',
+              'Electron — tek tık EXE ve başlat.bat',
+              'Kurulum sihirbazı — eksik bileşenleri listeler ve yükler',
+            ],
+          },
+        ],
+      },
+      {
+        type: 'section',
+        title: 'Kimler İçin?',
+        paragraphs: [
+          'Yerel ve gizli AI asistanı arayan bireyler, içerik üreticileri ve Akiyom AI kurumsal altyapısını masaüstünde denemek isteyen ekipler için tasarlandı.',
+        ],
+      },
+      {
+        type: 'faq',
+        title: 'Merak Edilenler',
+        items: [
+          {
+            q: 'İnternet gerekli mi?',
+            a: 'Sohbet ve görsel üretim yerelde çalışır; web arama ve model indirme için internet gerekebilir.',
+          },
+          {
+            q: 'Akiyom AI paketleriyle farkı ne?',
+            a: 'AKİ masaüstü uygulamasıdır; şirket içi sunucu ve GPU altyapısı için Akiyom AI kurumsal paketlerine bakın.',
+          },
+          {
+            q: 'Nasıl kurulur?',
+            a: 'Windows için başlat.bat veya EXE kurulumu mevcuttur; erken erişim için iletişime geçebilirsiniz.',
+          },
+        ],
+      },
+      {
+        type: 'cta',
+        title: 'Erken Erişim',
+        paragraphs: [
+          'AKİ şu an geliştirme aşamasındadır. Kurulum, lisans veya kurumsal Akiyom AI altyapısı için bizimle iletişime geçebilirsiniz.',
+        ],
+      },
+    ],
+  },
+  {
     slug: 'enigma-atlas',
     title: 'Enigma Atlas',
     subtitle: 'Dünya Gizemleri Keşif Platformu',

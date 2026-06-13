@@ -72,14 +72,6 @@ const AkiyomAiPricing = ({ isPage = false }) => {
         transition={{ duration: 0.8, ease }}
       >
         <div className="akiyom-ai-header">
-          <motion.span
-            className="akiyom-ai-badge"
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5, ease }}
-          >
-            Akiyom AI
-          </motion.span>
           <h2 className="akiyom-ai-section-title akiyom-ai-gradient-text--animated">
             Şirketiniz İçin Güvenli Yerel AI
           </h2>

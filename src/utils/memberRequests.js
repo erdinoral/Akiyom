@@ -31,6 +31,11 @@ export async function fetchMyMemberRequests() {
     return { data: [], error: { message: 'Supabase yapılandırması eksik.' } };
   }
 
+  const { data: sessionData } = await supabase.auth.getSession();
+  if (!sessionData.session) {
+    return { data: [], error: { message: 'Talepleri görmek için giriş yapmalısınız.' } };
+  }
+
   const [leadsRes, inquiriesRes] = await Promise.all([
     supabase
       .from('project_leads')
@@ -44,6 +49,7 @@ export async function fetchMyMemberRequests() {
 
   const error = leadsRes.error || inquiriesRes.error;
   if (error) {
+    console.error('[ProfileRequests]', leadsRes.error || inquiriesRes.error);
     return { data: [], error };
   }
 
