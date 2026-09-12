@@ -620,6 +620,206 @@ const projects = [
     ],
   },
   {
+    slug: 'minimax-h3-studio',
+    title: 'MiniMax H3 Studio',
+    subtitle: 'Yerel Sinema Video Stüdyosu',
+    category: 'Windows Uygulaması',
+    tech: ['Pinokio', 'ComfyUI', 'MiniMax H3', 'NVIDIA'],
+    duration: 'Devam ediyor',
+    status: 'Yayında',
+    url: 'https://github.com/erdinoral/minimax-h3-studio',
+    linkLabel: "GitHub'a Git",
+    cardThumbnail: '/minimax-h3-studio.png',
+    detailImage: '/minimax-h3-studio.png',
+    thumbnail: '/minimax-h3-studio.png',
+    summary:
+      'Pinokio’da tek tıkla MiniMax H3 video: ComfyUI motoru, H3 Studio arayüzü, Yönetmen, Plan ve sinema stüdyosu — TR/EN, NVIDIA GPU.',
+    challenge:
+      'MiniMax H3’ü yerel GPU’da kurmak; ağır ağırlıklar, ComfyUI grafiği ve yapılandırılmış prompt akışını tek pakette toplamak.',
+    solution:
+      'Pinokio 1-tık kurulum, nicelenmiş H3 ağırlıkları, hazır workflow’lar ve TR/EN H3 Studio (Yönetmen, Plan, sinema stüdyosu) ile üretim tek panelde toplanır.',
+    result: 'NVIDIA GPU’da yerel video+ses üretimi; GitHub ve Pinokio üzerinden kurulabilir.',
+    screenshots: [],
+    detailSections: [
+      {
+        type: 'intro',
+        title: 'MiniMax H3 Studio — Yerel Sinema Video Stüdyosu',
+        lead: 'Metinden, görselden veya referanstan 4–15 saniyelik video + stereo ses. ComfyUI arkada, H3 Studio önde — Pinokio’da tek tık.',
+      },
+      {
+        type: 'section',
+        title: 'Ne İşe Yarar?',
+        paragraphs: [
+          'MiniMax H3 Studio, MiniMax H3 modelini yerel NVIDIA GPU’da çalıştıran bir Pinokio uygulamasıdır. ComfyUI üretim motorudur; H3 Studio ise Yönetmen, Plan ve sinema stüdyosu ile TR/EN arayüz sunar.',
+          'H3, metin, görsel, video ve ses bağlamını alıp 24 FPS, 32 kHz stereo sesli klip üretir. Konuşma diyalogu birden fazla dili destekler.',
+        ],
+        list: [
+          '1-tık Pinokio kurulumu — ComfyUI + H3 ağırlıkları + Studio',
+          'Yönetmen (Director) — Ollama ile brief ve shot list',
+          'Plan ve sinema stüdyosu — sahne, süre, kuyruk',
+          'Metin / ilk-son kare / omni-referans (Ref2VA) üretim',
+          'Turbo LoRA ve yüz/karakter referansı',
+          'Arayüz dili TR | EN',
+        ],
+      },
+      {
+        type: 'section',
+        title: 'Teknik Altyapı',
+        subsections: [
+          {
+            title: 'Yerel video yığını',
+            items: [
+              'MiniMax H3 — FL2VA ve Ref2VA nicelenmiş ağırlıklar',
+              'ComfyUI — hazır Text / Image / Reference workflow’ları',
+              'H3 Studio — kuyruk, devam zinciri, sistem çubuğu',
+              'Ollama — isteğe bağlı Yönetmen sohbet modeli',
+            ],
+          },
+          {
+            title: 'Donanım',
+            items: [
+              'NVIDIA GPU (CUDA) — 32 GB VRAM rahat tek model',
+              'Yaklaşık 75 GB disk (ağırlıklar + ComfyUI)',
+              'Windows veya Linux — Pinokio menüsünden Install → Start',
+            ],
+          },
+        ],
+      },
+      {
+        type: 'section',
+        title: 'Kimler İçin?',
+        paragraphs: [
+          'Yerel GPU’sunda sinema kalitesinde kısa video denemek isteyen içerik üreticileri, yönetmenlik akışı arayan ekipler ve MiniMax H3’ü ComfyUI’de 1 tıkla ayağa kaldırmak isteyenler için tasarlandı.',
+        ],
+      },
+      {
+        type: 'faq',
+        title: 'Merak Edilenler',
+        items: [
+          {
+            q: 'İnternet gerekli mi?',
+            a: 'Kurulum ve model indirme için evet. Üretim yerelde, kendi GPU’nuzda çalışır; veriler buluta gitmez.',
+          },
+          {
+            q: 'Hangi GPU gerekir?',
+            a: 'NVIDIA CUDA. 32 GB VRAM bir modeli rahat çalıştırır; daha az VRAM’de ComfyUI offload ile yavaşlar.',
+          },
+          {
+            q: 'Nasıl kurulur?',
+            a: 'Pinokio’da MiniMax H3 Studio’yu Install → Start ile açın. Kaynak ve destek için GitHub deposuna bakın.',
+          },
+        ],
+      },
+      {
+        type: 'cta',
+        title: 'Kurulum ve Destek',
+        paragraphs: [
+          'Uygulama GitHub’da ve Pinokio’da yayında. Kurulum, GPU seçimi veya benzer bir yerel stüdyo için bizimle iletişime geçebilirsiniz.',
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'minimax-m3-studio',
+    title: 'MiniMax M3 Studio',
+    subtitle: 'Yerel AI Müzik Stüdyosu',
+    category: 'Windows Uygulaması',
+    tech: ['Pinokio', 'MiniMax Music3', 'CUDA', 'NVIDIA'],
+    duration: 'Devam ediyor',
+    status: 'Yayında',
+    url: 'https://github.com/erdinoral/minimax-m3-studio',
+    linkLabel: "GitHub'a Git",
+    cardThumbnail: '/minimax-m3-studio-card.png',
+    detailImage: '/minimax-m3-studio.png',
+    thumbnail: '/minimax-m3-studio.png',
+    summary:
+      'Windows + NVIDIA için yerel MiniMax Music3 stüdyosu: caption, söz, tam uzunlukta parça, kütüphane ve Pinokio 1-tık kurulum.',
+    challenge:
+      'Music3 motorunu Windows’ta Python/Node karmaşası olmadan, GPU profiline uygun ağırlıklarla tek akışta ayağa kaldırmak.',
+    solution:
+      'MiniMax Music3 Studio’nun Pinokio forku: Install → Start → Update, CUDA motor, VRAM’e göre model profili ve yerel kütüphane.',
+    result: 'Kendi GPU’nuzda tam uzunlukta parça; GitHub ve Pinokio üzerinden kurulabilir.',
+    screenshots: ['/minimax-m3-studio-player.png'],
+    detailSections: [
+      {
+        type: 'intro',
+        title: 'MiniMax M3 Studio — Yerel AI Müzik Stüdyosu',
+        lead: 'Caption ve söz yazın, tam uzunlukta parçayı kendi NVIDIA GPU’nuzda üretin. Pinokio’da Install → Start.',
+      },
+      {
+        type: 'section',
+        title: 'Ne İşe Yarar?',
+        paragraphs: [
+          'MiniMax M3 Studio, MiniMax Music3’ü Windows + NVIDIA kartlarda yerel çalıştıran bir Pinokio stüdyosudur. Parça, ayarlar ve isteğin birebir kopyası kütüphanede kalır.',
+          'Bulut aboneliği zorunlu değildir. Model profilini VRAM’inize göre siz seçersiniz; 8 GB karttan 30 GB üstü native setlere kadar kademeli indirme vardır.',
+        ],
+        list: [
+          'Yerel tam uzunlukta müzik — caption, söz, süre, seed',
+          'Aynı parçayı birebir yeniden üretme',
+          'Kelime zamanlı karaoke ve video dışa aktarma',
+          'Yerel kütüphane — arama, çalma listesi, favori',
+          'İsteğe bağlı stem ayırma (davul, bas, vokal, gitar, piyano)',
+          'GPU / VRAM izleme ve model yöneticisi',
+        ],
+      },
+      {
+        type: 'section',
+        title: 'Teknik Altyapı',
+        subsections: [
+          {
+            title: 'Yerel müzik yığını',
+            items: [
+              'MiniMax Music3 — LM, DiT, vocoder ve koşul kodlayıcı',
+              'CUDA 13 motor (GTX 16 / RTX 20 ve üzeri)',
+              'Pinokio — Install, Start, git pull ile Update',
+              'VRAM profilleri — Minimal (8 GB) ile Full Native (30 GB+)',
+            ],
+          },
+          {
+            title: 'Kurulum',
+            items: [
+              'Windows 10/11 x64 + NVIDIA GPU',
+              'Pinokio menüsü: Install → Start → Open M3 Studio',
+              'Ağırlıklar sizin onayınızla iner; otomatik indirme yok',
+            ],
+          },
+        ],
+      },
+      {
+        type: 'section',
+        title: 'Kimler İçin?',
+        paragraphs: [
+          'Kendi GPU’sunda müzik üretmek isteyen müzisyenler, prodüktörler ve MiniMax Music3’ü Windows’ta 1 tıkla ayağa kaldırmak isteyen ekipler için tasarlandı. İnternet yalnızca model indirme ve isteğe bağlı bulut yardımcıları içindir.',
+        ],
+      },
+      {
+        type: 'faq',
+        title: 'Merak Edilenler',
+        items: [
+          {
+            q: 'İnternet gerekli mi?',
+            a: 'Model indirme için evet. Üretim yerelde çalışır; OpenRouter gibi bulut yardımcıları isteğe bağlıdır.',
+          },
+          {
+            q: 'Hangi GPU gerekir?',
+            a: 'NVIDIA GTX 16 / RTX 20 ve üzeri (Turing–Blackwell). 8 GB kart Minimal profille çalışır; daha yüksek VRAM daha kaliteli set açar.',
+          },
+          {
+            q: 'Nasıl kurulur?',
+            a: 'Pinokio’da MiniMax M3 Studio’yu Install → Start ile açın. Kaynak ve destek için GitHub deposuna bakın.',
+          },
+        ],
+      },
+      {
+        type: 'cta',
+        title: 'Kurulum ve Destek',
+        paragraphs: [
+          'Uygulama GitHub’da ve Pinokio’da yayında. Kurulum, GPU profili veya benzer bir yerel müzik stüdyosu için bizimle iletişime geçebilirsiniz.',
+        ],
+      },
+    ],
+  },
+  {
     slug: 'akibeat',
     title: 'Akibeat',
     subtitle: 'AI Destekli Müzik Analiz ve Mastering',

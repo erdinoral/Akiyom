@@ -37,7 +37,7 @@ export const ABOUT_NAME_ORIGIN = {
 
 export const ABOUT_STORY = [
   '2025\'te Erdin Oral tarafından kurulan Akiyom, yalnızca müşteri projesi üreten bir ajans olmak için değil; kendi ürünlerini geliştirip aynı mühendislik disiplinini Studio ve AI hizmetlerine taşımak için yola çıktı.',
-  'Akibeat, Aki Finans, Enigma Atlas ve Akizen PC gibi projelerde edindiğimiz saha tecrübesi, özel yazılım ve kurumsal AI tarafında size sunduğumuz kalite standardının kaynağıdır. Yeni bir markayız; ancak ürün geliştirme, yayın ve ölçekleme konusunda köklü bir pratiğimiz var.',
+  'Akibeat, MiniMax H3/M3 Studio, Aki Finans, Enigma Atlas ve Akizen PC gibi projelerde edindiğimiz saha tecrübesi, özel yazılım ve kurumsal AI tarafında size sunduğumuz kalite standardının kaynağıdır. Yeni bir markayız; ancak ürün geliştirme, yayın ve ölçekleme konusunda köklü bir pratiğimiz var.',
   'Her projede kullanıcı deneyimi, performans, güvenlik ve ölçeklenebilirliği birlikte düşünürüz. Hedefimiz yalnızca kod teslim etmek değil; dijital dünyada anlamlı, güvenilir ve uzun ömürlü çözümler üretmektir.',
 ];
 
@@ -63,6 +63,8 @@ export const ABOUT_PILLARS = [
     items: [
       'Akibeat — AI destekli müzik analizi',
       'AkiFactory — AI destekli kısa video stüdyosu',
+      'MiniMax H3 Studio — yerel sinema video (Pinokio)',
+      'MiniMax M3 Studio — yerel AI müzik (Pinokio)',
       'Aki Finans — kişisel finans (Microsoft Store)',
       'Enigma Atlas — keşif platformu',
       'Akizen PC — sistem sağlığı (Microsoft Store)',

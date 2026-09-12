@@ -384,8 +384,8 @@ const AkiyomLanding = () => {
           >
             <h2 className="section-title">Projelerimiz</h2>
             <p className="home-projects-intro">
-              Akiyom ekosisteminde geliştirdiğimiz web ve masaüstü uygulamaları. Müzik ve finans araçlarından
-              POS otomasyonuna, keşif platformlarından sistem yardımcılarına kadar farklı alanlarda çözümler üretiyoruz.
+              Akiyom ekosisteminde geliştirdiğimiz web ve masaüstü uygulamaları. Yerel AI video ve müzik stüdyolarından
+              finans araçlarına, POS otomasyonundan keşif platformlarına kadar farklı alanlarda çözümler üretiyoruz.
             </p>
           </motion.header>
 

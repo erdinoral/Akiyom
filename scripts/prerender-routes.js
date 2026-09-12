@@ -35,7 +35,7 @@ const ROUTE_META = {
   },
   '/projeler': {
     title: 'Projelerimiz — Akiyom Studio',
-    description: 'Akiyom tarafından geliştirilen web ve masaüstü projeler: AKİ, AkiFactory, AKİPos, Enigma Atlas, Aki Finans, Akizen PC, Akibeat.',
+    description: 'Akiyom tarafından geliştirilen web ve masaüstü projeler: AKİ, AkiFactory, MiniMax H3 Studio, MiniMax M3 Studio, AKİPos, Enigma Atlas, Aki Finans, Akizen PC, Akibeat.',
   },
   '/projeler/aki': {
     title: 'AKİ — Akiyom Projeler',
@@ -64,6 +64,14 @@ const ROUTE_META = {
   '/projeler/akifactory': {
     title: 'AkiFactory — Akiyom Projeler',
     description: 'AkiFactory AI destekli kısa video stüdyosu — TikTok, Shorts ve Reels üretimi.',
+  },
+  '/projeler/minimax-h3-studio': {
+    title: 'MiniMax H3 Studio — Akiyom Projeler',
+    description: 'Yerel MiniMax H3 video stüdyosu: ComfyUI, Yönetmen, Plan ve sinema stüdyosu. Pinokio, NVIDIA GPU.',
+  },
+  '/projeler/minimax-m3-studio': {
+    title: 'MiniMax M3 Studio — Akiyom Projeler',
+    description: 'Yerel MiniMax Music3 stüdyosu: Windows + NVIDIA GPU, Pinokio 1-tık kurulum.',
   },
   '/blog': {
     title: 'Blog & Haberler — Akiyom',

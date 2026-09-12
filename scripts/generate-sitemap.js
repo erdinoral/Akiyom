@@ -97,6 +97,18 @@ const routes = [
     lastmod: CURRENT_DATE
   },
   {
+    path: '/projeler/minimax-h3-studio',
+    changefreq: 'monthly',
+    priority: '0.8',
+    lastmod: CURRENT_DATE
+  },
+  {
+    path: '/projeler/minimax-m3-studio',
+    changefreq: 'monthly',
+    priority: '0.8',
+    lastmod: CURRENT_DATE
+  },
+  {
     path: '/blog',
     changefreq: 'weekly',
     priority: '0.85',
