@@ -81,6 +81,25 @@ const ROUTE_META = {
 
 const ROUTES = Object.keys(ROUTE_META);
 
+const ORGANIZATION_SCHEMA = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'Akiyom Yazılım ve Geliştirme',
+  alternateName: 'Akiyom Studio',
+  url: SITE_URL,
+  foundingDate: '2025',
+  founder: {
+    '@type': 'Person',
+    name: 'Erdin Oral',
+    jobTitle: 'Kurucu ve Geliştirici',
+  },
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: 'İstanbul',
+    addressCountry: 'TR',
+  },
+};
+
 function escapeHtml(str) {
   return str
     .replace(/&/g, '&amp;')
@@ -129,6 +148,12 @@ function injectRouteMeta(html, route, meta) {
     `<meta name="twitter:url" content="${canonical}">`
   );
   out = out.replace(/<link rel="canonical" href="[^"]*">/, `<link rel="canonical" href="${canonical}">`);
+
+  // Botlar JavaScript'i her zaman çalıştırmadığı için kuruluş bilgisini
+  // önceden oluşturulmuş HTML'e de ekliyoruz. Böylece kurucu bilgisi net
+  // ve tek bir kaynakta sunulur.
+  const schemaTag = `<script type="application/ld+json">${JSON.stringify(ORGANIZATION_SCHEMA)}</script>`;
+  out = out.replace('</head>', `${schemaTag}</head>`);
 
   return out;
 }
