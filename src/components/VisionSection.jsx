@@ -2,9 +2,9 @@ import React, { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 
 const VISION_PARAGRAPHS = [
-  'Hayalleri teknolojiyle buluşturma misyonuyla yola çıktık. Kendi ürünlerimizi geliştirirken Akiyom Studio ile özel yazılım, ERP ve kurumsal yazılımlar, Akiyom AI ile kurumsal yerel yapay zeka altyapısı sunuyoruz.',
+  'Hayalleri teknolojiyle buluşturma misyonuyla yola çıktık. Kendi ürünlerimizi geliştirirken Akiyom Studio ile özel yazılım, ERP ve kurumsal yazılımlar sunuyoruz.',
   'Teknoloji ve yaratıcılığın kesiştiği noktada, her projeyi bir sanat eseri olarak görüyoruz. Kullanıcı deneyiminden performansa, güvenlikten ölçeklenebilirliğe kadar her detayı özenle tasarlıyoruz. Amacımız, sadece yazılım geliştirmek değil; dijital dünyada anlamlı ve kalıcı izler bırakan çözümler yaratmak.',
-  'Akiyom ekosistemi; bireysel kullanıcılardan KOBİ\'lere, kurumsal ekiplerden içerik platformlarına kadar geniş bir kitleye hizmet verir. Her ürün kendi alanında uzmanlaşır; Studio ve AI hizmetleri ise fikirden canlıya uzanan yolu kısaltır.',
+  'Akiyom ekosistemi; bireysel kullanıcılardan KOBİ\'lere, kurumsal ekiplerden içerik platformlarına kadar geniş bir kitleye hizmet verir. Her ürün kendi alanında uzmanlaşır; Akiyom Studio ise fikirden canlıya uzanan yolu kısaltır.',
 ];
 
 const containerVariants = {

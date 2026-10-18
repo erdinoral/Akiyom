@@ -3,7 +3,6 @@ import { Link, useLocation } from 'react-router-dom';
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
 import ProjectForm from './ProjectForm';
 import CookieBanner from './CookieBanner';
-import AkiyomAiPromo from './src/components/AkiyomAiPromo.jsx';
 import SiteNavbar from './src/components/SiteNavbar.jsx';
 import SiteFooter from './src/components/SiteFooter.jsx';
 import VisionSection from './src/components/VisionSection.jsx';
@@ -55,7 +54,7 @@ const AkiyomLanding = () => {
     },
     {
       title: 'AI Model Geliştirme',
-      description: 'Akibeat için gelişmiş yapay zeka modellerinin entegrasyonu. Müzik analizi ve mastering süreçlerinde kullanılan AI algoritmalarını sürekli geliştirerek, profesyonel kalitede sonuçlar üretmeyi hedefliyoruz. Makine öğrenmesi ve derin öğrenme teknikleri ile ses işleme kalitesini artırıyoruz.',
+      description: 'MiniMax H3 ve M3 Studio gibi yerel AI stüdyolarımız için gelişmiş model entegrasyonları. Video ve müzik üretim akışlarını sürekli geliştirerek, kendi GPU’nuzda profesyonel kalitede sonuçlar üretmeyi hedefliyoruz.',
       status: 'planned'
     },
     {
@@ -165,8 +164,7 @@ const AkiyomLanding = () => {
         "Web Sitesi Geliştirme",
         "Uygulama Geliştirme",
         "ERP ve Kurumsal Yazılım Geliştirme",
-        "Yazılım Danışmanlığı",
-        "Kurumsal Yerel AI Altyapısı"
+        "Yazılım Danışmanlığı"
       ],
       "areaServed": {
         "@type": "Country",
@@ -221,15 +219,6 @@ const AkiyomLanding = () => {
               "@type": "Service",
               "name": "ERP ve Kurumsal Yazılım",
               "description": "Stok, muhasebe, satış ve operasyon süreçleri için özel ERP ve kurumsal yazılım çözümleri"
-            }
-          },
-          {
-            "@type": "Offer",
-            "itemOffered": {
-              "@type": "Service",
-              "name": "Akiyom AI",
-              "description": "Şirket içi yerel AI sunucu altyapısı, Graph-RAG ve modüler GPU paketleri",
-              "url": "https://akiyom.com/akiyom-ai"
             }
           }
         ]
@@ -454,9 +443,6 @@ const AkiyomLanding = () => {
         </motion.div>
       </section>
 
-      {/* Akiyom AI Promo */}
-      <AkiyomAiPromo />
-
       {/* Akiyom Studio Section */}
       <section className="studio-section">
         <motion.div
@@ -469,7 +455,7 @@ const AkiyomLanding = () => {
           <h2 className="studio-title">Akiyom Studio</h2>
           <p className="studio-slogan">Sizin Vizyonunuz, Bizim Teknolojimiz.</p>
           <p className="studio-description">
-            Akibeat, Aki Finans, Enigma Atlas ve Akizen PC gibi projelerde edindiğimiz mühendislik
+            AkiFactory, Aki Finans, Enigma Atlas ve Akizen PC gibi projelerde edindiğimiz mühendislik
             tecrübesini, artık sizin iş hedeflerinize taşıyoruz. Web sitesi ve uygulamalardan ERP, CRM ve kurumsal
             yazılımlara kadar; planlama, tasarım ve geliştirme adımlarını tek bir çatı altında yönetiyoruz.
           </p>
@@ -665,7 +651,7 @@ const AkiyomLanding = () => {
                   <h2 className="page-modal-title">Veri Gizliliği ve Güvenlik</h2>
                   <div className="page-modal-text">
                     <p>
-                      Akiyom olarak; Akibeat, Aki Finans ve Enigma Atlas platformlarımızı kullanırken paylaştığınız verilerin mahremiyetini en üst düzeyde tutmayı taahhüt ediyoruz.
+                      Akiyom olarak; Aki Finans, Enigma Atlas ve diğer platformlarımızı kullanırken paylaştığınız verilerin mahremiyetini en üst düzeyde tutmayı taahhüt ediyoruz.
                     </p>
                     <ul className="page-modal-list">
                       <li>
@@ -691,10 +677,10 @@ const AkiyomLanding = () => {
                     </p>
                     <ul className="page-modal-list">
                       <li>
-                        <strong>Adil Kullanım:</strong> Akibeat'in yapay zeka motoru veya Aki Finans'ın analiz araçları gibi sistemlerimiz, bireysel üretkenliği artırmak için tasarlanmıştır. Sistem bütünlüğünü riske atacak manipülatif kullanımlara izin verilmez.
+                        <strong>Adil Kullanım:</strong> Yerel AI stüdyolarımız veya Aki Finans'ın analiz araçları gibi sistemlerimiz, bireysel üretkenliği artırmak için tasarlanmıştır. Sistem bütünlüğünü riske atacak manipülatif kullanımlara izin verilmez.
                       </li>
                       <li>
-                        <strong>Fikri Mülkiyet:</strong> Akiyom çatısı altındaki tüm yazılımlar, arayüz tasarımları ve markalar (Akiyom, Akibeat vb.) firmamıza aittir.
+                        <strong>Fikri Mülkiyet:</strong> Akiyom çatısı altındaki tüm yazılımlar, arayüz tasarımları ve markalar (Akiyom, AkiFactory vb.) firmamıza aittir.
                       </li>
                       <li>
                         <strong>Sorumluluk:</strong> Algoritmalarımız ve sunduğumuz veriler size en iyi rehberliği sağlamak üzere optimize edilmiştir, ancak nihai kararlar ve sonuçlar kullanıcının kendi sorumluluğundadır.

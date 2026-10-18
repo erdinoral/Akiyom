@@ -16,7 +16,7 @@ export const ABOUT_COMPANY = {
 export const ABOUT_INTRO = {
   title: 'Biz Kimiz',
   lead:
-    'Akiyom Yazılım ve Geliştirme; 2025\'te kurulan, kendi ürünlerini geliştiren ve şirketlere özel yazılım ile kurumsal yerel yapay zeka altyapısı sunan İstanbul merkezli bir teknoloji stüdyosudur.',
+    'Akiyom Yazılım ve Geliştirme; 2025\'te kurulan, kendi ürünlerini geliştiren ve şirketlere özel yazılım sunan İstanbul merkezli bir teknoloji stüdyosudur.',
 };
 
 export const ABOUT_MISSION =
@@ -36,22 +36,22 @@ export const ABOUT_NAME_ORIGIN = {
 };
 
 export const ABOUT_STORY = [
-  '2025\'te Erdin Oral tarafından kurulan Akiyom, yalnızca müşteri projesi üreten bir ajans olmak için değil; kendi ürünlerini geliştirip aynı mühendislik disiplinini Studio ve AI hizmetlerine taşımak için yola çıktı.',
-  'Akibeat, MiniMax H3/M3 Studio, Aki Finans, Enigma Atlas ve Akizen PC gibi projelerde edindiğimiz saha tecrübesi, özel yazılım ve kurumsal AI tarafında size sunduğumuz kalite standardının kaynağıdır. Yeni bir markayız; ancak ürün geliştirme, yayın ve ölçekleme konusunda köklü bir pratiğimiz var.',
+  '2025\'te Erdin Oral tarafından kurulan Akiyom, yalnızca müşteri projesi üreten bir ajans olmak için değil; kendi ürünlerini geliştirip aynı mühendislik disiplinini Akiyom Studio projelerine taşımak için yola çıktı.',
+  'MiniMax H3/M3 Studio, AkiFactory, Aki Finans, Enigma Atlas ve Akizen PC gibi projelerde edindiğimiz saha tecrübesi, özel yazılım tarafında size sunduğumuz kalite standardının kaynağıdır. Yeni bir markayız; ancak ürün geliştirme, yayın ve ölçekleme konusunda köklü bir pratiğimiz var.',
   'Her projede kullanıcı deneyimi, performans, güvenlik ve ölçeklenebilirliği birlikte düşünürüz. Hedefimiz yalnızca kod teslim etmek değil; dijital dünyada anlamlı, güvenilir ve uzun ömürlü çözümler üretmektir.',
 ];
 
 export const ABOUT_STATS = [
   { value: '2025', label: 'Kuruluş yılı', hint: 'Akiyom\'un resmi başlangıcı' },
   { value: activeProductLineCount, label: 'Aktif ürün hattı', hint: activeProductLineHint },
-  { value: '3', label: 'Hizmet kolu', hint: 'Ürünler, Akiyom Studio, Akiyom AI' },
+  { value: '2', label: 'Hizmet kolu', hint: 'Kendi ürünlerimiz ve Akiyom Studio' },
   { value: '2', label: 'Store yayını', hint: 'Microsoft Store\'da canlı uygulamalar' },
 ];
 
 export const ABOUT_FOUNDER = {
   name: 'Erdin Oral',
   role: 'Kurucu & Geliştirici',
-  bio: 'Akiyom\'un kurucusu. Ürün tasarımından full-stack geliştirmeye, yayın süreçlerinden kurumsal AI mimarisine kadar ekosistemin tüm katmanlarında doğrudan üretime odaklanır. Studio ve AI projelerinde de aynı standartla çalışır.',
+  bio: 'Akiyom\'un kurucusu. Ürün tasarımından full-stack geliştirmeye, yayın süreçlerine kadar ekosistemin tüm katmanlarında doğrudan üretime odaklanır. Studio projelerinde de aynı standartla çalışır.',
 };
 
 export const ABOUT_PILLARS = [
@@ -59,9 +59,8 @@ export const ABOUT_PILLARS = [
     id: 'products',
     title: 'Kendi Ürünlerimiz',
     description:
-      'Gerçek kullanıcılarla test ettiğimiz ürünler, Studio ve AI tarafındaki kalite standardımızın temelini oluşturur.',
+      'Gerçek kullanıcılarla test ettiğimiz ürünler, Studio tarafındaki kalite standardımızın temelini oluşturur.',
     items: [
-      'Akibeat — AI destekli müzik analizi',
       'AkiFactory — AI destekli kısa video stüdyosu',
       'MiniMax H3 Studio — yerel sinema video (Pinokio)',
       'MiniMax M3 Studio — yerel AI müzik (Pinokio)',
@@ -82,18 +81,6 @@ export const ABOUT_PILLARS = [
       'Bakım ve teslim sonrası destek',
     ],
   },
-  {
-    id: 'ai',
-    title: 'Akiyom AI',
-    description:
-      'Şirket verilerinin dışarı çıkmadığı, ofis içinde çalışan yerel yapay zeka sunucu altyapısı. Bulut abonelik maliyetlerine alternatif, KVKK odaklı mimari.',
-    items: [
-      'Modüler GPU ve sunucu paketleri',
-      'Graph-RAG doküman analizi',
-      'Yerel görsel üretim (FLUX)',
-      'Kuruma özel proje ve holding çözümleri',
-    ],
-  },
 ];
 
 export const ABOUT_VALUES = [
@@ -103,7 +90,7 @@ export const ABOUT_VALUES = [
   },
   {
     title: 'Güvenlik ve mahremiyet',
-    text: 'Özellikle kurumsal ve AI projelerinde veriyi mümkün olduğunca yerelde tutar, şeffaf veri politikalarıyla ilerleriz.',
+    text: 'Özellikle kurumsal projelerde veriyi mümkün olduğunca yerelde tutar, şeffaf veri politikalarıyla ilerleriz.',
   },
   {
     title: 'Mühendislik disiplini',
@@ -125,7 +112,7 @@ export const ABOUT_PROCESS = [
 export const ABOUT_CONTACT = {
   email: 'akiyom.iletisim@gmail.com',
   location: 'İstanbul, Türkiye',
-  note: 'Proje teklifi, Akiyom AI demo talebi veya ürün geri bildirimi için bize yazın. Mesajlarınıza en kısa sürede dönüş yapıyoruz.',
+  note: 'Proje teklifi veya ürün geri bildirimi için bize yazın. Mesajlarınıza en kısa sürede dönüş yapıyoruz.',
 };
 
 /** Sosyal medya linkleri hazır olunca buraya ekleyin */

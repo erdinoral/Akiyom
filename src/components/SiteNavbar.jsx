@@ -137,12 +137,6 @@ const SiteNavbar = ({
                   Projeler
                 </NavLink>
                 <NavLink to="/blog">Blog & Haberler</NavLink>
-                <NavLink
-                  to="/akiyom-ai"
-                  className="nav-link--akiyom-ai akiyom-ai-gradient-text--animated"
-                >
-                  Akiyom AI
-                </NavLink>
                 <NavLink hash="#hedefler" to="/#hedefler">
                   Hedefler
                 </NavLink>
@@ -238,9 +232,6 @@ const SiteNavbar = ({
               Projeler
             </DesktopNavLink>
             <Link to="/blog">Blog & Haberler</Link>
-            <Link to="/akiyom-ai" className="nav-link--akiyom-ai akiyom-ai-gradient-text--animated">
-              Akiyom AI
-            </Link>
             <DesktopNavLink hash="#hedefler" to="/#hedefler">
               Hedefler
             </DesktopNavLink>

@@ -12,7 +12,7 @@ const PrivacyPage = () => {
     return setPageSeo({
       title: 'Gizlilik Politikası ve KVKK — Akiyom',
       description:
-        'Akiyom web sitesi, iletişim formu, çerezler ve Akiyom AI hizmetleri için gizlilik ve KVKK aydınlatma metni.',
+        'Akiyom web sitesi, iletişim formu ve çerezler için gizlilik ve KVKK aydınlatma metni.',
       path: '/gizlilik',
     });
   }, []);
@@ -55,7 +55,6 @@ const PrivacyPage = () => {
             <div className="nav-links">
               <Link to="/#vizyon">Vizyon</Link>
               <Link to="/#projeler">Projeler</Link>
-              <Link to="/akiyom-ai">Akiyom AI</Link>
             </div>
           </div>
         </motion.nav>
@@ -90,16 +89,6 @@ const PrivacyPage = () => {
                 açıklaması; talebinizi değerlendirmek, size dönüş yapmak ve teklif sürecini yürütmek amacıyla
                 işlenir. Form verileri güvenli veritabanı altyapısında (Supabase) saklanır; spam önleme için
                 teknik oran sınırlaması ve bot koruması uygulanabilir.
-              </p>
-
-              <h3 className="privacy-content-subtitle">Akiyom AI — ödeme ve teklif iletişimi</h3>
-              <p>
-                Akiyom AI kurumsal yerel AI altyapısı için &quot;Ödeme için iletişime geçin&quot; ve benzeri
-                butonlar, cihazınızda e-posta uygulamanızı açar; bu aşamada ödeme kartı bilgisi web sitemiz
-                üzerinden toplanmaz. E-posta ile paylaştığınız şirket adı, iletişim bilgileri ve talep
-                içeriği yalnızca teklif, sözleşme ve faturalama süreçleri için kullanılır. Kurulum sonrası
-                AI iş yükü ve şirket verileri müşteri lokasyonundaki sunucuda kalır; bu veriler Akiyom
-                tarafından bulut ortamında işlenmez (sözleşmede aksi kararlaştırılmadıkça).
               </p>
 
               <h3 className="privacy-content-subtitle">Çerezler</h3>
@@ -180,15 +169,6 @@ const PrivacyPage = () => {
                   <div className="privacy-app-card">
                     <h3 className="privacy-app-name">Akizen PC</h3>
                     <p className="privacy-app-description">Uygulama gizlilik politikası</p>
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                      <path d="M7 17L17 7M7 7h10v10" />
-                    </svg>
-                  </div>
-                </Link>
-                <Link to="/akiyom-ai" className="privacy-app-link">
-                  <div className="privacy-app-card">
-                    <h3 className="privacy-app-name">Akiyom AI</h3>
-                    <p className="privacy-app-description">Yerel AI altyapısı ve ödeme süreci</p>
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                       <path d="M7 17L17 7M7 7h10v10" />
                     </svg>

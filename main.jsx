@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import { AuthProvider } from './src/context/AuthContext.jsx'
 import AkiyomLanding from './AkiyomLanding.jsx'
 import PrivacyPage from './PrivacyPage.jsx'
@@ -8,7 +8,6 @@ import AkiFinansPrivacyPage from './AkiFinansPrivacyPage.jsx'
 import AkizenPrivacyPage from './AkizenPrivacyPage.jsx'
 import ProjectsPage from './src/ProjectsPage.jsx'
 import ProjectDetailPage from './src/ProjectDetailPage.jsx'
-import AkiyomAiPage from './src/AkiyomAiPage.jsx'
 import AuthPage from './src/pages/AuthPage.jsx'
 import ProfilePage from './src/pages/ProfilePage.jsx'
 import AdminPanelPage from './src/pages/AdminPanelPage.jsx'
@@ -32,7 +31,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           <Route path="/projeler/:slug" element={<ProjectDetailPage />} />
           <Route path="/blog" element={<BlogPage />} />
           <Route path="/blog/:slug" element={<BlogPostPage />} />
-          <Route path="/akiyom-ai" element={<AkiyomAiPage />} />
+          <Route path="/akiyom-ai" element={<Navigate to="/" replace />} />
           <Route path="/biz-kimiz" element={<AboutPage />} />
           <Route path="/kayit-ol" element={<AuthPage mode="register" />} />
           <Route path="/giris" element={<AuthPage mode="login" />} />

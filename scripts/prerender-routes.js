@@ -13,7 +13,7 @@ const ROUTE_META = {
   '/gizlilik': {
     title: 'Gizlilik Politikası ve KVKK — Akiyom',
     description:
-      'Akiyom web sitesi, iletişim formu, çerezler ve Akiyom AI hizmetleri için gizlilik ve KVKK aydınlatma metni.',
+      'Akiyom web sitesi, iletişim formu ve çerezler için gizlilik ve KVKK aydınlatma metni.',
   },
   '/gizlilik/aki-finans': {
     title: 'Aki Finans Gizlilik Politikası — Akiyom',
@@ -23,23 +23,14 @@ const ROUTE_META = {
     title: 'Akizen PC Gizlilik Politikası — Akiyom',
     description: 'Akizen PC uygulaması gizlilik politikası ve veri işleme bilgileri.',
   },
-  '/akiyom-ai': {
-    title: 'Akiyom AI | Kurumsal Yerel AI Altyapısı — Akiyom',
-    description:
-      "Verileriniz şirket dışına çıkmadan yerel AI sunucu çözümleri. Mikro'dan Holding'e modüler paketler, Graph-RAG, FLUX ve özelleştirilebilir GPU altyapısı.",
-  },
   '/biz-kimiz': {
     title: 'Biz Kimiz — Akiyom Yazılım ve Geliştirme',
     description:
-      '2025\'te Erdin Oral tarafından kurulan Akiyom; İstanbul merkezli ürün, Studio ve Akiyom AI ekosistemi.',
+      '2025\'te Erdin Oral tarafından kurulan Akiyom; İstanbul merkezli ürün ve Akiyom Studio ekosistemi.',
   },
   '/projeler': {
     title: 'Projelerimiz — Akiyom Studio',
-    description: 'Akiyom tarafından geliştirilen web ve masaüstü projeler: AKİ, AkiFactory, MiniMax H3 Studio, MiniMax M3 Studio, AKİPos, Enigma Atlas, Aki Finans, Akizen PC, Akibeat.',
-  },
-  '/projeler/aki': {
-    title: 'AKİ — Akiyom Projeler',
-    description: 'AKİ yerel AI asistanı — sohbet, görsel üretim, Ozan ve Brain uzman modelleri.',
+    description: 'Akiyom tarafından geliştirilen web ve masaüstü projeler: AkiFactory, MiniMax H3 Studio, MiniMax M3 Studio, AKİPos, Enigma Atlas, Aki Finans, Akizen PC.',
   },
   '/projeler/enigma-atlas': {
     title: 'Enigma Atlas — Akiyom Projeler',
@@ -52,10 +43,6 @@ const ROUTE_META = {
   '/projeler/akizen-pc': {
     title: 'Akizen PC — Akiyom Projeler',
     description: 'Akizen PC sistem optimizasyon uygulaması.',
-  },
-  '/projeler/akibeat': {
-    title: 'Akibeat — Akiyom Projeler',
-    description: 'Akibeat müzik üretkenliği uygulaması.',
   },
   '/projeler/akipos': {
     title: 'AKİPos — Akiyom Projeler',

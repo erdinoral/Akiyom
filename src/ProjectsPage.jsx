@@ -19,7 +19,7 @@ const ProjectsPage = () => {
     return setPageSeo({
       title: 'Projelerimiz — Akiyom Studio',
       description:
-        'Akiyom tarafından geliştirilen web ve masaüstü projeler: MiniMax H3 Studio, MiniMax M3 Studio, AKİ, AkiFactory, AKİPos, Enigma Atlas, Aki Finans, Akizen PC, Akibeat.',
+        'Akiyom tarafından geliştirilen web ve masaüstü projeler: MiniMax H3 Studio, MiniMax M3 Studio, AkiFactory, AKİPos, Enigma Atlas, Aki Finans, Akizen PC.',
       path: '/projeler',
     });
   }, []);

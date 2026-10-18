@@ -37,12 +37,6 @@ const routes = [
     lastmod: CURRENT_DATE
   },
   {
-    path: '/akiyom-ai',
-    changefreq: 'weekly',
-    priority: '0.9',
-    lastmod: CURRENT_DATE
-  },
-  {
     path: '/biz-kimiz',
     changefreq: 'monthly',
     priority: '0.85',
@@ -52,12 +46,6 @@ const routes = [
     path: '/projeler',
     changefreq: 'weekly',
     priority: '0.9',
-    lastmod: CURRENT_DATE
-  },
-  {
-    path: '/projeler/aki',
-    changefreq: 'monthly',
-    priority: '0.85',
     lastmod: CURRENT_DATE
   },
   {
@@ -74,12 +62,6 @@ const routes = [
   },
   {
     path: '/projeler/akizen-pc',
-    changefreq: 'monthly',
-    priority: '0.8',
-    lastmod: CURRENT_DATE
-  },
-  {
-    path: '/projeler/akibeat',
     changefreq: 'monthly',
     priority: '0.8',
     lastmod: CURRENT_DATE

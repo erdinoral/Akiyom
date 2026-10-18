@@ -56,7 +56,7 @@ const ProfileRequestsSection = () => {
           Gönderilen Mesajlar ve Talepler
         </h2>
         <p className="profile-requests-subtitle">
-          Projenizi Anlatın ve Akiyom AI iletişim formlarından gönderdiğiniz talepler burada listelenir.
+          Projenizi Anlatın formundan gönderdiğiniz talepler burada listelenir.
         </p>
       </div>
 
@@ -70,8 +70,8 @@ const ProfileRequestsSection = () => {
         </p>
       ) : items.length === 0 ? (
         <p className="profile-requests-empty">
-          Henüz kayıtlı bir talebiniz yok. Ana sayfadaki &quot;Projenizi Anlatın&quot; veya Akiyom AI sayfasından
-          iletişim formu gönderdiğinizde burada görünür. Daha önce gönderdiğiniz talepler, hesabınızdaki e-posta
+          Henüz kayıtlı bir talebiniz yok. Ana sayfadaki &quot;Projenizi Anlatın&quot; formunu
+          gönderdiğinizde burada görünür. Daha önce gönderdiğiniz talepler, hesabınızdaki e-posta
           adresiyle formda yazdığınız e-posta aynıysa burada listelenir.
         </p>
       ) : (

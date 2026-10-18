@@ -17,12 +17,6 @@ const SiteFooter = ({ onContactClick, onTermsClick, showWhatsApp = true }) => (
         <Link to="/blog" className="footer-link">
           Blog & Haberler
         </Link>
-        <Link
-          to="/akiyom-ai"
-          className="footer-link footer-link--akiyom-ai akiyom-ai-gradient-text--animated"
-        >
-          Akiyom AI
-        </Link>
         <Link to="/gizlilik" className="footer-link">
           Gizlilik Politikası
         </Link>

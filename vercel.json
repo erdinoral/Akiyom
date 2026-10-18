@@ -1,4 +1,21 @@
 {
+  "redirects": [
+    {
+      "source": "/akiyom-ai",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/projeler/aki",
+      "destination": "/projeler",
+      "permanent": true
+    },
+    {
+      "source": "/projeler/akibeat",
+      "destination": "/projeler",
+      "permanent": true
+    }
+  ],
   "rewrites": [
     {
       "source": "/api/(.*)",

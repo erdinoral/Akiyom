@@ -10,7 +10,7 @@
 
 ### Akiyom kimdir?
 
-**Akiyom**, kendi dijital ürünlerini geliştiren; **Akiyom Studio** ile özel yazılım, **Akiyom AI** ile kurumsal yerel AI sunan bir ürün ve hizmet ekosistemidir.
+**Akiyom**, kendi dijital ürünlerini geliştiren ve **Akiyom Studio** ile özel yazılım sunan bir ürün ve hizmet ekosistemidir.
 
 **Slogan:** *Yazılım, Yapay Zeka ve Dijital Ürünler Adına Her Şey.*
 

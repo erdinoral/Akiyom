@@ -25,7 +25,7 @@ const AboutPage = () => {
   usePageSeo({
     title: 'Biz Kimiz — Akiyom',
     description:
-      'Akiyom Yazılım ve Geliştirme — 2025\'te Erdin Oral tarafından kurulan İstanbul merkezli teknoloji stüdyosu. Ürünler, Akiyom Studio ve Akiyom AI.',
+      'Akiyom Yazılım ve Geliştirme — 2025\'te Erdin Oral tarafından kurulan İstanbul merkezli teknoloji stüdyosu. Kendi ürünlerimiz ve Akiyom Studio.',
     path: '/biz-kimiz',
   });
 
@@ -176,9 +176,6 @@ const AboutPage = () => {
               </Link>
               <Link to="/projeler" className="about-cta-btn outline">
                 Projelerimizi görün
-              </Link>
-              <Link to="/akiyom-ai" className="about-cta-btn outline">
-                Akiyom AI
               </Link>
             </div>
           </section>
