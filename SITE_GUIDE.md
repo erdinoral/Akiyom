@@ -33,10 +33,10 @@ Site yalnÄ±zca bir portfolyo deÄŸil; **lead (mÃ¼ÅŸteri adayÄ±) toplama
 
 ### Rakiplerden ayrÄ±ÅŸma mesajlarÄ± (iÃ§erikte vurgulanmalÄ±)
 
-1. **Kendi Ã¼rÃ¼nlerini de geliÅŸtiriyorlar** â€” sadece ajans deÄŸil, canlÄ± Ã¼rÃ¼n ekosistemi (Akibeat, Enigma Atlas vb.)
+1. **Kendi Ã¼rÃ¼nlerini de geliÅŸtiriyorlar** â€” sadece ajans deÄŸil, canlÄ± Ã¼rÃ¼n ekosistemi (MiniMax H3/M3 Studio, Enigma Atlas vb.)
 2. **Premium karanlÄ±k UI** â€” Apple benzeri sade, animasyonlu, â€œuzay / derin griâ€ estetik
 3. **UÃ§tan uca hizmet** â€” planlama, tasarÄ±m, geliÅŸtirme, yayÄ±na alma
-4. **AI & modern stack** â€” Akibeat AI, Supabase/Firebase yol haritasÄ±
+4. **AI & modern stack** â€” MiniMax H3/M3 Studio, Supabase/Firebase yol haritasÄ±
 
 ---
 
@@ -119,7 +119,7 @@ akiyom-website/
 
 - **Flat yapÄ±:** Ã‡oÄŸu component proje kÃ¶kÃ¼nde; `src/` altÄ±nda sadece utils ve kullanÄ±lmayan `Privacy.jsx` var.
 - **Tek CSS dosyasÄ±:** Yeni bÃ¶lÃ¼m eklerken `AkiyomLanding.css` iÃ§inde mevcut class isimlendirme ve CSS deÄŸiÅŸkenlerine uy.
-- **GÃ¶rsel yollarÄ±:** `public/` kÃ¶kÃ¼nden servis edilir â†’ Ã¶rn. `image: '/akibeat.png'` (dosya `public/akibeat.png` olmalÄ±).
+- **GÃ¶rsel yollarÄ±:** `public/` kÃ¶kÃ¼nden servis edilir â†’ Ã¶rn. `image: '/akifinans.png'` (dosya `public/akifinans.png` olmalÄ±).
 
 ---
 
@@ -188,7 +188,6 @@ TÃ¼m iÃ§erik **component iÃ§inde sabit array** olarak tanÄ±mlÄ± â€�
 
 | id | name | status | link |
 |----|------|--------|------|
-| 1 | Akibeat | in-progress | https://akibeat.akiyom.com |
 | 2 | Aki Finans | published | Microsoft Store |
 | 3 | Enigma Atlas | published | https://enigma.akiyom.com/ |
 | 4 | Akizen PC | published | Microsoft Store |
@@ -264,12 +263,11 @@ Validasyon hem client (`ProjectForm.jsx`) hem server (`api/send-project.js`) tar
 
 | ÃœrÃ¼n | AÃ§Ä±klama | Durum |
 |------|----------|-------|
-| **Akibeat** | AI mÃ¼zik analiz & mastering | GeliÅŸtirme devam |
 | **Aki Finans** | KiÅŸisel finans / cÃ¼zdan | Microsoft Storeâ€™da |
 | **Enigma Atlas** | DÃ¼nya gizemleri keÅŸif platformu | YayÄ±nda (enigma.akiyom.com) |
 | **Akizen PC** | PC performans & sistem saÄŸlÄ±ÄŸÄ± | Microsoft Storeâ€™da |
 
-Alt domainâ€™ler: `akibeat.akiyom.com`, `enigma.akiyom.com` â€” ana site bunlara link verir, ayrÄ± repoâ€™lar olabilir.
+Alt domainâ€™ler: `enigma.akiyom.com` â€” ana site bunlara link verir, ayrÄ± repoâ€™lar olabilir.
 
 ---
 
@@ -360,7 +358,7 @@ Sen Akiyom (akiyom.com) web sitesini geliÅŸtiriyorsun. React 18 + Vite + react
 Ana dosya: AkiyomLanding.jsx + AkiyomLanding.css. Deploy: Vercel.
 Ä°ÅŸ hedefi: Akiyom Studio ile mÃ¼ÅŸteri Ã§ekmek â€” "Projenizi AnlatÄ±n" formu kritik.
 Marka: karanlÄ±k premium UI, Inter font, TÃ¼rkÃ§e.
-ÃœrÃ¼nler: Akibeat, Aki Finans, Enigma Atlas, Akizen PC.
+ÃœrÃ¼nler: MiniMax H3/M3 Studio, AkiFactory, Aki Finans, Enigma Atlas, Akizen PC.
 Detaylar iÃ§in proje kÃ¶kÃ¼ndeki SITE_GUIDE.md dosyasÄ±nÄ± oku.
 DeÄŸiÅŸiklik yaparken: minimal diff, mevcut animasyon/CSS pattern'lerine uy, conversion Ã¶ncelikli.
 KullanÄ±lmayan: AkiyomMain.jsx, src/Privacy.jsx (route yok).
